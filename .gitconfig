@@ -1,0 +1,11 @@
+
+[gpg]
+program = gpg
+[user]
+name = americanpelican
+email = luis@pellicano.mobi
+signingkey = 1E9607EA43FE9F6980DEC6B5A987C8280BBC20C0
+[commit]
+gpgsign = true
+[tag]
+forceSignAnnotated = true
