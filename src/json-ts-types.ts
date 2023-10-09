@@ -1,0 +1,12 @@
+
+import * as CORE from './definitions.js'
+
+export type ViewsRecord = Record<CORE.IRI, CORE.IViewInfo>
+
+export interface IModel extends IDocumentation, IName, IProperties, IModelInfo {
+	propertyDefinitions?: CORE.TPropertyDefinitionRecord
+	views?: CORE.ViewsRecord
+	elements: CORE.ElementsRecord
+	relationships?: CORE.RelationshipRecord
+	organizations?: CORE.ItemsRecord
+}

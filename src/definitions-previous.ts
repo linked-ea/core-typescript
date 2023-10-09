@@ -2,35 +2,19 @@
 
 // FIXME: naming convention for types and interfaces
 
-/*
-				name	documentation	properties	identifier
-model			x
-propertyDef
-profile
-stereotype
-element
-relationship
-property
-organization
-template
-
-*/
-
 // --- common ---
 export type TLang = string
 
-// TODO - identifier should be read-only
-export type IRI = string // attribute of identifier IRI, to be used in conjunction with Base, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
-
-export interface IIdentifier {
-	identifier: Readonly<IRI>
-}
+export type Identifier = string // attribute of identifier IRI, to be used in conjunction with Base, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
 
 export type TLangString = Record<TLang, string>
 
-export interface IModelIdentifier {
-	modelIdentifier: IRI
+export interface IModel {
+	model: Identifier
 }
+
+
+
 
 export interface ICoordinates {
 	x: number // x coordinate starting at top left
@@ -204,39 +188,34 @@ export type TPropertyDataTypes =
 	| 'currency'
 	| 'time'
 
-export interface IPropertyDefInfo extends IModel {
+export interface IPropertyDefinitionInfo extends IModel {
 	name: TLangString
 	type: TPropertyDataTypes
 }
 
 export type TPropertyDefinitionRecord = Record<
-	IRI,
-	IPropertyDefInfo
+	Identifier,
+	IPropertyDefinitionInfo
 >
 
 export type TPropertyValue = string | number | boolean | Date | TLangString // FIXME: how to define property value?
 
 export interface IPropertyInfo {
-	propertyDefinitionRef: IRI
+	propertyDefinitionRef: Identifier
 	value: TPropertyValue
 }
 
 // FIXME: how to define this?
 // export type TPropertyRecord<T extends string> = Record<T, TPropertyTypes>
-export type TPropertyRecord = Record<IRI, IPropertyInfo>
+export type TPropertyRecord = Record<Identifier, IPropertyInfo>
 
 export interface IProperties {
 	properties?: TPropertyRecord
 }
 
 // --- profiles ---
-export interface IProfileInfo extends IName, IDocumentation, IProperties {}
 
 // --- stereotypes ---
-export interface IStereotypes extends IName, IDocumentation, IProperties {}
-
-// --- specializations ---
-export interface ISpecializationInfo extends IName, IDocumentation, IProperties {}
 
 // --- elements ---
 export type TElementTypes =
@@ -707,7 +686,7 @@ export interface IElementInfo extends IName, IDocumentation, IProperties {
 	type: TElementTypes
 }
 
-export type ElementsRecord = Record<IRI, IElementInfo>
+export type ElementsRecord = Record<Identifier, IElementInfo>
 
 // --- relationships ---
 // export type TBaseRelationshipTypes =
@@ -818,73 +797,80 @@ export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
 
 export interface IRelationshipInfo extends IName, IDocumentation, IProperties {
 	type?: TRelationshipTypes
-	source: IRI
-	target: IRI
+	source: Identifier
+	target: Identifier
 }
 
-export type RelationshipRecord = Record<IRI, IRelationshipInfo>
+export type RelationshipRecord = Record<Identifier, IRelationshipInfo>
 
 // --- nodes ---
 export type TNodeTypes = 'Element' | 'Container' | 'Label'
 
 export interface INodeInfo extends ICoordinates, IDimensions, IStyle {
-	elementRef?: IRI
+	elementRef?: Identifier
 	type?: TNodeTypes
 	// TODO - use ILabel interface, but make it optional
 	label?: TLangString
 }
 
-export type NodesRecord = Record<IRI, INodeInfo>
+export type NodesRecord = Record<Identifier, INodeInfo>
 
 // --- connections ---
 export type TConnectionTypes = 'Line' | 'Relationship'
 
 export interface IConnectionInfo extends IStyle {
 	// type: Identifier // TODO - what is it for?
-	source: IRI
-	target: IRI
-	relationshipRef?: IRI
+	source: Identifier
+	target: Identifier
+	relationshipRef?: Identifier
 	bendpoints?: ICoordinates[]
 	type: TConnectionTypes
 }
 
-export type IConnectionRecord = Record<IRI, IConnectionInfo>
+export type IConnectionRecord = Record<Identifier, IConnectionInfo>
 
 // TODO - add viewRef
 
-
-
-
-export interface IViewpointInfo extends IIdentifier, IName, IDocumentation, IProperties {
-	type: IRI
-}
-
 // --- diagram ---
+export type TViewpoint =
+	// Composition
+	| 'Organization'
+	| 'Application Structure'
+	| 'Information Structure'
+	| 'Technology'
+	| 'Layered'
+	| 'Physical'
+	// Support
+	| 'Product'
+	| 'Application Usage'
+	| 'Technology Usage'
+	// Cooperation
+	| 'Business Process Cooperation'
+	| 'Application Cooperation'
+	// Realization
+	| 'Service Realization'
+	| 'Implementation and Deployment'
+
 export interface IViewInfo extends IName, IDocumentation {
 	viewpoint?: TViewpoint
 	nodes?: NodesRecord
 	connections?: IConnectionRecord
 }
 
+export type ViewsRecord = Record<Identifier, IViewInfo>
+
 // --- organizations ---
-export interface IItemInfo extends IIdentifier{
-	identifierRef?: IRI
+export interface IItemInfo {
+	identifierRef?: Identifier
 }
 
-export interface IOrganizationInfo extends IIdentifier, ILabel, IDocumentation {
+export interface IOrganizationInfo extends ILabel, IDocumentation {
 	items?: ItemsRecord
 }
 
-export type ItemsRecord = Record<IRI, IOrganizationInfo | IItemInfo>
+export type ItemsRecord = Record<Identifier, IOrganizationInfo | IItemInfo>
 
 // --- model ---
-export interface IModelInfo extends IDocumentation, IName, IProperties {
-	identifier: IRI
-	base: Base
-	version?: string
-	metadata?: IMetadata
-}
-
 interface IDublinCore11 {
 	title?: string
 	subject?: string
@@ -898,97 +884,14 @@ type IMetadata = IDublinCore11
 // to be used in conjunction with Identifier. Base must end with a slash (/) or a hash (#)
 export type Base = string
 
-// --- core info
-
-export type TInfo =
-IModelInfo |
-IPropertyDefInfo |
-IProfileInfo |
-ISpecializationInfo |
-IElementInfo |
-IRelationshipInfo |
-IPropertyInfo |
-IViewpointInfo |
-IViewInfo |
-IOrganizationInfo
-
-// --- core resources
-export type TClass =
-'model' |
-'propertyDef' |
-'profile' |
-'specialization' |
-'element' |
-'relationship' |
-'property' |
-'viewpoint' |
-'view' |
-'organization'
-
-export interface IResource extends IModelIdentifier {
-	class: TClass
-	identifier: IRI
-	modelIdentifier: IRI
+export interface IModel extends IDocumentation, IName, IProperties {
+	identifier: Identifier
+	base: Base
+	version?: string
+	metadata?: IMetadata
+	propertyDefinitions?: TPropertyDefinitionRecord
+	views?: ViewsRecord
+	elements: ElementsRecord
+	relationships?: RelationshipRecord
+	organizations?: ItemsRecord
 }
-
-export interface IModel extends IResource {
-	class: 'model'
-	info: IModelInfo
-}
-
-export interface IPropertyDef extends IResource {
-	class: 'propertyDef'
-	info: IPropertyDefInfo
-}
-
-export interface IProfile extends IResource {
-	class: 'profile'
-	info: IProfileInfo
-}
-
-export interface ISpecialization extends IResource {
-	class: 'specialization'
-	info: ISpecializationInfo
-}
-
-export interface IElement extends IResource {
-	class: 'element'
-	info: IElementInfo
-}
-
-export interface IRelationship extends IResource {
-	class: 'relationship'
-	info: IRelationshipInfo
-}
-
-export interface IProperty extends IResource {
-	class: 'property'
-	info: IPropertyInfo
-}
-
-export interface IViewpoint extends IResource {
-	class: 'viewpoint'
-	info: IViewpointInfo
-}
-
-export interface IView extends IResource {
-	class: 'view'
-	info: IViewInfo
-}
-
-export interface IOrganization extends IResource {
-	class: 'organization'
-	info: IOrganizationInfo
-}
-
-export type TResource =
-IModel |
-IPropertyDef |
-IProfile |
-ISpecialization |
-IElement |
-IRelationship |
-IProperty |
-IViewpoint |
-IView |
-IOrganization
