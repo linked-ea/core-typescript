@@ -1,0 +1,20 @@
+
+
+// first commit https://raw.githubusercontent.com/americanpelican/fed-ea-public-samples/7bf1d866b9d38dfa906db04f69eecec1953a57b2/sample1.json
+// secon commit https://raw.githubusercontent.com/americanpelican/fed-ea-public-samples/cd6ebb9cb21b7b20e9dc96a66bda8bc035691cda/sample1.json
+
+// permalink https://github.com/americanpelican/fed-ea-public-samples/blob/cd6ebb9cb21b7b20e9dc96a66bda8bc035691cda/sample1.json
+
+export async function resolver (urlStr: string): Promise<Object> {
+
+	const url = new URL(urlStr)
+	try {
+		const response = await fetch(url)
+		console.log("Download complete", response)
+		return await response.json()
+	} catch (error) {
+		console.error(`Download error`)
+	}
+
+	return {}
+}

@@ -1,0 +1,111 @@
+
+import * as T from 'typed-assert'
+
+import type * as CORE from '../definitions-core'
+import type * as PUBLISH from '../definitions-publish'
+
+import { Store, type Resolver} from '../store/store'
+
+export async function jsonToStore (jsonStr: string, resolverMap: Record<CORE.IRI, Resolver>, resolvers: Array<Resolver> | undefined): Promise<Store> {
+
+	// minimal validation
+	const published: PUBLISH.IPublishedModel = JSON.parse(jsonStr)
+
+	// TODO: define minimal data required for a published model
+	// TODO: validate published model structure with Zod
+	T.isNotUndefined(published.identifier, `Imported model has no identifier`)
+	T.isNotUndefined(published.base, `Imported model has no base IRI`)
+	T.isNotUndefined(published.version, `Imported model has no version`)
+	T.isNotUndefined(published.name, `Imported model does not have one or more names`)
+	T.isBoolean(Object.keys(published.name).length > 0, `Imported model list of names is empty`)
+
+	// create store
+	const store = new Store(
+			{
+				identifier: published.identifier,
+				base: published.base,
+				version: published.version,
+				name: published.name,
+			},
+			{},
+			[]
+		)
+
+	// ingest referenced models
+	if (published.referencedModels) {
+		for (const referencedModel of published.referencedModels) {
+			const referenceModelStr = await store.put(referencedModel.identifier, )
+
+			store.ingest(referencedModel)
+		}
+	}
+
+	// propertyDefs
+	{
+		const concept = 'propertyDef'
+		const collection = `${concept}s`
+
+		if (published[collection]) {
+
+			const infos = published[collection]
+
+			for (const [infoIdentifier, info] of Object.entries(infos)) {
+
+				// TODO: identifier's base should equal the base of the model
+
+				const resource: CORE.IPropertyDef = {
+					identifier: infoIdentifier,
+					resourceClass: concept,
+					modelIdentifier: published.identifier,
+					info
+				}
+
+				store.set(store.base, resource)
+
+			}
+		}
+	}
+
+	// elements
+	{
+		const concept = 'element'
+		const collection = `${concept}s`
+
+		const resources = store.get(base, concept)
+
+		for (const [resourceIdentifier, resource] of resources.entries()) {
+
+			if (!model[collection]) model[collection] = {}
+
+			const { identifier, resourceClass, modelIdentifier,...resourceInfo} = resource
+
+			const info: CORE.IElementInfo = resourceInfo.info
+
+			model[collection][resourceIdentifier] = info
+
+		}
+	}
+
+	// relationships
+	{
+		const concept = 'relationship'
+		const collection = `${concept}s`
+
+		const resources = store.get(base, concept)
+
+		for (const [resourceIdentifier, resource] of resources.entries()) {
+
+			if (!model[collection]) model[collection] = {}
+
+			const { identifier, resourceClass, modelIdentifier,...resourceInfo} = resource
+
+			const info: CORE.IRelationshipInfo = resourceInfo.info
+
+			model[collection][resourceIdentifier] = info
+
+		}
+	}
+
+	// return
+	return store
+}

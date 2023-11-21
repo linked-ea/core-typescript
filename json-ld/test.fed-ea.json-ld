@@ -1,0 +1,35 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"@context": {
+		"@version": 1.1,
+		"@vocab": "http://www.opengroup.org/xsd/archimate/3.0/",
+
+		"@base": "http://example.org/",
+
+		"@language": "en",
+    	"@direction": "ltr"
+
+		"archimate": "http://www.opengroup.org/xsd/archimate/3.0/",
+		"linked-ea": "http://www.linked-ea.org/1.0/",
+
+		"profiles": "linked-ea:profiles",
+		"viewpoints": "linked-ea:viewpoints",
+
+		"classification": {"@type": "@vocab"},
+
+		"x": {"@type": "@id", "@container": "@index"},
+	},
+	"@id": "http://example.org/org-1",
+	"propertyDefs": {},
+	"profiles": {},
+	"viewpoints": {},
+	"elements": {
+		"1": {
+			"@id": "http://example.org/org-1",
+		}
+	},
+	"relationships": {},
+	"views": {},
+	"organizations": {
+	},
+}

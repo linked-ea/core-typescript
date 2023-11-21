@@ -1,0 +1,16 @@
+import type * as CORE from '../definitions-core'
+import type * as PUBLISH from '../definitions-publish'
+
+export async function resolver (identifier: CORE.IRI): Promise<string> {
+
+	const published: PUBLISH.IPublishedModel = {
+		identifier,
+		base: 'https://example.com/',
+		version: '0.0.0',
+		name: {
+			en: 'model name'
+		}
+	}
+
+	return JSON.stringify(published)
+}

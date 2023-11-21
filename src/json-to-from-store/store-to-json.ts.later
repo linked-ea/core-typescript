@@ -1,0 +1,88 @@
+
+import * as T from 'typed-assert'
+
+import type * as CORE from '../definitions-core'
+import type * as PUBLISH from '../definitions-publish'
+
+import { Store, type Resolver } from '../store/store'
+
+export function storeToJson(store: Store): PUBLISH.IPublishedModel {
+	const modelIdentifier = store.modelIdentifier
+	const base = store.base
+
+	const coreModel = store.get(base, 'model')
+
+	T.isNotNull(coreModel, `No model with identifier ${modelIdentifier}`)
+
+	// model
+	const { identifier, resourceClass, ...resourceInfo } = coreModel
+
+	const info: CORE.IModelInfo = resourceInfo.info
+
+	const model: PUBLISH.IPublishedModel = {
+		...info,
+	}
+
+	// propertyDefs
+	{
+		const concept = 'propertyDef'
+		const collection = `${concept}s`
+
+		const resources = store.get(base, concept)
+
+		for (const [resourceIdentifier, resource] of resources.entries()) {
+
+			if (!model[collection]) model[collection] = {}
+
+			const { identifier, resourceClass, modelIdentifier,...resourceInfo} = resource
+
+			const info: CORE.IPropertyDefInfo = resourceInfo.info
+
+			model[collection][resourceIdentifier] = info
+
+		}
+	}
+
+	// elements
+	{
+		const concept = 'element'
+		const collection = `${concept}s`
+
+		const resources = store.get(base, concept)
+
+		for (const [resourceIdentifier, resource] of resources.entries()) {
+
+			if (!model[collection]) model[collection] = {}
+
+			const { identifier, resourceClass, modelIdentifier,...resourceInfo} = resource
+
+			const info: CORE.IElementInfo = resourceInfo.info
+
+			model[collection][resourceIdentifier] = info
+
+		}
+	}
+
+	// relationships
+	{
+		const concept = 'relationship'
+		const collection = `${concept}s`
+
+		const resources = store.get(base, concept)
+
+		for (const [resourceIdentifier, resource] of resources.entries()) {
+
+			if (!model[collection]) model[collection] = {}
+
+			const { identifier, resourceClass, modelIdentifier,...resourceInfo} = resource
+
+			const info: CORE.IRelationshipInfo = resourceInfo.info
+
+			model[collection][resourceIdentifier] = info
+
+		}
+	}
+
+	// return
+	return model
+}

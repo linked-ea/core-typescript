@@ -1,23 +1,16 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+//
 
 // FIXME: naming convention for types and interfaces
 
-/*
-				name	documentation	properties	identifier
-model			x
-propertyDef
-profile
-stereotype
-element
-relationship
-property
-organization
-template
+// --- project imports ---
+import { ISO_639_1_Alpha_2 } from 'iso-639-1-alpha-2.js'
 
-*/
+// --- re-exports ---
+export { ISO_639_1_Alpha_2 }
 
 // --- common ---
-export type TLang = string
+export type TLangCode = keyof typeof ISO_639_1_Alpha_2
 
 // TODO - identifier should be read-only
 export type IRI = string // attribute of identifier IRI, to be used in conjunction with Base, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
@@ -26,42 +19,10 @@ export interface IIdentifier {
 	identifier: Readonly<IRI>
 }
 
-export type TLangString = Record<TLang, string>
+export type TLangString = Record<TLangCode, string>
 
 export interface IModelIdentifier {
 	modelIdentifier: IRI
-}
-
-export interface ICoordinates {
-	x: number // x coordinate starting at top left
-	y: number // y coordinate starting at top left
-}
-
-export interface IDimensions {
-	w: number // width
-	h: number // height
-}
-
-export interface IRgbColor {
-	r: number // 0-255
-	g: number // 0-255
-	b: number // 0-255
-}
-
-export interface IRgbaColor extends IRgbColor {
-	a: number // 0-1
-}
-
-export interface IFont {
-	fontName?: string // font name, if absent, use default
-	fontSize?: number // font size, if absent, use default
-	fontColor?: IRgbColor // font color, if absent, use default
-}
-
-export interface IStyle {
-	font?: IFont
-	lineColor?: IRgbColor // if absent, use default
-	fillColor?: IRgbColor // if absent, use default
 }
 
 export interface IDocumentation {
@@ -79,6 +40,21 @@ export interface ILabel {
 export interface IAlias {
 	alias?: string // alias of the concept
 }
+
+export interface IRgbColor {
+	r: number // 0-255
+	g: number // 0-255
+	b: number // 0-255
+}
+
+export interface IRgbaColor extends IRgbColor {
+	a: number // 0-1
+}
+
+interface IDeprecated {
+	deprecated?: boolean
+}
+
 
 // --- aspects ---
 export type TAspects =
@@ -196,18 +172,57 @@ export const layers: Record<TLayers, ILayersInfo> = {
 }
 
 // --- properties ---
-export type TPropertyDataTypes =
-	| 'string'
-	| 'number'
-	| 'date'
-	| 'boolean'
-	| 'currency'
-	| 'time'
+export type TPropertyTypes = Record<string, string>
 
-export interface IPropertyDefInfo extends IModel {
-	name: TLangString
-	type: TPropertyDataTypes
+// TODO - default currency for model?
+export const propertyTypes: TPropertyTypes = {
+	'string': '',
+	'integer': 'The integer type is used for integral numbers. Floating point numbers are rejected',
+	'number': 'Any numeric type, either integers or floating point numbers',
+	'date': '',
+	'boolean': '',
+	'currency': '',
+	'duration': 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)'
 }
+
+interface PropertyTypeBase extends IName, IDocumentation{
+	type: keyof typeof propertyTypes
+}
+
+interface PropertyTypeString extends PropertyTypeBase {
+	type: 'string'
+	pattern?: RegExp
+	format?: string
+}
+
+interface PropertyTypeInteger extends PropertyTypeBase {
+	type: 'integer'
+	range?: {minimum: number, maximum: number}
+}
+
+interface PropertyTypeNumber extends PropertyTypeBase {
+	type: 'number'
+	range?: {minimum: number, maximum: number}
+}
+
+interface PropertyTypeDate extends PropertyTypeBase {
+	type: 'date'
+	range?: {minimum: Date, maximum: Date}
+}
+
+interface PropertyTypeBoolean extends PropertyTypeBase {
+	type: 'boolean'
+}
+
+interface PropertyTypeCurrency extends PropertyTypeBase {
+	type: 'currency'
+}
+
+interface PropertyTypeDuration extends PropertyTypeBase {
+	type: 'duration'
+}
+
+export type IPropertyDefInfo = PropertyTypeString | PropertyTypeInteger | PropertyTypeNumber | PropertyTypeDate | PropertyTypeBoolean | PropertyTypeCurrency | PropertyTypeDuration
 
 export type TPropertyDefinitionRecord = Record<
 	IRI,
@@ -216,30 +231,33 @@ export type TPropertyDefinitionRecord = Record<
 
 export type TPropertyValue = string | number | boolean | Date | TLangString // FIXME: how to define property value?
 
-export interface IPropertyInfo {
+export interface IPropertyInfo extends IDeprecated {
 	propertyDefinitionRef: IRI
 	value: TPropertyValue
 }
 
 // FIXME: how to define this?
 // export type TPropertyRecord<T extends string> = Record<T, TPropertyTypes>
-export type TPropertyRecord = Record<IRI, IPropertyInfo>
+export type TPropertyRecord = Record<IRI, any>
 
 export interface IProperties {
 	properties?: TPropertyRecord
 }
 
 // --- profiles ---
-export interface IProfileInfo extends IName, IDocumentation, IProperties {}
+export interface IProfileInfo extends IName, IDocumentation {}
 
 // --- stereotypes ---
-export interface IStereotypes extends IName, IDocumentation, IProperties {}
+export interface IStereotypes extends IName, IDocumentation {}
 
 // --- specializations ---
-export interface ISpecializationInfo extends IName, IDocumentation, IProperties {}
+export interface ISpecializationInfo extends IName, IDocumentation {}
 
 // --- elements ---
-export type TElementTypes =
+
+type TElementTypesBase="http://www.opengroup.org/xsd/archimate/3.0/"
+
+export type TElementTypesUnion =
 	// Motivation Elements
 	| 'Assessment'
 	| 'Constraint'
@@ -311,7 +329,9 @@ export type TElementTypes =
 	| 'AndJunction'
 	| 'OrJunction'
 
-export interface IElementTypeInfo extends IAlias {
+export type TElementTypes = `${TElementTypesBase}${TElementTypesUnion}`
+
+export interface IElementTypeInfo extends IAlias, IDeprecated {
 	name: string
 	// layer: TLayers
 	layer: TLayers
@@ -319,7 +339,7 @@ export interface IElementTypeInfo extends IAlias {
 	definition: string
 }
 
-export const elements: Record<TElementTypes, IElementTypeInfo> = {
+export const elements: Record<TElementTypesUnion, IElementTypeInfo> = {
 	ApplicationCollaboration: {
 		name: 'Application Component',
 		layer: 'Application',
@@ -703,8 +723,8 @@ export const elements: Record<TElementTypes, IElementTypeInfo> = {
 	},
 } as const
 
-export interface IElementInfo extends IName, IDocumentation, IProperties {
-	type: TElementTypes
+export interface IElementInfo extends IName, IDocumentation, IProperties, IDeprecated {
+	type: TElementTypesUnion
 }
 
 export type ElementsRecord = Record<IRI, IElementInfo>
@@ -824,6 +844,45 @@ export interface IRelationshipInfo extends IName, IDocumentation, IProperties {
 
 export type RelationshipRecord = Record<IRI, IRelationshipInfo>
 
+// --- organizations ---
+export interface IItemInfo extends IIdentifier {
+	identifierRef?: IRI
+}
+
+export interface IOrganizationInfo extends IIdentifier, ILabel, IDocumentation {
+	items?: ItemsRecord
+}
+
+export type ItemsRecord = Record<IRI, IOrganizationInfo | IItemInfo>
+
+// --- model ---
+export interface IViewpointInfo extends IIdentifier, IName, IDocumentation, IProperties {
+	type: IRI
+}
+
+// --- view ---
+export interface ICoordinates {
+	x: number // x coordinate starting at top left
+	y: number // y coordinate starting at top left
+}
+
+export interface IDimensions {
+	w: number // width
+	h: number // height
+}
+
+export interface IFont {
+	fontName?: string // font name, if absent, use default
+	fontSize?: number // font size, if absent, use default
+	fontColor?: IRgbColor // font color, if absent, use default
+}
+
+export interface IStyle {
+	font?: IFont
+	lineColor?: IRgbColor // if absent, use default
+	fillColor?: IRgbColor // if absent, use default
+}
+
 // --- nodes ---
 export type TNodeTypes = 'Element' | 'Container' | 'Label'
 
@@ -833,8 +892,6 @@ export interface INodeInfo extends ICoordinates, IDimensions, IStyle {
 	// TODO - use ILabel interface, but make it optional
 	label?: TLangString
 }
-
-export type NodesRecord = Record<IRI, INodeInfo>
 
 // --- connections ---
 export type TConnectionTypes = 'Line' | 'Relationship'
@@ -848,147 +905,137 @@ export interface IConnectionInfo extends IStyle {
 	type: TConnectionTypes
 }
 
-export type IConnectionRecord = Record<IRI, IConnectionInfo>
-
 // TODO - add viewRef
 
-
-
-
-export interface IViewpointInfo extends IIdentifier, IName, IDocumentation, IProperties {
-	type: IRI
+export interface IDiagram {
+	nodes?: Record<IRI, INodeInfo>
+	connections?: Record<IRI, IConnectionInfo>
 }
 
-// --- diagram ---
 export interface IViewInfo extends IName, IDocumentation {
-	viewpoint?: TViewpoint
-	nodes?: NodesRecord
-	connections?: IConnectionRecord
+	viewpoint?: IRI
+	diagram: IDiagram
 }
 
-// --- organizations ---
-export interface IItemInfo extends IIdentifier{
-	identifierRef?: IRI
+// --- image ---
+export interface IImageInfo extends IName, IDocumentation {
+	location: IRI
 }
 
-export interface IOrganizationInfo extends IIdentifier, ILabel, IDocumentation {
-	items?: ItemsRecord
+interface IReferencedModel extends Omit<IModelInfo, "referencedModels"> {}
+
+export interface IModelInfo extends IIdentifier, IDocumentation, IName {
+	base: Readonly<Base>
+	version: number // Version counter, positive integer, maps to Dublin Core 1.1
+	language: TLangCode // Default language, must be included in all language entries, maps to Dublin Core 1.1
+	additionalLanguages?: TLangCode[] // Additional Languages supported by model, maps to Dublin Core 1.1
+	coverage?: string // Dublin Core 1.1 - The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant
+	creator: string // Dublin Core 1.1 - An entity primarily responsible for making the resource
+	contributor?: string[] // Dublin Core 1.1 - An entity responsible for making contributions to the resource
+	date: Date // Dublin Core 1.1
+	rights?: string // Dublin Core 1.1 - Information about rights held in and over the resource
+	referencedModels?: IReferencedModel[]
+	previousVersion?: IRI
 }
-
-export type ItemsRecord = Record<IRI, IOrganizationInfo | IItemInfo>
-
-// --- model ---
-export interface IModelInfo extends IDocumentation, IName, IProperties {
-	identifier: IRI
-	base: Base
-	version?: string
-	metadata?: IMetadata
-}
-
-interface IDublinCore11 {
-	title?: string
-	subject?: string
-	format?: string
-	language?: TLang // identifies default language of the document, if absent, use 'en'
-}
-
-type IMetadata = IDublinCore11
 
 // base of identifier IRI, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
 // to be used in conjunction with Identifier. Base must end with a slash (/) or a hash (#)
 export type Base = string
 
 // --- core info
-
-export type TInfo =
+/*
+type TInfo =
 IModelInfo |
 IPropertyDefInfo |
 IProfileInfo |
 ISpecializationInfo |
 IElementInfo |
 IRelationshipInfo |
-IPropertyInfo |
 IViewpointInfo |
 IViewInfo |
-IOrganizationInfo
-
+IOrganizationInfo |
+IImageInfo
+*/
 // --- core resources
-export type TClass =
+
+// ISSUE: should classes be ArchiMate(r) IRI's or just strings?
+
+export type TResourceClass =
 'model' |
 'propertyDef' |
 'profile' |
 'specialization' |
 'element' |
 'relationship' |
-'property' |
 'viewpoint' |
 'view' |
-'organization'
+'organization' |
+'image'
 
-export interface IResource extends IModelIdentifier {
-	class: TClass
-	identifier: IRI
-	modelIdentifier: IRI
+// base resource interface
+export interface IResource<TResourceClass> extends IModelIdentifier, IIdentifier {
+	resourceClass: TResourceClass
+	// info: TInfo
 }
 
-export interface IModel extends IResource {
-	class: 'model'
+// specific resource interfaces
+
+// export type IModel = IResource<'model'> & IModelInfo
+export interface IModel extends IResource<'model'> /* , IModelInfo */ {
+	// resourceClass: 'model'
 	info: IModelInfo
 }
 
-export interface IPropertyDef extends IResource {
-	class: 'propertyDef'
+// export type IPropertyDef = IResource<'propertyDef'> & IPropertyDefInfo
+export interface IPropertyDef extends IResource<'propertyDef'> /* , IPropertyDefInfo */ {
+	// resourceClass: 'propertyDef'
 	info: IPropertyDefInfo
 }
 
-export interface IProfile extends IResource {
-	class: 'profile'
+// export type IProfile = IResource<'profile'> & IProfileInfo
+export interface IProfile extends IResource<'profile'> /* , IProfileInfo */ {
+	// resourceClass: 'profile'
 	info: IProfileInfo
 }
 
-export interface ISpecialization extends IResource {
-	class: 'specialization'
+// export type ISpecialization = IResource<'specialization'> & ISpecializationInfo
+export interface ISpecialization extends IResource<'specialization'> /* , ISpecializationInfo */ {
+	// resourceClass: 'specialization'
 	info: ISpecializationInfo
 }
 
-export interface IElement extends IResource {
-	class: 'element'
+// export type IElement = IResource<'element'> & IElementInfo
+export interface IElement extends IResource<'element'> /* , IElementInfo */ {
+	// resourceClass: 'element'
 	info: IElementInfo
 }
 
-export interface IRelationship extends IResource {
-	class: 'relationship'
+// export type IRelationship = IResource<'relationship'> & IRelationshipInfo
+export interface IRelationship extends IResource<'relationship'> /* , IRelationshipInfo */ {
+	// resourceClass: 'relationship'
 	info: IRelationshipInfo
 }
 
-export interface IProperty extends IResource {
-	class: 'property'
-	info: IPropertyInfo
-}
-
-export interface IViewpoint extends IResource {
-	class: 'viewpoint'
+// export type IViewpoint = IResource<'viewpoint'> & IViewpointInfo
+export interface IViewpoint extends IResource<'viewpoint'> /* , IViewpointInfo */ {
+	resourceClass: 'viewpoint'
 	info: IViewpointInfo
 }
 
-export interface IView extends IResource {
-	class: 'view'
+// export type IView = IResource<'view'> & IViewInfo
+export interface IView extends IResource<'view'> /*, IViewInfo */ {
+	// resourceClass: 'view'
 	info: IViewInfo
 }
 
-export interface IOrganization extends IResource {
-	class: 'organization'
+// export type IOrganization = IResource<'organization'> & IOrganizationInfo
+export interface IOrganization extends IResource<'organization'> /*, IOrganizationInfo */ {
+	// resourceClass: 'organization'
 	info: IOrganizationInfo
 }
 
-export type TResource =
-IModel |
-IPropertyDef |
-IProfile |
-ISpecialization |
-IElement |
-IRelationship |
-IProperty |
-IViewpoint |
-IView |
-IOrganization
+// export type IImage = IResource<'image'> & IImageInfo
+export interface IImage extends IResource<'image'> /*, IImageInfo */ {
+	// resourceClass: 'image'
+	info: IImageInfo
+}

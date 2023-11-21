@@ -1,0 +1,16 @@
+.DS_Store
+.nyc_output
+.vscode
+build
+coverage
+etc
+dist
+node_modules
+out
+release-builds
+test
+types
+
+
+# files
+/package-lock.json

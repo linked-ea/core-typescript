@@ -1,0 +1,521 @@
+
+import * as T from 'typed-assert'
+
+import * as CORE from '../definitions-core.js'
+import { jsonToStore } from 'json-to-from-store/json-to-store.js'
+
+export type Resolver = (identifier: CORE.IRI) => Promise<string>
+
+export interface IResourceClass {
+	class: CORE.TResourceClass
+	identifier: CORE.IRI
+	modelIdentifier: CORE.IRI
+}
+
+// --- options
+interface IOptionsBase {
+	modelIdentifier?: CORE.IRI,
+	includeDeprecated?: false
+}
+
+interface IOptionsERV extends IOptionsBase { // ERV = element, relationship, viewpoint
+	type?: CORE.IRI,
+	propertyDef?: CORE.IRI,
+}
+
+
+// --- puts
+
+// --- GET types
+
+type TGetCollections = "propertyDefs" | "profiles" | "specializations" | "elements" | "relationships" | "viewpoints" | "views" | 'organizations' | 'images'
+
+type TGetMethods = `collections/${TGetCollections}` | 'concept' | 'model'
+
+interface TGetBase {
+	method: TGetMethods
+	modelIdentifier?: CORE.IRI | undefined
+}
+
+interface TGetModelMethod extends TGetBase {
+	method: 'model'
+	modelIdentifier?: CORE.IRI | undefined
+}
+
+interface TGetConceptMethod extends TGetBase {
+	method: 'concept'
+	conceptIdentifier?: CORE.IRI | undefined
+}
+
+interface TGetCollectionsMethod {
+	method: TGetCollections
+}
+
+// TODO - add get for multiple resources at the same time
+type TGetOperation = CORE.TResourceClass | 'elements'
+
+// --- deletes
+export type TDeleteOperation = CORE.TResourceClass
+
+// --- store structure
+// type IMaster = Pick<IResourceClass, "class" | "modelIdentifier">
+
+type TPropertyDefMap = Map<CORE.IRI, CORE.IPropertyDefInfo>
+type TPropertiesMap = Map<CORE.IRI, CORE.IPropertyInfo>
+type TProfilesMap = Map<CORE.IRI, CORE.IProfileInfo>
+type TSpecializationsMap = Map<CORE.IRI, CORE.ISpecializationInfo>
+type TElementsMap = Map<CORE.IRI, CORE.IElementInfo>
+type TRelationshipsMap = Map<CORE.IRI, CORE.IRelationshipInfo>
+type TViewpointsMap = Map<CORE.IRI, CORE.IViewpointInfo>
+type TViewsMap = Map<CORE.IRI, CORE.IViewInfo>
+type TOrganizationsMap = Map<CORE.IRI, CORE.IOrganizationInfo>
+
+interface IModelSet {
+	info: CORE.IModelInfo,
+	propertyDefs: TPropertyDefMap
+	properties: TPropertiesMap,
+	profiles: TProfilesMap,
+	specializations: TSpecializationsMap,
+	elements: TElementsMap,
+	relationships: TRelationshipsMap,
+	viewpoints: TViewpointsMap,
+	views: TViewsMap,
+	organizations: TOrganizationsMap,
+
+}
+
+export interface IStore {
+
+}
+
+export class Store implements IStore {
+
+	#resolverMap: Record<CORE.IRI, Resolver> | undefined
+	#resolvers: Array<Resolver> | undefined
+
+	modelInfo: CORE.IModelInfo
+	// 9 + 1
+	#all = new Map<CORE.IRI, CORE.TResource>()
+
+	#models = new Map<CORE.IRI, IModelSet>() // model identifier, model store
+
+	// TODO - create indexes to improve performance
+	/*
+	#allPropertyDefs = new Set<CORE.IRI>()
+	#allProfiles = new Set<CORE.IRI>()
+	#allSpecializations = new Set<CORE.IRI>()
+	#allElements = new Set<CORE.IRI>()
+	#allRelationships = new Set<CORE.IRI>()
+	#allViewpoints = new Set<CORE.IRI>()
+	#allViews = new Set<CORE.IRI>()
+	#allOrganizations = new Set<CORE.IRI>()
+	*/
+
+	constructor (modelInfo: CORE.IModelInfo, resolverMap: Record<CORE.IRI, Resolver>, resolvers: Array<Resolver> | undefined) {
+		this.modelInfo = modelInfo
+		this.#resolverMap = resolverMap
+		this.#resolvers = resolvers
+	}
+
+	// --- POST - creates new resources ---
+
+	/**
+	 * Links to an existing posted model
+	 * @param identifier - the identifier of the resource to be created
+	 * @returns boolean - true if resource was created, false if it already exists
+	 */
+	public async postLink (identifier: CORE.IRI, documentLoader: Resolver): Promise<Error | undefined> {
+
+		// TODO - import model
+
+		// TODO - populate master tables after import
+
+		return
+	}
+
+	// create a new resource
+
+	/**
+	 * PUT - creates an individual resource
+	 * @param put - the resource to create
+	 * @returns boolean - true if resource was created, false if it already exists
+	 */
+	// public async put (put: CORE.IRI, resolver: Resolver): Promise<boolean>
+	public async put (put: CORE.TResource): Promise<Error | undefined> {
+	// public async put (put: CORE.TResource | CORE.IRI, resolver: Resolver): Promise<Error | undefined> {
+
+		// resource
+		async function model (put: CORE.TResource): Promise<boolean> {
+
+			const model: IModelSet = {
+				info: put.info as CORE.IModelInfo,
+				propertyDefs: new Map(),
+				properties: new Map(),
+				profiles: new Map(),
+				specializations: new Map(),
+				elements: new Map(),
+				relationships: new Map(),
+				views: new Map(),
+				organizations: new Map(),
+				viewpoints: new Map(),
+			}
+
+			return true
+		}
+
+		async function propertyDef (put: CORE.TResource): Promise<boolean> {
+
+			// TODO - check if type is valid, use Zod?
+
+			// model table for specific class
+			const table = store.#models.get(put.identifier)?.propertyDefs
+
+			if (table) table.set(put.identifier, put as CORE.IPropertyDefInfo)
+
+			return true
+		}
+
+		async function profile (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		async function specialization (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		async function element (put: CORE.TResource): Promise<boolean> {
+			// TODO - check if type is valid
+
+			// model table for specific class
+			const table = store.#models.get(put.identifier)?.elements
+
+			if (table) table.set(put.identifier, put.info as CORE.IElementInfo)
+
+			return true
+		}
+
+		async function relationship (put: CORE.TResource): Promise<boolean> {
+			// TODO - check if type is valid
+
+			// TODO - check if source and target exist
+
+			// TODO - check if source and target are valid
+
+			// TODO - check if properties exist
+
+			// TODO - check if properties are valid
+
+			// model table for specific class
+			const table = store.#models.get(put.identifier)?.relationships
+
+			if (table) table.set(put.identifier, put.info as CORE.IRelationshipInfo)
+
+			return true
+		}
+
+		async function viewpoint (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		async function view (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		async function organization (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		async function image (put: CORE.TResource): Promise<boolean> {
+
+			return true
+		}
+
+		const validationFunctions: Record<Exclude<CORE.TResourceClass, 'model' | 'property'>, (put: CORE.TResource) => Promise<boolean>> = {
+			// 'model': { function: model, set: this.#allModels},
+			'propertyDef': propertyDef,
+			'profile': profile,
+			'specialization': specialization,
+			'element': element,
+			'relationship': relationship,
+			'viewpoint': viewpoint,
+			'view': view,
+			'organization': organization,
+			'image': image,
+		}
+
+		const store = this
+
+		// referenced model
+
+		/*
+		if (typeof put === 'string') {
+
+			const jsonStr = await resolver(put)
+
+			const referencedModel = await jsonToStore(jsonStr)
+
+			this.#models.set(referencedModel.base, referencedModel)
+
+			return true
+		}
+		*/
+
+		// TODO - check if identifier is IRI
+
+		// TODO - check if identifier is valid against model base IRI
+
+		// resource identifier already exists
+		if (this.#all.get(put.identifier)) return new Error('resource already exists')
+
+		// model resource shouldn't be put
+		if (put.resourceClass === 'model') return new Error('model resource cannot be put')
+
+		// TODO - validate if base is part of resource IRI, put only on default model
+
+		// model & class specific
+		await validationFunctions[put.resourceClass](put)
+
+		// all
+		this.#all.set(put.identifier, put)
+
+		// all class specific
+		// validationFunctions[put.resourceClass].set.add(put.identifier)
+
+		return undefined
+	}
+
+	/**
+	 * Get collection of property definitions
+	 * @param options
+	 * @returns
+	 */
+	public async getCollectionPropertyDefs (options: IOptionsBase): Promise<[collection: Map<CORE.IRI, CORE.IPropertyDefInfo> | undefined, error: Error | undefined]> {
+
+		let store: IModelSet | undefined
+
+		const modelIdentifier = options.modelIdentifier ?? this.modelInfo.identifier
+
+		store = this.#models.get(modelIdentifier)
+
+		T.isNotUndefined(store, `model not found: ${modelIdentifier}`)
+
+		return [store.propertyDefs, undefined]
+	}
+
+	public async getCollectionElements (options: IOptionsERV): Promise<[collection: Map<CORE.IRI, CORE.IElement> | undefined, error: Error | undefined]> {
+
+		let store: IModelSet | undefined
+
+		const resources = new Map<CORE.IRI, CORE.IElement>()
+
+		const modelIdentifier = options.modelIdentifier ?? this.modelInfo.identifier
+
+		store = this.#models.get(modelIdentifier)
+
+		T.isNotUndefined(store, `model not found: ${modelIdentifier}`)
+
+		for (const [identifier, resource] of store.elements.entries()) {
+			let skip = false // skips resource if true
+
+			if (options.type && resource.type !== options.type) skip = true
+
+			if (options.propertyDef) {
+				if (!resource.properties || !resource.properties[options.propertyDef]) skip = true
+			}
+
+			if (!options.includeDeprecated && resource.deprecated) skip = true
+
+			if (!skip) {
+				resources.set(identifier, {
+					identifier,
+					resourceClass: 'element',
+					modelIdentifier: modelIdentifier,
+					info: resource})
+			}
+
+		}
+		return [resources, undefined]
+	}
+
+	/**
+	 * GET - gets an individual resource
+	 * @param action - the class of collection or identifier of the resource to be retrieved
+	 * @returns map of resouce info, resource if found
+	 */
+
+	// TODO: use type template type TGetActions: `${CORE.TClass}s`
+
+	public async get (identifier: CORE.IRI): Promise<[resource: CORE.TResource | undefined, error: Error | undefined]>
+	{
+		// --- identifier functions ---
+
+		const resource = this.#all.get(identifier)
+
+		if (!resource) return [undefined, undefined]
+
+		// TODO - differentiate between single and multiple resources
+		return [resource, undefined]
+	}
+
+	/**
+	 * delete an individual resource
+	 * @param identifier
+	 * @returns
+	 */
+	public delete (identifier: CORE.IRI): Error | undefined {
+
+		const store = this
+
+		function deleteModel (): void {
+
+			store.#all.clear()
+
+			// TODO - delete individual indexes
+			/*
+			store.#allPropertyDefs.clear()
+			store.#allProfiles.clear()
+			store.#allSpecializations.clear()
+			store.#allElements.clear()
+			store.#allRelationships.clear()
+			store.#allViews.clear()
+			store.#allOrganizations.clear()
+			store.#allViewpoints.clear()
+			*/
+		}
+
+		function deletePropertyDef (): void {
+
+			// TODO - delete all properties using this propertyDef
+
+			// TODO - delete index
+			// store.#allPropertyDefs.delete(identifier)
+		}
+
+		function deleteProfile (): void {
+			// TODO - delete index
+			// store.#allProfiles.delete(identifier)
+		}
+
+		function deleteSpecialization (): void {
+			// TODO - delete index
+			// store.#allSpecializations.delete(identifier)
+		}
+
+		function deleteElement (): void {
+			// TODO - delete all nodes using this element
+
+			// TODO - delete index
+			// store.#allElements.delete(identifier)
+		}
+
+		function deleteRelationship (): void {
+
+			// TODO - delete index
+			// store.#allRelationships.delete(identifier)
+
+		}
+
+		function deleteViewpoint (): void {
+
+			// TODO - delete all views using this viewpoint
+
+			// TODO - delete index
+			// store.#allViewpoints.delete(identifier)
+
+		}
+
+		function deleteView (): void {
+
+			// TODO - delete all organizations referencing this view
+
+			// TODO - delete all nodes referencing this view
+
+			// TODO - delete all elements referencing this view
+
+			// TODO - delete all relationships referencing this view
+
+			// TODO - delete all 'forks" referencing this view
+
+			// TODO - delete index
+			// store.#allViews.delete(identifier)
+		}
+
+		function deleteOrganization (): void {
+			// TODO - delete all organizations underneath this organization
+
+			// TODO - delete index
+			// store.#allOrganizations.delete(identifier)
+		}
+
+		function deleteImage (): void {
+			// TODO - delete index
+			// store.#allOrganizations.delete(identifier)
+		}
+
+		const deleteFunctions: Record<Exclude<CORE.TResourceClass, 'model' | 'property'>, () => void> = {
+			'propertyDef': deletePropertyDef,
+			'profile': deleteProfile,
+			'specialization': deleteSpecialization,
+			'element': deleteElement,
+			'relationship': deleteRelationship,
+			'viewpoint': deleteViewpoint,
+			'view': deleteView,
+			'organization': deleteOrganization,
+			'image': () => 'not implemented'
+		}
+
+		const resource = this.#all.get(identifier)
+
+		if (!resource) return Error ("resource not found")
+
+		if (resource.resourceClass === 'model') return new Error("model cannot be deleted")
+
+		deleteFunctions[resource.resourceClass]()
+
+		// deleteResource(this)
+
+		// TODO - convert switch to record to accont for all resource types
+
+		this.#all.delete(identifier)
+
+		return undefined
+
+	}
+
+	/**
+	 * PATCH - modify an individual resource
+	 * @param
+	 * @returns
+	 */
+
+	/*
+	patch (identifier: CORE.IRI): boolean {
+
+		const commandFunctions: Record<CORE.TClass, () => void> = {
+			'model': deleteModel,
+			'propertyDef': deletePropertyDef,
+			'property': deleteProperty,
+			'profile': deleteProfile,
+			'specialization': deleteSpecialization,
+			'element': deleteElement,
+			'relationship': deleteRelationship,
+			'viewpoint': deleteViewpoint,
+			'view': deleteView,
+			'organization': deleteOrganization,
+		}
+
+		const resource = this.#all.get(identifier)
+
+		if (!resource) return false
+
+		const store = this
+
+		return true
+	}
+	*/
+}

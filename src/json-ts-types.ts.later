@@ -1,5 +1,5 @@
 
-import * as CORE from './definitions.js'
+import * as CORE from './definitions-core.js'
 
 export type ViewsRecord = Record<CORE.IRI, CORE.IViewInfo>
 
