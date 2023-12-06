@@ -187,3 +187,5 @@ export const ISO_639_1_Alpha_2: TISO_639_1_Alpha_2 = {
 	"yo": {"name": "Yoruba", "nativeName": "Yorùbá"},
 	"za": {"name": "Zhuang, Chuang", "nativeName": "Saɯ cueŋƅ, Saw cuengh"}
 }
+
+export type TLangCode = keyof typeof ISO_639_1_Alpha_2

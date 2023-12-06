@@ -51,19 +51,49 @@ Filter availble for all collections
 * deprecated=true/false
 
 Filters available for Elements, Relationships, Views collections
-* type={id}
+* type={id} - filters resources of a given type
 * propertyDef={id}
 
 Filters available for Elements, Relationships collections
 * profile={id}
 * specialization={id}
 
-Filters available for Views, Organizations collections
+Filters available for Profiles, Specializations, Images, Views, Organizations collections
 * reference={id}
+
+| Collection      | name | documentation | language | deprecated | type | profile | property | referencedBy |
+|-----------------|:----:|:-------------:|:--------:|:----------:|:----:|:-------:|:--------:|:------------:|
+| models          | X    | X             | X        | X          |      |         |          |              |
+| propertyDef     | X    | X             | X        | X          |      |         |          |              |
+| profiles        | X    | X             | X        | X          |      |         |          |              |
+| specializations | X    | X             | X        | X          |      |         |          |              |
+| images          | X    | X             | X        | X          |      |         |          |              |
+| viewpoints      | X    | X             | X        | X          |      |         |          |              |
+| elements        | X    | X             | X        | X          | X    | X       | X        |              |
+| relationships   | X    | X             | X        | X          | X    | X       | X        | X            |
+| views           | X    | X             | X        | X          | X    |         |          | X            |
+| organizations   | X    | X             | X        | X          |      |         |          | X            |
+
+| Collection uses | model | propertyDef | profile | specialization | image | viewpoint | element | relationship | view | organization |
+|-----------------|:-----:|:-----------:|:-------:|:--------------:|:-----:|:---------:|:-------:|-------------:|:----:|:------------:|
+| models          | X     | X           | X       | X              | X     | X         | X       | X            | X    |              |
+| propertyDef     |       |             |         |                |       |           |         |              |      |              |
+| profiles        |       | X           |         |                |       |           |         |              |      |              |
+| specializations |       |             | X       |                | X     |           |         |              |      |              |
+| images          |       |             |         |                |       |           |         |              |      |              |
+| viewpoints      |       |             |         |                |       |           |         |              |      |              |
+| elements        |       | X           | X       | X              | X     |           |         |              |      |              |
+| relationships   |       | X           | X       | X              |       |           | X       |              |      |              |
+| views           |       |             |         |                | X     | X         | X       | X            | X    |              |
+| organizations   |       |             |         |                |       |           | X       | X            | X    | X            |
+
+
 
 /collection/propertyDefs                    - get all property definitions of default or given model
 
 /collection/profiles                        - get all profiles of default or given model
+
+/collection/images                          - get all images of default or given model
 
 /collection/specializations                 - get all specializations of default or given model
 
@@ -76,8 +106,6 @@ Filters available for Views, Organizations collections
 /collection/views                           - get all views of default or given model
 
 /collection/organizations                   - get all organizations of default or given model
-
-/collection/images                          - get all images of default or given model
 
 ## Individual Concepts
 
