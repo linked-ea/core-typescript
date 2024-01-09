@@ -1,6 +1,6 @@
 {
   "name": "@fed-ea/core-typescript",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "TypeScript representation of FED-EA core data model.",
   "main": "lib/definitions-core.js",
   "types": "types/src/definitions-core.d.ts",

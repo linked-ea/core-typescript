@@ -25,8 +25,8 @@ import * as CORE from '@fed-ea/core-typescript'
 * Supports ArchiMate® version 3.2
 
 ## Roadmap
-[ ] Currency Codes
-[ ] Separate Element and Relationship dictionaries from Resource definition
+* [ ] Currency Codes
+* [ ] Separate Element and Relationship dictionaries from Resource definition
 
 ## Trademarks
 * [ArchiMate® is a registered trademark of The Open Group.](https://www.opengroup.org/archimate-forum/archimate-overview)
