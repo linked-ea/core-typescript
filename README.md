@@ -1,5 +1,5 @@
 # typescript-core
-Typescript types representing FED-EA core data model.
+TypeScript representation of FED-EA core data model.
 
 ## Features
 * FED-EA rResource TypeScript definitions
