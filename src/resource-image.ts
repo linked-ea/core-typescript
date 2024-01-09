@@ -2,6 +2,5 @@
 
 // --- project imports ---
 
-// --- specialization ---
-
-export interface ISpecializationInfo {}
+// --- resource ---
+export type ImageInfo = {}

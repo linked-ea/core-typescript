@@ -3,70 +3,84 @@
 // --- project imports ---
 import type { IRI } from './common.js'
 import type { IRgbColor } from './common.js'
-import type { TLangString } from 'foundation-lang-strings.js'
+import type { TLangString } from './foundation-lang-strings.js'
 
 // --- resource ---
+export interface ViewInfo {
+	viewpoint?: IRI
+	items?: Record<IRI, NodeInfo | ConnectionInfo>
+}
 
-// --- view ---
-
-
-export interface ICoordinates {
+export interface Coordinates {
 	x: number // x coordinate starting at top left
 	y: number // y coordinate starting at top left
 }
 
-export interface IDimensions {
+export interface Dimensions {
 	w: number // width
 	h: number // height
 }
 
-export interface IFont {
+export interface Font {
 	fontName?: string // font name, if absent, use default
 	fontSize?: number // font size, if absent, use default
 	fontColor?: IRgbColor // font color, if absent, use default
 }
 
 export interface IStyle {
-	font?: IFont
+	font?: Font
 	lineColor?: IRgbColor // if absent, use default
 	fillColor?: IRgbColor // if absent, use default
 }
 
+interface Label {
+	label: TLangString
+}
+
 // --- nodes ---
-export type TNodeTypes = 'Element' | 'Container' | 'Label'
-
-export interface INodeInfo extends ICoordinates, IDimensions, IStyle {
-	elementRef?: IRI
-	type?: TNodeTypes
-	// TODO - use ILabel interface, but make it optional
-	label?: TLangString
-}
-
-// --- connections ---
-export type TConnectionTypes = 'Line' | 'Relationship'
-
-export interface IConnectionInfo extends IStyle {
-	// type: Identifier // TODO - what is it for?
-	source: IRI
-	target: IRI
-	relationshipRef?: IRI
-	bendpoints?: ICoordinates[]
-	type: TConnectionTypes
-}
+export type NodeTypes = 'Element' | 'Container' | 'Label'
 
 // TODO - add viewRef
 
-export interface IDiagram {
-	nodes?: Record<IRI, INodeInfo>
-	connections?: Record<IRI, IConnectionInfo>
+interface NodeInfoBase extends Coordinates, Dimensions, IStyle {
+	type?: NodeTypes
 }
 
-export interface IViewInfo {
-	viewpoint?: IRI
-	diagram: IDiagram
+export interface ElementNodeInfo extends NodeInfoBase {
+	type: 'Element'
+	elementRef: IRI
+	label?: TLangString
 }
 
-// --- image ---
-export interface IImageInfo {
-	location: IRI
+export interface ContainerNodeInfo extends NodeInfoBase {
+	type: 'Container'
+	viewRef: IRI
+	label?: TLangString
 }
+
+export interface LabelNodeInfo extends NodeInfoBase, Label {
+	type: 'Label'
+}
+
+export type NodeInfo = ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo
+
+// --- connections ---
+export type ConnectionTypes = 'Line' | 'Relationship'
+
+interface ConnectionInfoBase extends IStyle {
+	type?: ConnectionTypes
+	sourceNode: IRI
+	targetNode: IRI
+	bendpoints?: Coordinates[]
+}
+
+export interface LineConnectionInfo extends ConnectionInfoBase, Label {
+	type: 'Line'
+}
+
+export interface RelationshipConnectionInfo extends ConnectionInfoBase {
+	type: 'Relationship'
+	relationshipRef: IRI
+}
+
+export type ConnectionInfo = LineConnectionInfo | RelationshipConnectionInfo

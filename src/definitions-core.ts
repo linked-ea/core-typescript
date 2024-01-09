@@ -3,124 +3,71 @@
 // FIXME: naming convention for types and interfaces
 
 // --- project imports ---
-import type { IRgbColor, IRI, IIdentifier } from './common.js'
-import type { IRelationshipInfo } from './resource-relationship.js'
-import { ISO_639_1_Alpha_2 } from 'codes-iso-639-1-alpha-2.js'
+import { iso_639_1_alpha_2 } from './codes-iso-639-1-alpha-2.js'
+import { propertyTypes } from './resource-propertydef.js'
 import { elements } from './resource-element.js'
-import type { TLangCode } from 'codes-iso-639-1-alpha-2.js'
-import type { TLangString, ILabel, IName } from 'foundation-lang-strings.js'
-import type { IProperties, IPropertyDefInfo, PropertyResource } from './foundation-property.js'
-import type { IProfileInfo } from 'foundation-profile.js'
-import type { IViewInfo, IImageInfo } from './resource-view.js'
-import type { ISpecializationInfo } from 'resource-specializations.js'
-import type { IViewpointInfo } from './resource-viewpoint.js'
-import type { IOrganizationInfo } from './resource-organization.js'
-import type { IDocumentation } from 'foundation-documentation.js'
-import type { IModelInfo } from './resource-model.js'
-import type { IElementInfo, ElementResource } from './resource-element.js'
+import { relationships } from './resource-relationship.js'
+
+import type { IRgbColor, IRI, IIdentifier } from './common.js'
+import type { TLangCode } from './codes-iso-639-1-alpha-2'
+import type { TLangString, ILabel, IName } from './foundation-lang-strings.js'
+import type { ModelInfo } from './resource-model.js'
+import type { IDocumentation } from './foundation-documentation.js'
+import type { NamedResource, ResourceClass, ResourceClasses } from './foundation-resource.js'
+import type { PropertyRecord, PropertyDefInfo, TPropertyValue, PropertyDefTypes, Type } from './resource-propertydef.js'
+import type { ProfileInfo } from './resource-profile.js'
+import type { ImageInfo } from './resource-image.js'
+import type { SpecializationInfo } from './resource-specialization.js'
+import type { ViewpointInfo } from './resource-viewpoint.js'
+import type { ElementInfo, ElementTypesUnion } from './resource-element.js'
+import type { RelationshipInfo, RelationshipTypesUnion} from './resource-relationship.js'
+import type { ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, NodeInfo, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo } from './resource-view.js'
+import type { OrganizationInfo } from './resource-organization.js'
 
 // --- re-exports ---
-export type { IRgbColor, IRI, IIdentifier }
-export type { IRelationshipInfo }
-export { ISO_639_1_Alpha_2 }
+export { iso_639_1_alpha_2 }
 export { elements }
+export { relationships }
+export { propertyTypes }
+
+export type { IRgbColor, IRI, IIdentifier }
 export type { TLangCode }
 export type { TLangString, ILabel, IName }
-export type { IProperties, IPropertyDefInfo }
-export type { IProfileInfo }
-export type { IViewInfo, IImageInfo }
-export type { ISpecializationInfo }
-export type { IViewpointInfo }
-export type { IOrganizationInfo }
 export type { IDocumentation }
-export type { IModelInfo }
-export type { IElementInfo, ElementResource }
+export type { ResourceClasses, ResourceClass, NamedResource }
+export type { ModelInfo }
+export type { PropertyRecord, TPropertyValue, PropertyDefInfo, PropertyDefTypes, Type }
+export type { ProfileInfo }
+export type { ImageInfo }
+export type { SpecializationInfo }
+export type { ElementInfo, Element as ElementResource, ElementTypesUnion }
+export type { RelationshipInfo, RelationshipTypesUnion }
+export type { ViewpointInfo }
+export type { ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, NodeInfo, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo  }
+export type { OrganizationInfo }
 
-// --- core info
+// --- types ---
+interface BaseResource<T extends ResourceClasses> extends ResourceClass<T>, NamedResource {}
 
-/*
-type TInfo =
-IModelInfo |
-IPropertyDefInfo |
-IProfileInfo |
-ISpecializationInfo |
-IElementInfo |
-IRelationshipInfo |
-IViewpointInfo |
-IViewInfo |
-IOrganizationInfo |
-IImageInfo
+export interface Model extends BaseResource<'model'> { info: ModelInfo }
+export interface PropertyDef extends BaseResource<'propertyDef'> { info: PropertyDefInfo }
+export interface Profile extends BaseResource<'profile'> { info: ProfileInfo }
+export interface Image extends BaseResource<'image'> { info: ImageInfo }
+export interface Specialization extends BaseResource<'specialization'> { info: SpecializationInfo }
+export interface Element extends BaseResource<'element'> { info: ElementInfo }
+export interface Relationship extends BaseResource<'relationship'> { info: RelationshipInfo }
+export interface Viewpoint extends BaseResource<'viewpoint'> { info: ViewpointInfo }
+export interface View extends BaseResource<'view'> { info: ViewInfo }
+export interface Organization extends BaseResource<'organization'> { info: OrganizationInfo }
 
-*/
-
-// base resource interface
-export interface IResource<TResourceClass> extends IName, IDocumentation {
-	modelIdentifier: IRI
-	identifier: IRI
-	resourceClass: TResourceClass
-	deprecated?: boolean
-	// info: TInfo
-}
-
-// specific resource interfaces
-
-// export type IModel = IResource<'model'> & IModelInfo
-export interface IModel extends Omit<IResource<'model'>, 'modelIdentifier'> /* , IModelInfo */ {
-	info: IModelInfo
-}
-
-// export type IPropertyDef = IResource<'propertyDef'> & IPropertyDefInfo
-export interface IPropertyDef extends IResource<'propertyDef'> /* , IPropertyDefInfo */ {
-	// resourceClass: 'propertyDef'
-	info: IPropertyDefInfo
-}
-
-// export type IProfile = IResource<'profile'> & IProfileInfo
-export interface IProfile extends IResource<'profile'> /* , IProfileInfo */ {
-	// resourceClass: 'profile'
-	info: IProfileInfo
-}
-
-// export type ISpecialization = IResource<'specialization'> & ISpecializationInfo
-export interface ISpecialization extends IResource<'specialization'> /* , ISpecializationInfo */ {
-	// resourceClass: 'specialization'
-	info: ISpecializationInfo
-}
-
-// export type IElement = IResource<'element'> & IElementInfo
-export interface IElement extends IResource<'element'> /* , IElementInfo */ {
-	// resourceClass: 'element'
-	info: IElementInfo
-}
-
-// export type IRelationship = IResource<'relationship'> & IRelationshipInfo
-export interface IRelationship extends IResource<'relationship'> /* , IRelationshipInfo */ {
-	// resourceClass: 'relationship'
-	info: IRelationshipInfo
-}
-
-// export type IViewpoint = IResource<'viewpoint'> & IViewpointInfo
-export interface IViewpoint extends IResource<'viewpoint'> /* , IViewpointInfo */ {
-	resourceClass: 'viewpoint'
-	info: IViewpointInfo
-}
-
-// export type IView = IResource<'view'> & IViewInfo
-export interface IView extends IResource<'view'> /*, IViewInfo */ {
-	// resourceClass: 'view'
-	info: IViewInfo
-}
-
-// export type IOrganization = IResource<'organization'> & IOrganizationInfo
-export interface IOrganization extends IResource<'organization'> /*, IOrganizationInfo */ {
-	// resourceClass: 'organization'
-	info: IOrganizationInfo
-}
-
-// export type IImage = IResource<'image'> & IImageInfo
-export interface IImage extends IResource<'image'> /*, IImageInfo */ {
-	// resourceClass: 'image'
-	info: IImageInfo
-}
-
-export type Resource = ElementResource | PropertyResource
+export type Resource =
+| Model
+| PropertyDef
+| Profile
+| Image
+| Specialization
+| Element
+| Relationship
+| Viewpoint
+| View
+| Organization

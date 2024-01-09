@@ -1,29 +1,32 @@
 # typescript-core
-Typescript types representing fed-ea core data model.
+Typescript types representing FED-EA core data model.
 
-### Named Classes
+## Features
+* FED-EA rResource TypeScript definitions
+* List of supported ISO 639-1-Alpha-2 language codes
+* ArchiMate® Element dictionary
+* ArchiMate® Relationship dictionary
 
-| class          | identifier  | name | documentation |
-|:--------------:|:-----------:|:----:|:-------------:|
-| model          | x           | x    | x             |
-| propertyDef    | x           | x    | x             |
-| profile        | x           | x    | x             |
-| specialization | x           | x    | x             |
-| viewpoint      | x           | x    | x             |
-| element        | x           | x    | x             |
-| relationship   | x           | x    | x             |
-| view           | x           | x    | x             |
-| organization   | x           | x    | x             |
+## Instalation
 
-### Other Classes
+```
+npm install @fed-ea/core-typescript
+```
 
-| class          | identifier  | x   | y   |
-|:--------------:|:-----------:|:---:|:---:|
-| node           | x           | x   | x   |
-| connection     | x           | x   | x   |
+```
+bun add @fed-ea/core-typescript
+```
+## Usage
+```
+import * as CORE from '@fed-ea/core-typescript'
+```
 
-### Roadmap
-	* To-be defined
+## Observations
+* Supports ArchiMate® version 3.2
 
-### Trademarks
+## Roadmap
+[ ] Currency Codes
+[ ] Separate Element and Relationship dictionaries from Resource definition
+
+## Trademarks
 * [ArchiMate® is a registered trademark of The Open Group.](https://www.opengroup.org/archimate-forum/archimate-overview)

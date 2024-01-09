@@ -4,11 +4,12 @@
 
 	"exclude": [
 		"./build/**/*",
+		"./dist/**/*",
 		"./lib/**/*",
-		"./types/**/*",
+		"./out/**/*",
 		"./node_modules/**/*",
-		"./spec/**/*",
-		"./src/later/**/*"
+		"./src/later/**/*",
+		"./spec/later/**/*"
 	],
 
 	"compilerOptions": {
@@ -23,6 +24,7 @@
 		"removeComments": false,
 		"preserveConstEnums": true,
 
+		"listFiles": false,
 		"listEmittedFiles": true,
 		"pretty": true, // Stylize errors and messages using color and context, check terminal if not working
 		"disableSolutionSearching": false, // not want a project to be included when using features like find all references, improves editor performance
@@ -35,10 +37,10 @@
 
 //		"rootDirs": ["./src", "test"], // If composite true, rootdir is set to directory containing the tsconfig.json file.
 
-		"rootDir": "./src", // If composite true, rootdir is set to directory containing the tsconfig.json file.
+		"rootDir": ".", // If composite true, rootdir is set to directory containing the tsconfig.json file.
 
 		"target": "es2020", // recommended target based off of the Node version, Node 12 - ES2019
-		"module": "esnext", // Sets the module system for the program
+		"module": "ESNext", // Sets the module system for the program
 
 //		"lib": [ // includes a default set of type definitions for built-in JS APIs (like Math), as well as type definitions for things found in browser environments (like document).
 //			"es6"
@@ -46,22 +48,21 @@
 
 		"jsx": "react",
 
-		"declarationDir": "./types", // root directory for where declaration files are emitted.
-		"declaration": true, // Generate d.ts files for every TypeScript or JavaScript file inside your project
+
 		"declarationMap": false, // Generates a source map for .d.ts files which map back to the original .ts source file
 		"sourceMap": true, // allow debuggers and other tools to display the original TypeScript source code
 
 		"isolatedModules": true, // warn if you write certain code that can’t be correctly interpreted by a single-file transpilation process.
 
 		// strict checks
-		"strict": true, // all
+		"strict": true, // Enable all strict type-checking options.
 
 		// module resolution
 		"allowSyntheticDefaultImports": true, // allows  import React from "react"  When the module does not specify a default export
-		"esModuleInterop": true, // emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Also enabled by synthetic imports
-		"moduleResolution": "bundler",
+		"esModuleInterop": false, // emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Also enabled by synthetic imports
+		"moduleResolution": "Bundler",
 		"resolveJsonModule": false,
-		"verbatimModuleSyntax": true,
+		"verbatimModuleSyntax": false,
 
 		// linter checks
 		"noFallthroughCasesInSwitch": true, // Ensures that any non-empty case inside a switch statement includes either break or return.

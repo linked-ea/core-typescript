@@ -1,7 +1,9 @@
 .DS_Store
 .nyc_output
 .vscode
+
 build
+dist
 coverage
 etc
 dist
@@ -9,8 +11,6 @@ node_modules
 out
 release-builds
 test
-types
-
 
 # files
 /package-lock.json

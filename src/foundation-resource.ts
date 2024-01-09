@@ -4,8 +4,8 @@
 
 // --- resource ---
 import type { IRI } from './common.js'
-import type { TLangString, IName } from 'foundation-lang-strings.js'
-import type { IDocumentation } from 'foundation-documentation.js'
+import type { IName } from './foundation-lang-strings.js'
+import type { IDocumentation } from './foundation-documentation.js'
 
 // --- core resources
 
@@ -13,33 +13,29 @@ export type Deprecated = boolean
 
 // ISSUE: should classes be ArchiMate(r) IRI's or just strings?
 
-export type TResourceClass =
+export type ResourceClasses =
 'model' |
 'propertyDef' |
 'profile' |
+'image' |
 'specialization' |
 'element' |
 'relationship' |
 'viewpoint' |
 'view' |
-'organization' |
-'image'
+'organization'
 
 export interface NamedResource extends IName, IDocumentation {
 	modelIdentifier: IRI
 	identifier: IRI
-	name: TLangString
-	documentation?: TLangString
 	deprecated?: Deprecated
+	/*
 	info: {
-		type: TResourceClass
+		type: ResourceClass
 	}
+	*/
 }
 
-export interface IResouceClass<TResourceClass> {
-	type: TResourceClass
-}
-
-export interface Info<TResourceClass> {
-	type: TResourceClass
+export interface ResourceClass<T extends ResourceClasses> {
+	resourceClass: T
 }

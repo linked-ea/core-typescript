@@ -1,5 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
+export const ArchimateBase = 'http://www.opengroup.org/xsd/archimate/3.0/'
+
 // TODO - identifier should be read-only
 export type IRI = string // attribute of identifier IRI, to be used in conjunction with Base, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
 

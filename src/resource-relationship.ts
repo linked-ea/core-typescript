@@ -1,10 +1,19 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IAlias, IRI } from './common.js'
-import type { IProperties } from './foundation-property.js'
+import type { IAlias, IRI } from './common.ts'
+import type { PropertyRecord } from './resource-propertydef.ts'
 
-// export type TRelationshipTypes = `${TBaseRelationshipTypes}`
+import { ArchimateBase } from './common.js'
+
+// --- resource ---
+export interface RelationshipInfo extends PropertyRecord {
+	type: RelationshipTypesUnion
+	source: IRI
+	target: IRI
+}
+
+export type RelationshipTypesUnion = keyof typeof relationships
 
 export type TRelationshipCategories =
 	| 'Structural'
@@ -12,94 +21,88 @@ export type TRelationshipCategories =
 	| 'Dynamic'
 	| 'Other'
 
+// TODO: below move to diagram
 type TSourceMarker = 'none' | 'diamond full' | 'diamond empty'
 type TEndMarker = 'none' | 'full' | 'empty' | 'open'
 type TLine = 'straight' | 'dots' | 'dashes'
 
-export interface RelationshipTypeInfo extends IAlias {
+interface RelationshipTypeInfo extends IAlias {
 	category: TRelationshipCategories
 	sourceMarker: TSourceMarker
 	line: TLine
 	endMarker: TEndMarker
 }
+// TODO: above move to diagram
 
 // FIXME: move alias to import, as they are only used there
 export const relationships = {
 // export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
-	Access: {
+	[`${ArchimateBase}Access`]: {
 		category: 'Structural',
 		sourceMarker: 'diamond empty',
 		line: 'dots',
 		endMarker: 'none',
 	},
-	Aggregation: {
+	[`${ArchimateBase}Aggregation`]: {
 		category: 'Structural',
 		sourceMarker: 'diamond empty',
 		line: 'straight',
 		endMarker: 'none',
 	},
-	Assignment: {
+	[`${ArchimateBase}Assignment`]: {
 		category: 'Dependency',
 		sourceMarker: 'none',
 		line: 'straight',
 		endMarker: 'full',
 	},
-	Association: {
+	[`${ArchimateBase}Association`]: {
 		category: 'Structural',
 		sourceMarker: 'none',
 		line: 'straight',
 		endMarker: 'none',
 	},
-	Composition: {
+	[`${ArchimateBase}Composition`]: {
 		category: 'Structural',
 		sourceMarker: 'diamond full',
 		line: 'straight',
 		endMarker: 'none',
 	},
-	Flow: {
+	[`${ArchimateBase}Flow`]: {
 		category: 'Dynamic',
 		sourceMarker: 'none',
 		line: 'dashes',
 		endMarker: 'full',
 	},
-	Influence: {
+	[`${ArchimateBase}Influence`]: {
 		category: 'Dynamic',
 		sourceMarker: 'none',
 		line: 'dashes',
 		endMarker: 'none',
 	},
-	Realization: {
+	[`${ArchimateBase}Realization`]: {
 		category: 'Dependency',
 		sourceMarker: 'none',
 		line: 'dots',
 		endMarker: 'empty',
 		alias: 'RealisationRelationship',
 	},
-	Specialization: {
+	[`${ArchimateBase}Specialization`]: {
 		category: 'Dependency',
 		sourceMarker: 'none',
 		line: 'straight',
 		endMarker: 'empty',
 		alias: 'SpecialisationRelationship',
 	},
-	Triggering: {
+	[`${ArchimateBase}Triggering`]: {
 		category: 'Dynamic',
 		sourceMarker: 'none',
 		line: 'straight',
 		endMarker: 'full',
 	},
-	UsedBy: {
+	[`${ArchimateBase}UsedBy`]: {
 		category: 'Dependency',
 		sourceMarker: 'none',
 		line: 'straight',
 		endMarker: 'none',
 	},
 } as const satisfies Record<string, RelationshipTypeInfo>
-
-export type TRelationshipTypes = keyof typeof relationships
-
-export interface IRelationshipInfo extends IProperties {
-	type?: TRelationshipTypes
-	source: IRI
-	target: IRI
-}

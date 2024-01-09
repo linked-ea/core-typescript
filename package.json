@@ -1,19 +1,21 @@
 {
   "name": "@fed-ea/core-typescript",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.1",
   "description": "Typescript types representing fed-ea core data model..",
-  "main": "lib/definitions.js",
-  "types": "types/definitions-core.d.ts",
+  "main": "lib/definitions-core.js",
+  "types": "types/src/definitions-core.d.ts",
   "files": [
-    "lib",
+    "dist",
     "types"
   ],
   "scripts": {
-    "dev:run-all": "npm-run-all --print-label --print-name --parallel dev:tsc:watch dev:build:watch",
-    "dev:tsc:watch": "tsc --watch",
-    "dev:build:watch": "esbuild ./out/definitions.js --bundle --format=esm --watch --platform=browser --sourcemap --outdir=lib --out-extension:.js=.js --define:global=window",
-    "dev:ajv:watch": "ajv validate -s test/schema.json -d test/valid_data.json --spec=draft2020",
-    "npm:update": "npm update",
+    "dev:tsc:spec": "tsc --watch --inlineSourceMap --project tsconfig.spec.json",
+    "dev:build:spec": "bunx bun build ./out/spec/test.spec.js --watch --target node --sourcemap --outdir ./bundle --define global=window --external bun:test",
+    "dev:test:watch": "bunx bun test --watch ./bundle/test.spec.js",
+    "prod:tsc:dist": "tsc --project tsconfig.dist.json --clean --version",
+    "prod:build:dist": "bunx bun build ./out/src/definitions-core.js --target node --sourcemap --outdir ./dist",
+
+    "npm:audit": "npm audit",
     "npm:outdated": "npm outdated"
   },
   "repository": {
@@ -27,23 +29,9 @@
   },
   "homepage": "https://github.com/fed-ea/typescript-core#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
-    "ajv-cli": "^5.0.0",
-    "esbuild": "^0.17.19",
-    "esbuild-plugin-resolve": "^2.0.0",
-    "eslint": "^8.40.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.32.2",
-    "nodemon": "^2.0.22",
-    "typescript": "^5.2.2"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
-    "npm-run-all": "^4.1.5",
-    "save-dev": "^0.0.1-security",
     "typed-assert": "^1.0.9"
   }
 }
