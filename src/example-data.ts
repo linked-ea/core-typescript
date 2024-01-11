@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 
 // --- project imports
-import * as CORE from './definitions-core.js'
+import * as CORE from './index.js'
 
 // function isA(obj: CORE.Resource): obj is CORE.ModelInfo { return obj.type === 'A' }
 // function isB(obj:  CORE.Resource): obj is ResourceB { return obj.type === 'B' }

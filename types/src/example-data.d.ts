@@ -1,4 +1,4 @@
-import * as CORE from './definitions-core.js';
+import * as CORE from './index.js';
 export declare const modelIdentifier: CORE.IRI;
 export declare const base: string;
 export declare const defaultLanguage = "en";

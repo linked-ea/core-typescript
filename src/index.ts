@@ -9,7 +9,7 @@ import { elements } from './resource-element.js'
 import { relationships } from './resource-relationship.js'
 
 import type { IRgbColor, IRI, IIdentifier } from './common.js'
-import type { TLangCode } from './codes-iso-639-1-alpha-2'
+import type { TLangCode } from './codes-iso-639-1-alpha-2.js'
 import type { TLangString, ILabel, IName } from './foundation-lang-strings.js'
 import type { ModelInfo } from './resource-model.js'
 import type { IDocumentation } from './foundation-documentation.js'

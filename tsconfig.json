@@ -2,23 +2,46 @@
 {
 	"compileOnSave": true,
 
+	"include": [ //File Inclusion
+	"./src/**/*",
+	"./spec/**/*",
+  	],
+
 	"exclude": [
+		"./node_modules/**/*",
 		"./build/**/*",
 		"./dist/**/*",
 		"./lib/**/*",
 		"./out/**/*",
-		"./node_modules/**/*",
 		"./src/later/**/*",
-		"./spec/later/**/*"
+		"./spec/later/**/*",
+		"./types/**/*"
 	],
 
+	"references": [
+		//		{"path": "../some-ts-repo"} // reference other TS projects to be imported, TSC recompiles changes
+			],
+
 	"compilerOptions": {
+		"lib": [
+			"ESNext",
+			// "dom"
+		],
+
+		"paths": {
+		},
+
+		"outDir": "out", // If specified, .js (as well as .d.ts, .js.map, etc.) files will be emitted into this directory.
+		"baseUrl": ".",
+
+		"composite": true, // enforces certain constraints which make it possible for build tools. Set rootdir to directory containing the tsconfig.json file.
+		// "rootDir": ".", // If composite true, rootdir is set to directory containing the tsconfig.json file.
 
 		// "types": ["raw-loader.d.ts", "node"],
 
 		"forceConsistentCasingInFileNames": true,
 
-		"experimentalDecorators": true,
+		"experimentalDecorators": false,
 
 		"noImplicitAny": true,
 		"removeComments": false,
@@ -30,14 +53,12 @@
 		"disableSolutionSearching": false, // not want a project to be included when using features like find all references, improves editor performance
 		"assumeChangesOnlyAffectDirectDependencies": false, //avoid rechecking/rebuilding all truly possibly-affected files, and only recheck/rebuild files that have changed
 
-		"inlineSourceMap": false,
-		"inlineSources": false,
+		"inlineSourceMap": true,
+		"inlineSources": true,
 
 		// Project options
 
 //		"rootDirs": ["./src", "test"], // If composite true, rootdir is set to directory containing the tsconfig.json file.
-
-		"rootDir": ".", // If composite true, rootdir is set to directory containing the tsconfig.json file.
 
 		"target": "es2020", // recommended target based off of the Node version, Node 12 - ES2019
 		"module": "ESNext", // Sets the module system for the program
@@ -48,14 +69,15 @@
 
 		"jsx": "react",
 
-
+		// emit & types generation
+		"declaration": true,
 		"declarationMap": false, // Generates a source map for .d.ts files which map back to the original .ts source file
-		"sourceMap": true, // allow debuggers and other tools to display the original TypeScript source code
+		"declarationDir": "./types", // If specified, .d.ts files will be emitted into this directory.
+		// "sourceMap": true, // allow debuggers and other tools to display the original TypeScript source code
+		"noEmit": false, // Do not emit compiler output files like JavaScript source code, source-maps or declarations.
+		"emitDeclarationOnly": false, // Only output d.ts files and not JavaScript files.
 
 		"isolatedModules": true, // warn if you write certain code that can’t be correctly interpreted by a single-file transpilation process.
-
-		// strict checks
-		"strict": true, // Enable all strict type-checking options.
 
 		// module resolution
 		"allowSyntheticDefaultImports": true, // allows  import React from "react"  When the module does not specify a default export
@@ -63,6 +85,19 @@
 		"moduleResolution": "Bundler",
 		"resolveJsonModule": false,
 		"verbatimModuleSyntax": false,
+
+		"useDefineForClassFields": true, // switches to the upcoming ECMA runtime behavior of class fields
+		"allowUnreachableCode": false, // does not allow unreachable code
+		"disableSourceOfProjectReferenceRedirect": false, // go back to the pre-3.7 behavior where d.ts files were used
+
+		// strict checks
+		"strict": true, // Enable all strict type-checking options.
+
+		// javascript support
+		"allowJs": false,
+
+		// completeness
+		"skipLibCheck": true, // Skip type checking of default library declaration files. TypeScript will type check only the code you specifically refer to in your app’s source code
 
 		// linter checks
 		"noFallthroughCasesInSwitch": true, // Ensures that any non-empty case inside a switch statement includes either break or return.
@@ -72,16 +107,6 @@
 		"noUncheckedIndexedAccess": true, // add undefined to any un-declared field in the type.
 		"noUnusedLocals": true, // errors on unused local variables.
 		"noUnusedParameters": false, // errors on unused parameters in functions.
-
-		"useDefineForClassFields": true, // switches to the upcoming ECMA runtime behavior of class fields
-		"allowUnreachableCode": false, // does not allow unreachable code
-		"disableSourceOfProjectReferenceRedirect": false, // go back to the pre-3.7 behavior where d.ts files were used
-
-		// javascript support
-		"allowJs": false,
-
-		// completeness
-		"skipLibCheck": true // Skip type checking of default library declaration files. TypeScript will type check only the code you specifically refer to in your app’s source code
 	}
 
 }
