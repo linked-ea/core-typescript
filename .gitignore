@@ -9,6 +9,9 @@ etc
 node_modules
 release-builds
 
+## git
+.gitconfig
+
 # project folders
 build
 dist
