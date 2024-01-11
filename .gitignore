@@ -12,6 +12,7 @@ release-builds
 # project folders
 build
 dist
+lib
 out
 test
 types
