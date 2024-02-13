@@ -1,6 +1,6 @@
 {
   "name": "@fed-ea/core-typescript",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "TypeScript representation of FED-EA core data model.",
   "main": "lib/index.js",
   "types": "types/src/index.d.ts",

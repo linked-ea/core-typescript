@@ -28,19 +28,19 @@ export interface PropertyDefResource extends NamedResource {
 
 // TODO - associate property types to be used
 export const propertyTypes = {
-	INTEGER: 'The integer type is used for integral numbers. Floating point numbers are rejected',
-	NUMBER: 'Any numeric type, either integers or floating point numbers',
-	DATE: 'year-month-day as defined by RFC 3339, section 5.6 (https://tools.ietf.org/html/rfc3339#section-5.6)',
-	BOOLEAN: 'true or false',
-	CURRENCY: 'number subject to system language-sensitive number formatting',
-	DURATION: 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)',
-	ENUMERATION: 'list of possible text values',
-	STRING: 'text',
+	integer: 'The integer type is used for integral numbers. Floating point numbers are rejected',
+	number: 'Any numeric type, either integers or floating point numbers',
+	date: 'year-month-day as defined by RFC 3339, section 5.6 (https://tools.ietf.org/html/rfc3339#section-5.6)',
+	boolean: 'true or false',
+	currency: 'number subject to system language-sensitive number formatting',
+	duration: 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)',
+	enumeration: 'list of possible text values',
+	string: 'text',
 } as const satisfies Record<string, string>
 
-export type PropertyDefTypes = keyof typeof propertyTypes
+export type PropertyDefTypesUnion = keyof typeof propertyTypes
 
-interface IPropertyTypeBase<T extends PropertyDefTypes> {
+interface PropertyDefBase<T extends PropertyDefTypesUnion> {
 	type: T
 }
 
@@ -57,14 +57,15 @@ export interface PropertyEnumeration {
 }
 
 export namespace Type {
-	export type INTEGER = IPropertyTypeBase<'INTEGER'> & Range<number> & DefaultValue<number>
-	export type NUMBER = IPropertyTypeBase<'NUMBER'> & Range<number>  & DefaultValue<number>
-	export type DATE = IPropertyTypeBase<'DATE'> & Range<string> & DefaultValue<string> // year-month-day as defined by RFC 3339
-	export type BOOLEAN = IPropertyTypeBase<'BOOLEAN'> & Range<boolean>  & DefaultValue<boolean>
-	export type CURRENCY = IPropertyTypeBase<'CURRENCY'> & Range<number> & DefaultValue<number>
-	export type DURATION = IPropertyTypeBase<'DURATION'> & Range<number>  & DefaultValue<number>
-	export type ENUMERATION =  IPropertyTypeBase<'ENUMERATION'> & DefaultValue<IRI> & { enumeration: PropertyEnumeration}
-	export type STRING = IPropertyTypeBase<'STRING'> & DefaultValue<string> & { pattern?: RegExp }
+	export type INTEGER = PropertyDefBase<'integer'> & Range<number> & DefaultValue<number>
+	export type NUMBER = PropertyDefBase<'number'> & Range<number>  & DefaultValue<number>
+	export type DATE = PropertyDefBase<'date'> & Range<string> & DefaultValue<string> // year-month-day as defined by RFC 3339
+	export type BOOLEAN = PropertyDefBase<'boolean'> & Range<boolean>  & DefaultValue<boolean>
+	export type CURRENCY = PropertyDefBase<'currency'> & Range<number> & DefaultValue<number>
+	export type DURATION = PropertyDefBase<'duration'> & Range<number>  & DefaultValue<number>
+	export type ENUMERATION =  PropertyDefBase<'enumeration'> & DefaultValue<IRI> & { enumeration: PropertyEnumeration}
+	export type STRING = PropertyDefBase<'string'> & DefaultValue<string> & { pattern?: RegExp }
+	// TODO - time
 }
 
 export type PropertyDefInfo =
@@ -76,18 +77,6 @@ export type PropertyDefInfo =
 | Type.DURATION
 | Type.ENUMERATION
 | Type.STRING
-
-/*
-export type IPropertyDefInfo =
-	PropertyTypeString |
-	PropertyTypeInteger |
-	PropertyTypeNumber |
-	PropertyTypeDate |
-	PropertyTypeBoolean |
-	PropertyTypeCurrency |
-	PropertyTypeDuration |
-	PropertyTypeEnumeration
-*/
 
 // --- property  types
 export type TPropertyValue =

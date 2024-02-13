@@ -1,36 +1,48 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IRI } from './common.js'
-import type { IRgbColor } from './common.js'
+import type { RGBColorType } from './common.js'
 import type { TLangString } from './foundation-lang-strings.js'
 
 // --- resource ---
 export interface ViewInfo {
-	viewpoint?: IRI
-	items?: Record<IRI, NodeInfo | ConnectionInfo>
+	viewpoint?: xs.IDREF
+	items?: Record<xs.IDREF, ViewNodeType | ConnectionInfo>
 }
 
-export interface Coordinates {
-	x: number // x coordinate starting at top left
-	y: number // y coordinate starting at top left
+export interface LocationGroup {
+	x: xs.positiveInteger // x coordinate starting at top left
+	y: xs.positiveInteger // y coordinate starting at top left
 }
 
-export interface Dimensions {
-	w: number // width
-	h: number // height
+export interface SizeGroup {
+	w: xs.positiveInteger // width
+	h: xs.positiveInteger // height
 }
 
-export interface Font {
-	fontName?: string // font name, if absent, use default
-	fontSize?: number // font size, if absent, use default
-	fontColor?: IRgbColor // font color, if absent, use default
+export type NonNegativeHalfGranularityDecimal = number // regex [1-9][0-9]*(\.0|\.5)?
+
+export const fontStyleEnum = ['plain', 'bold', 'italic', 'underline'] as const
+
+export type FontStyleEnum = typeof fontStyleEnum[number]
+
+export interface FontType {
+	name?: string // font name, if absent, use default
+	size?: NonNegativeHalfGranularityDecimal // font size, if absent, use default
+	color?: RGBColorType // font color, if absent, use default
+	style?: FontStyleEnum
 }
 
-export interface IStyle {
-	font?: Font
-	lineColor?: IRgbColor // if absent, use default
-	fillColor?: IRgbColor // if absent, use default
+namespace xs {
+	export type positiveInteger = number // regex [1-9][0-9]*
+	export type IDREF = string // valid IRI/URI reference
+}
+
+export interface StyleType {
+	font?: FontType
+	lineColor?: RGBColorType // if absent, use default
+	fillColor?: RGBColorType // if absent, use default
+	lineWidth?: xs.positiveInteger // if absent, use default
 }
 
 interface Label {
@@ -42,19 +54,19 @@ export type NodeTypes = 'Element' | 'Container' | 'Label'
 
 // TODO - add viewRef
 
-interface NodeInfoBase extends Coordinates, Dimensions, IStyle {
+interface NodeInfoBase extends LocationGroup, SizeGroup, StyleType {
 	type?: NodeTypes
 }
 
 export interface ElementNodeInfo extends NodeInfoBase {
 	type: 'Element'
-	elementRef: IRI
+	elementRef: xs.IDREF
 	label?: TLangString
 }
 
 export interface ContainerNodeInfo extends NodeInfoBase {
 	type: 'Container'
-	viewRef: IRI
+	viewRef: xs.IDREF
 	label?: TLangString
 }
 
@@ -62,16 +74,18 @@ export interface LabelNodeInfo extends NodeInfoBase, Label {
 	type: 'Label'
 }
 
-export type NodeInfo = ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo
+export type ViewNodeType = ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo
 
 // --- connections ---
 export type ConnectionTypes = 'Line' | 'Relationship'
 
-interface ConnectionInfoBase extends IStyle {
+interface ConnectionInfoBase extends StyleType {
 	type?: ConnectionTypes
-	sourceNode: IRI
-	targetNode: IRI
-	bendpoints?: Coordinates[]
+	sourceNode: xs.IDREF
+	targetNode: xs.IDREF
+	bendpoint?: LocationGroup[]
+	sourceAttachment?: LocationGroup // if absent, tool should determined shortest path
+	targetAttachment?: LocationGroup // if absent, tool should determined shortest path
 }
 
 export interface LineConnectionInfo extends ConnectionInfoBase, Label {
@@ -80,7 +94,9 @@ export interface LineConnectionInfo extends ConnectionInfoBase, Label {
 
 export interface RelationshipConnectionInfo extends ConnectionInfoBase {
 	type: 'Relationship'
-	relationshipRef: IRI
+	relationshipRef: xs.IDREF
 }
 
 export type ConnectionInfo = LineConnectionInfo | RelationshipConnectionInfo
+
+export type ViewConceptType = ViewNodeType | ConnectionInfo

@@ -13,12 +13,11 @@ export interface IAlias {
 	alias?: string // alias of the concept
 }
 
-export interface IRgbColor {
-	r: number // 0-255
-	g: number // 0-255
-	b: number // 0-255
-}
+export type RGBValueType = number // 0-255
 
-export interface IRgbaColor extends IRgbColor {
-	a: number // 0-1
+export interface RGBColorType {
+	r: RGBValueType,
+	g: RGBValueType,
+	b: RGBValueType,
+	a?: number // alpha 0-1
 }

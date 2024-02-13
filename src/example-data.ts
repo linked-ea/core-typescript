@@ -40,7 +40,7 @@ export namespace model {
 
 export namespace propertyDefinitons {
 	export namespace base {
-		const type: CORE.PropertyDefTypes = 'STRING'
+		const type: CORE.PropertyDefTypesUnion = 'string'
 
 		export const identifier = `${base}propDef${type}-base}`
 
@@ -56,7 +56,7 @@ export namespace propertyDefinitons {
 	}
 
 	export namespace string {
-		const type: CORE.PropertyDefTypes = 'STRING'
+		const type: CORE.PropertyDefTypesUnion = 'string'
 
 		export const identifier = `${base}propDef${type}}`
 
@@ -74,7 +74,7 @@ export namespace propertyDefinitons {
 	}
 
 	export namespace number {
-		const type: CORE.PropertyDefTypes = 'NUMBER'
+		const type: CORE.PropertyDefTypesUnion = 'number'
 
 		export const identifier = `${base}propDef${type}}`
 
@@ -117,7 +117,7 @@ export namespace propertyDefinitons {
 	}
 */
 	export namespace currency {
-		const type: CORE.PropertyDefTypes = 'CURRENCY'
+		const type: CORE.PropertyDefTypesUnion = 'currency'
 
 		export const identifier = `${base}propDef${type}}`
 
@@ -139,7 +139,7 @@ export namespace propertyDefinitons {
 	}
 
 	export namespace date {
-		const type: CORE.PropertyDefTypes = 'DATE'
+		const type: CORE.PropertyDefTypesUnion = 'date'
 
 		export const identifier = `${base}propDef${type}}`
 

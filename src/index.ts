@@ -8,21 +8,21 @@ import { propertyTypes } from './resource-propertydef.js'
 import { elements } from './resource-element.js'
 import { relationships } from './resource-relationship.js'
 
-import type { IRgbColor, IRI, IIdentifier } from './common.js'
-import type { TLangCode } from './codes-iso-639-1-alpha-2.js'
-import type { TLangString, ILabel, IName } from './foundation-lang-strings.js'
-import type { ModelInfo } from './resource-model.js'
-import type { IDocumentation } from './foundation-documentation.js'
-import type { NamedResource, ResourceClass, ResourceClasses } from './foundation-resource.js'
-import type { PropertyRecord, PropertyDefInfo, TPropertyValue, PropertyDefTypes, Type } from './resource-propertydef.js'
-import type { ProfileInfo } from './resource-profile.js'
-import type { ImageInfo } from './resource-image.js'
-import type { SpecializationInfo } from './resource-specialization.js'
-import type { ViewpointInfo } from './resource-viewpoint.js'
-import type { ElementInfo, ElementTypesUnion } from './resource-element.js'
-import type { RelationshipInfo, RelationshipTypesUnion} from './resource-relationship.js'
-import type { ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, NodeInfo, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo } from './resource-view.js'
-import type { OrganizationInfo } from './resource-organization.js'
+import type { RGBValueType, RGBColorType, IRI, IIdentifier } from './common.ts'
+import type { TLangCode } from './codes-iso-639-1-alpha-2.ts'
+import type { TLangString, ILabel, IName } from './foundation-lang-strings.ts'
+import type { ModelInfo } from './resource-model.ts'
+import type { IDocumentation } from './foundation-documentation.ts'
+import type { NamedResource, ResourceClass, ResourceClasses } from './foundation-resource.ts'
+import type { PropertyRecord, PropertyDefInfo, TPropertyValue, PropertyDefTypesUnion, Type } from './resource-propertydef.ts'
+import type { ProfileInfo } from './resource-profile.ts'
+import type { ImageInfo } from './resource-image.ts'
+import type { SpecializationInfo } from './resource-specialization.ts'
+import type { ViewpointInfo } from './resource-viewpoint.ts'
+import type { ElementInfo, ElementTypesUnion } from './resource-element.ts'
+import type { RelationshipInfo, RelationshipTypesUnion} from './resource-relationship.ts'
+import type { ViewConceptType, ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, ViewNodeType, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo, FontType, LocationGroup, SizeGroup } from './resource-view.ts'
+import type { OrganizationInfo } from './resource-organization.ts'
 
 // --- re-exports ---
 export { iso_639_1_alpha_2 }
@@ -30,20 +30,20 @@ export { elements }
 export { relationships }
 export { propertyTypes }
 
-export type { IRgbColor, IRI, IIdentifier }
+export type { RGBValueType, RGBColorType, IRI, IIdentifier }
 export type { TLangCode }
 export type { TLangString, ILabel, IName }
 export type { IDocumentation }
 export type { ResourceClasses, ResourceClass, NamedResource }
 export type { ModelInfo }
-export type { PropertyRecord, TPropertyValue, PropertyDefInfo, PropertyDefTypes, Type }
+export type { PropertyRecord, TPropertyValue, PropertyDefInfo, PropertyDefTypesUnion, Type }
 export type { ProfileInfo }
 export type { ImageInfo }
 export type { SpecializationInfo }
 export type { ElementInfo, Element as ElementResource, ElementTypesUnion }
 export type { RelationshipInfo, RelationshipTypesUnion }
 export type { ViewpointInfo }
-export type { ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, NodeInfo, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo  }
+export type { ViewConceptType, ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, ViewNodeType, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo, FontType, LocationGroup, SizeGroup }
 export type { OrganizationInfo }
 
 // --- types ---
