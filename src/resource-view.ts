@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { RGBColorType } from './common.js'
+import type { RGBColorType } from './types/type-common.js'
 import type { TLangString } from './foundation-lang-strings.js'
 
 // --- resource ---

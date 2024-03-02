@@ -3,13 +3,8 @@
 // FIXME: naming convention for types and interfaces
 
 // --- project imports ---
-import { iso_639_1_alpha_2 } from './codes-iso-639-1-alpha-2.js'
-import { propertyTypes } from './resource-propertydef.js'
-import { elements } from './resource-element.js'
-import { relationships } from './resource-relationship.js'
-
-import type { RGBValueType, RGBColorType, IRI, IIdentifier } from './common.ts'
-import type { TLangCode } from './codes-iso-639-1-alpha-2.ts'
+import type { RGBColorType, IRI, IIdentifier } from './types/type-common.js'
+import type { LangCode } from './types/type-iso-639-1-alpha-2.js'
 import type { TLangString, ILabel, IName } from './foundation-lang-strings.ts'
 import type { ModelInfo } from './resource-model.ts'
 import type { IDocumentation } from './foundation-documentation.ts'
@@ -19,19 +14,23 @@ import type { ProfileInfo } from './resource-profile.ts'
 import type { ImageInfo } from './resource-image.ts'
 import type { SpecializationInfo } from './resource-specialization.ts'
 import type { ViewpointInfo } from './resource-viewpoint.ts'
-import type { ElementInfo, ElementTypesUnion } from './resource-element.ts'
-import type { RelationshipInfo, RelationshipTypesUnion} from './resource-relationship.ts'
+import type { ElementInfo, ElementTypesUnion } from './types/type-element.js'
+import type { RelationshipInfo, RelationshipTypesUnion} from './types/type-relationship.js'
 import type { ViewConceptType, ViewInfo, NodeTypes, ElementNodeInfo, ConnectionInfo, LabelNodeInfo, ViewNodeType, ConnectionTypes, LineConnectionInfo, RelationshipConnectionInfo, FontType, LocationGroup, SizeGroup } from './resource-view.ts'
 import type { OrganizationInfo } from './resource-organization.ts'
 
-// --- re-exports ---
-export { iso_639_1_alpha_2 }
-export { elements }
-export { relationships }
-export { propertyTypes }
+import { Aspect, AspectTypes } from './types/type-aspects.js'
+import type { Layers } from './types/type-layers.ts'
 
-export type { RGBValueType, RGBColorType, IRI, IIdentifier }
-export type { TLangCode }
+// --- re-exports ---
+export * as DICTIONARY from './dictionaries/index.js'
+
+export type { RGBColorType, IRI, IIdentifier }
+
+export type { Aspect, AspectTypes }
+export type { LangCode }
+export type { Layers as Layer }
+
 export type { TLangString, ILabel, IName }
 export type { IDocumentation }
 export type { ResourceClasses, ResourceClass, NamedResource }

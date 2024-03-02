@@ -1,38 +1,35 @@
 {
   "name": "@fed-ea/core-typescript",
   "version": "1.0.0-alpha.5",
-  "description": "TypeScript representation of FED-EA core data model.",
-  "main": "lib/index.js",
-  "types": "types/src/index.d.ts",
-  "files": [
-    "lib",
-    "types"
-  ],
-  "scripts": {
-    "toolchain:version": "< FED-EA 2024-01-11 >",
-    "dev:tsc:watch": "tsc --watch",
-    "dev:build:watch": "bunx bun build ./out/spec/index.spec.js --watch --target node --sourcemap --outdir ./bundle --define global=window --external bun:test",
-    "dev:test:watch": "bunx bun test --watch ./bundle/index.spec.js",
-    "prod:tsc": "tsc",
-    "prod:build": "bunx bun build ./out/src/index.js --target node --outdir ./lib",
-
-    "npm:audit": "npm audit",
-    "npm:outdated": "npm outdated"
-  },
+  "author": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fed-ea/core-typescript.git"
   },
-  "author": "",
-  "license": "MIT",
+  "main": "lib/index.js",
+  "devDependencies": {
+    "esbuild": "^0.20.1",
+    "typescript": "^5.3.3"
+  },
   "bugs": {
     "url": "https://github.com/fed-ea/core-typescript/issues"
   },
+  "description": "TypeScript representation of FED-EA core data model.",
+  "files": [
+    "lib",
+    "types"
+  ],
   "homepage": "https://github.com/fed-ea/core-typescript#readme",
-  "devDependencies": {
-    "typescript": "^5.3.3"
+  "license": "MIT",
+  "scripts": {
+    "toolchain:version": "< FED-EA 2024-03-02 >",
+    "dev:tsc:watch": "tsc --watch",
+    "dev:build:watch": "bunx bun build ./out/spec/index.spec.js --watch --sourcemap --outdir ./bundle --define global=window --external bun:test",
+    "dev:test:watch": "bunx bun test --watch ./bundle/index.spec.js",
+    "prod:tsc": "tsc",
+    "prod:build": "bunx bun build ./out/src/index.js --outdir ./lib",
+    "build:browser:js": "esbuild ./out/src/index.js --bundle --format=esm --platform=browser --outdir=lib --out-extension:.js=.js --define:global=window"
   },
-  "dependencies": {
-    "typed-assert": "^1.0.9"
-  }
+  "type": "module",
+  "types": "types/src/index.d.ts"
 }

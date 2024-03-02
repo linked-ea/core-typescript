@@ -1,404 +1,397 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IAlias } from './common.ts'
-import type { TAspects, TLayers } from './foundation-context.ts'
-import type { PropertyRecord } from './resource-propertydef.ts'
+import type { Alias } from './dict-common.ts'
+import type { AspectTypes } from '../types/type-aspects.js'
+import type { Layers } from '../types/type-layers.js'
 
-import { ArchimateBase } from './common.js'
+import { archimateBase } from './dict-common.js'
 
-// --- interfaces ---
-export interface ElementInfo extends PropertyRecord {
-	type: ElementTypesUnion
-}
-
-export type ElementTypesUnion = keyof typeof elements
-
-export interface IElementConcept extends IAlias {
+export interface IElementConcept extends Alias {
 	name: string
-	layer: TLayers
-	aspect: TAspects
+	layer: Layers
+	aspect: AspectTypes
 	definition: string
 }
 
 // --- resource ---
 export const elements = {
-	[`${ArchimateBase}ApplicationCollaboration`]: {
+	[`${archimateBase}ApplicationCollaboration`]: {
 		name: 'Application Collaboration',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationComponent`]: {
+	[`${archimateBase}ApplicationComponent`]: {
 		name: 'Application Component',
 		layer: 'Application',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationEvent`]: {
+	[`${archimateBase}ApplicationEvent`]: {
 		name: 'Application Event',
 		layer: 'Application',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationFunction`]: {
+	[`${archimateBase}ApplicationFunction`]: {
 		name: 'Application Function',
 		layer: 'Application',
 		aspect: 'Behavior',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationInteraction`]: {
+	[`${archimateBase}ApplicationInteraction`]: {
 		name: 'Application Interaction',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationInterface`]: {
+	[`${archimateBase}ApplicationInterface`]: {
 		name: 'Application Interface',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationProcess`]: {
+	[`${archimateBase}ApplicationProcess`]: {
 		name: 'Application Process',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ApplicationService`]: {
+	[`${archimateBase}ApplicationService`]: {
 		name: 'Application Service',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Artifact`]: {
+	[`${archimateBase}Artifact`]: {
 		name: 'Artifact',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Assessment`]: {
+	[`${archimateBase}Assessment`]: {
 		name: 'Assessment',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessActor`]: {
+	[`${archimateBase}BusinessActor`]: {
 		name: 'Business Actor',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessCollaboration`]: {
+	[`${archimateBase}BusinessCollaboration`]: {
 		name: 'Business Collaboration',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessEvent`]: {
+	[`${archimateBase}BusinessEvent`]: {
 		name: 'Business Event',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessFunction`]: {
+	[`${archimateBase}BusinessFunction`]: {
 		name: 'Business Function',
 		layer: 'Business',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessInteraction`]: {
+	[`${archimateBase}BusinessInteraction`]: {
 		name: 'Business Interaction',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessInterface`]: {
+	[`${archimateBase}BusinessInterface`]: {
 		name: 'Business Interface',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessObject`]: {
+	[`${archimateBase}BusinessObject`]: {
 		name: 'Business Object',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessProcess`]: {
+	[`${archimateBase}BusinessProcess`]: {
 		name: 'Business Process',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessRole`]: {
+	[`${archimateBase}BusinessRole`]: {
 		name: 'Business Role',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}BusinessService`]: {
+	[`${archimateBase}BusinessService`]: {
 		name: 'Business Service',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Capability`]: {
+	[`${archimateBase}Capability`]: {
 		name: 'Capability',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}CommunicationNetwork`]: {
+	[`${archimateBase}CommunicationNetwork`]: {
 		name: 'Communication Network',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'Network', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[`${ArchimateBase}Constraint`]: {
+	[`${archimateBase}Constraint`]: {
 		name: 'Constraint',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Contract`]: {
+	[`${archimateBase}Contract`]: {
 		name: 'Contract',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}CourseOfAction`]: {
+	[`${archimateBase}CourseOfAction`]: {
 		name: 'Course Of Action',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}DataObject`]: {
+	[`${archimateBase}DataObject`]: {
 		name: 'Data Object',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Deliverable aspect
-	[`${ArchimateBase}Deliverable`]: {
+	[`${archimateBase}Deliverable`]: {
 		name: 'Deliverable',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Device`]: {
+	[`${archimateBase}Device`]: {
 		name: 'Device',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}DistributionNetwork`]: {
+	[`${archimateBase}DistributionNetwork`]: {
 		name: 'Distribution Network',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Driver`]: {
+	[`${archimateBase}Driver`]: {
 		name: 'Driver',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Equipment`]: {
+	[`${archimateBase}Equipment`]: {
 		name: 'Equipment',
 		layer: 'Physical',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Facility`]: {
+	[`${archimateBase}Facility`]: {
 		name: 'Facility',
 		layer: 'Physical',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Gap aspect
-	[`${ArchimateBase}Gap`]: {
+	[`${archimateBase}Gap`]: {
 		name: 'Gap',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Goal`]: {
+	[`${archimateBase}Goal`]: {
 		name: 'Goal',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ImplementationEvent`]: {
+	[`${archimateBase}ImplementationEvent`]: {
 		name: 'Implementation Event',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Location`]: {
+	[`${archimateBase}Location`]: {
 		name: 'Location',
 		layer: 'Physical',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Material`]: {
+	[`${archimateBase}Material`]: {
 		name: 'Material',
 		layer: 'Physical',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Meaning`]: {
+	[`${archimateBase}Meaning`]: {
 		name: 'Meaning',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Node`]: {
+	[`${archimateBase}Node`]: {
 		name: 'Node',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Outcome`]: {
+	[`${archimateBase}Outcome`]: {
 		name: 'Outcome',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Path`]: {
+	[`${archimateBase}Path`]: {
 		name: 'Path',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Plateau aspect
-	[`${ArchimateBase}Plateau`]: {
+	[`${archimateBase}Plateau`]: {
 		name: 'Plateau',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Principle`]: {
+	[`${archimateBase}Principle`]: {
 		name: 'Principle',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Product`]: {
+	[`${archimateBase}Product`]: {
 		name: 'Product',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Representation`]: {
+	[`${archimateBase}Representation`]: {
 		name: 'Representation',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Requirement`]: {
+	[`${archimateBase}Requirement`]: {
 		name: 'Requirement',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Resource`]: {
+	[`${archimateBase}Resource`]: {
 		name: 'Resource',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}Stakeholder`]: {
+	[`${archimateBase}Stakeholder`]: {
 		name: 'Stakeholder',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}SystemSoftware`]: {
+	[`${archimateBase}SystemSoftware`]: {
 		name: 'System Software',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}TechnologyCollaboration`]: {
+	[`${archimateBase}TechnologyCollaboration`]: {
 		name: 'Technology Collaboration',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}TechnologyEvent`]: {
+	[`${archimateBase}TechnologyEvent`]: {
 		name: 'Technology Event',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}TechnologyFunction`]: {
+	[`${archimateBase}TechnologyFunction`]: {
 		name: 'Technology Function',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureFunction', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[`${ArchimateBase}TechnologyInteraction`]: {
+	[`${archimateBase}TechnologyInteraction`]: {
 		name: 'Technology Interaction',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}TechnologyInterface`]: {
+	[`${archimateBase}TechnologyInterface`]: {
 		name: 'Technology Interface',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureInterface', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[`${ArchimateBase}TechnologyProcess`]: {
+	[`${archimateBase}TechnologyProcess`]: {
 		name: 'Technology Process',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}TechnologyService`]: {
+	[`${archimateBase}TechnologyService`]: {
 		name: 'Technology Service',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureService', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[`${ArchimateBase}Value`]: {
+	[`${archimateBase}Value`]: {
 		name: 'Value',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}ValueStream`]: {
+	[`${archimateBase}ValueStream`]: {
 		name: 'Value Stream',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}WorkPackage`]: {
+	[`${archimateBase}WorkPackage`]: {
 		name: 'Work Package',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// other elements
-	[`${ArchimateBase}Grouping`]: {
+	[`${archimateBase}Grouping`]: {
 		name: 'Grouping',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// TODO: validate layer, aspect and definition
-	[`${ArchimateBase}AndJunction`]: {
+	[`${archimateBase}AndJunction`]: {
 		name: 'AND Junction',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${ArchimateBase}OrJunction`]: {
+	[`${archimateBase}OrJunction`]: {
 		name: 'OR Junction',
 		layer: 'Strategy',
 		aspect: 'Active Structure',

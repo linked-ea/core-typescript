@@ -1,0 +1,7 @@
+export { archimateBase } from './dict-common.js'
+export { aspects } from './dict-aspects.js'
+export { elements } from './dict-elements.js'
+export { iso_639_1_alpha_2 } from './dict-iso-639-1-alpha-2.js'
+export { layers } from './dict-layers.js'
+export { propertyTypes } from './dict-property-defs.js'
+export { relationships } from './dict-relationships.js'

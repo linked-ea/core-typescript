@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IRI, IIdentifier } from './common.ts'
+import type { IRI, IIdentifier } from './types/type-common.js'
 
 // --- resource ---
 export interface OrganizationInfo {}

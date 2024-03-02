@@ -86,11 +86,9 @@ export namespace propertyDefinitons {
 			documentation,
 			info: {
 				type,
-				// defaultValue: 2.5,
-				range: {
-					minimum: 1.5,
-					maximum: 3.5
-				}
+				defaultValue: 2.5,
+				minimum: 1.5,
+				maximum: 3.5
 			}
 		} as const satisfies CORE.Resource
 	}
@@ -129,11 +127,9 @@ export namespace propertyDefinitons {
 			documentation,
 			info: {
 				type,
-				// defaultValue: 2.5,
-				range: {
-					minimum: 1.5,
-					maximum: 3.5
-				}
+				defaultValue: 2.5,
+				minimum: 1.5,
+				maximum: 3.5
 			}
 		} as const satisfies CORE.Resource
 	}
@@ -151,11 +147,9 @@ export namespace propertyDefinitons {
 			documentation,
 			info: {
 				type,
-				// defaultValue: '2022-07-01',
-				range: {
-					minimum: '2022-01-01',
-					maximum: '2022-12-31'
-				}
+				defaultValue: '2022-07-01',
+				minimum: '2022-01-01',
+				maximum: '2022-12-31'
 			}
 		} as const satisfies CORE.Resource
 	}

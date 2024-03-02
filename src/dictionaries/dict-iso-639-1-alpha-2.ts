@@ -1,7 +1,7 @@
-// TODO - determine rights source
+// TODO: determine rights source
 // source https://gist.github.com/jrnk/8eb57b065ea0b098d571
 
-export type ISO_639_1_Alpha_2 = Record<string, {name: string, nativeName: string}>
+type ISO_639_1_Alpha_2 = Record<string, {name: string, nativeName: string}>
 
 export const iso_639_1_alpha_2: ISO_639_1_Alpha_2 = {
 	"ab": {"name": "Abkhaz", "nativeName": "аҧсуа"},
@@ -187,5 +187,3 @@ export const iso_639_1_alpha_2: ISO_639_1_Alpha_2 = {
 	"yo": {"name": "Yoruba", "nativeName": "Yorùbá"},
 	"za": {"name": "Zhuang, Chuang", "nativeName": "Saɯ cueŋƅ, Saw cuengh"}
 }
-
-export type TLangCode = keyof typeof iso_639_1_alpha_2

@@ -30,6 +30,8 @@
 
 		"paths": {
 			"src/*": ["./src/*"],
+			"dictionaries/*": ["./src/dictionaries/*"],
+			"types/*": ["./src/types/*"],
 		},
 
 		"outDir": "out", // If specified, .js (as well as .d.ts, .js.map, etc.) files will be emitted into this directory.
@@ -61,13 +63,14 @@
 
 //		"rootDirs": ["./src", "test"], // If composite true, rootdir is set to directory containing the tsconfig.json file.
 
-		"target": "es2020", // recommended target based off of the Node version, Node 12 - ES2019
+		"target": "ESNext", // recommended target based off of the Node version, Node 12 - ES2019
 		"module": "ESNext", // Sets the module system for the program
 
 //		"lib": [ // includes a default set of type definitions for built-in JS APIs (like Math), as well as type definitions for things found in browser environments (like document).
 //			"es6"
 //		],
 
+		// React
 		"jsx": "react",
 
 		// emit & types generation

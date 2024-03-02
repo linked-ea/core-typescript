@@ -1,8 +1,9 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IRI } from './common.js'
+import type { IRI } from './types/type-common.js'
 import type { TLangString } from './foundation-lang-strings.js'
+import { propertyTypes } from './dictionaries/dict-property-defs.js'
 
 // --- interfaces ---
 // export type PropertyInfo = Info<'property'> & IPropertyDefInfo
@@ -25,37 +26,54 @@ export interface PropertyDefResource extends NamedResource {
 // export type PropertyResource = NamedResource, PropertyInfo {}
 
 // --- properties ---
-
-// TODO - associate property types to be used
-export const propertyTypes = {
-	integer: 'The integer type is used for integral numbers. Floating point numbers are rejected',
-	number: 'Any numeric type, either integers or floating point numbers',
-	date: 'year-month-day as defined by RFC 3339, section 5.6 (https://tools.ietf.org/html/rfc3339#section-5.6)',
-	boolean: 'true or false',
-	currency: 'number subject to system language-sensitive number formatting',
-	duration: 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)',
-	enumeration: 'list of possible text values',
-	string: 'text',
-} as const satisfies Record<string, string>
-
 export type PropertyDefTypesUnion = keyof typeof propertyTypes
+
+export type JsType<T extends PropertyDefTypesUnion> =
+  T extends 'integer' ? number
+: T extends 'number' ? number
+: T extends 'string' ? string
+: T extends 'date' ? string
+: T extends 'boolean' ? boolean
+: T extends 'currency' ? number
+: T extends 'duration' ? string
+: T extends 'enumeration' ? string
+: never
 
 interface PropertyDefBase<T extends PropertyDefTypesUnion> {
 	type: T
 }
 
-export interface DefaultValue <T> {
-	defaultValue?: T | undefined
+interface DefaultValue <T extends PropertyDefTypesUnion> {
+	defaultValue?: JsType<T> | undefined
 }
 
-export interface Range <T> /* extends DefaultValue<T> */ {
-	range?: {minimum: T, maximum: T}
+interface Range <T extends PropertyDefTypesUnion>{
+	minimum?: JsType<T> | undefined
+	maximum?: JsType<T> | undefined
 }
 
 export interface PropertyEnumeration {
 	[key: IRI]: TLangString
 }
 
+type JsTypeDefault<T extends PropertyDefTypesUnion> = PropertyDefBase<T> & DefaultValue<T>
+
+type JsTypeDefaultAndRange<T extends PropertyDefTypesUnion> = JsTypeDefault<T> & Range<T>
+
+export namespace Type {
+	export type INTEGER = JsTypeDefaultAndRange<'integer'>
+	export type NUMBER = JsTypeDefaultAndRange<'number'>
+	export type DATE = JsTypeDefaultAndRange<'date'> // year-month-day as defined by RFC 3339
+	export type BOOLEAN = JsTypeDefaultAndRange<'boolean'>
+	export type CURRENCY = JsTypeDefaultAndRange<'currency'>
+	export type DURATION = JsTypeDefaultAndRange<'duration'>
+	export type STRING = JsTypeDefaultAndRange<'string'> & { pattern?: RegExp }
+	export type ENUMERATION =  JsTypeDefault<'enumeration'> & { enumeration: PropertyEnumeration}
+	// TODO - time
+}
+
+// TODO: cleanup
+/*
 export namespace Type {
 	export type INTEGER = PropertyDefBase<'integer'> & Range<number> & DefaultValue<number>
 	export type NUMBER = PropertyDefBase<'number'> & Range<number>  & DefaultValue<number>
@@ -67,6 +85,7 @@ export namespace Type {
 	export type STRING = PropertyDefBase<'string'> & DefaultValue<string> & { pattern?: RegExp }
 	// TODO - time
 }
+*/
 
 export type PropertyDefInfo =
 | Type.INTEGER

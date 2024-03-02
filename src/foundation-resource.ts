@@ -3,7 +3,7 @@
 // --- project imports ---
 
 // --- resource ---
-import type { IRI } from './common.js'
+import type { IRI } from './types/type-common.js'
 import type { IName } from './foundation-lang-strings.js'
 import type { IDocumentation } from './foundation-documentation.js'
 

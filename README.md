@@ -1,11 +1,20 @@
 # typescript-core
-TypeScript representation of FED-EA core data model.
+TypeScript type representation of FED-EA core data model.
 
 ## Features
 * FED-EA Resource TypeScript definitions
-* List of supported ISO 639-1-Alpha-2 language codes
-* ArchiMate® Element dictionary
-* ArchiMate® Relationship dictionary
+* Dictionaries covering
+	* ArchiMate®
+		* Aspects
+		* Elements
+		* Layers
+		* Relationships
+	* ISO
+		* Language Codes (ISO 639-1 Alpha-2)
+* Broader than ArchiMate® XML Schema, with type definitions for:
+	* Profiles
+	* Specializations
+	* Viewpoints
 
 ## Instalation
 
@@ -23,11 +32,13 @@ import * as CORE from '@fed-ea/core-typescript'
 
 ## Observations
 * Supports ArchiMate® version 3.2
+* Aspire to align nomenclature to ArchiMate® XML Schemas as much as possible
 
 ## Roadmap
+* [ ] Reference to other FED-EA models
 * [ ] Time property definition, aligned with ArchiMate®
-* [ ] Currency Codes
-* [ ] Separate Element and Relationship dictionaries from Resource definition
+* [ ] Currency Code Dictionary
+* [ ] Adopt XML Schema REF-ID
 
 ## Trademarks
 * [ArchiMate® is a registered trademark of The Open Group.](https://www.opengroup.org/archimate-forum/archimate-overview)
