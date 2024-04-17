@@ -2,8 +2,7 @@
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
-
-import { archimateBase } from './dict-common.js'
+import { RelationshipTypeEnum } from '../enums/relationship-type-enum.js'
 
 export type TRelationshipCategories =
 	| 'Structural'
@@ -11,88 +10,51 @@ export type TRelationshipCategories =
 	| 'Dynamic'
 	| 'Other'
 
-// TODO: below move to diagram
-type TSourceMarker = 'none' | 'diamond full' | 'diamond empty'
-type TEndMarker = 'none' | 'full' | 'empty' | 'open'
-type TLine = 'straight' | 'dots' | 'dashes'
 
+// TODO: #17 move aliases to import as they are only used there
 interface RelationshipTypeInfo extends Alias {
 	category: TRelationshipCategories
-	sourceMarker: TSourceMarker
-	line: TLine
-	endMarker: TEndMarker
 }
-// TODO: above move to diagram
 
-// FIXME: move alias to import, as they are only used there
+// TODO: #18 add language strings as names for relationships
+
+// * 11 relationship types
 export const relationships = {
 // export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
-	[`${archimateBase}Access`]: {
+	[RelationshipTypeEnum.Access]: {
 		category: 'Structural',
-		sourceMarker: 'diamond empty',
-		line: 'dots',
-		endMarker: 'none',
 	},
-	[`${archimateBase}Aggregation`]: {
+	[RelationshipTypeEnum.Aggregation]: {
 		category: 'Structural',
-		sourceMarker: 'diamond empty',
-		line: 'straight',
-		endMarker: 'none',
 	},
-	[`${archimateBase}Assignment`]: {
+	[RelationshipTypeEnum.Assignment]: {
 		category: 'Dependency',
-		sourceMarker: 'none',
-		line: 'straight',
-		endMarker: 'full',
 	},
-	[`${archimateBase}Association`]: {
+	[RelationshipTypeEnum.Association]: {
 		category: 'Structural',
-		sourceMarker: 'none',
-		line: 'straight',
-		endMarker: 'none',
 	},
-	[`${archimateBase}Composition`]: {
+	[RelationshipTypeEnum.Composition]: {
 		category: 'Structural',
-		sourceMarker: 'diamond full',
-		line: 'straight',
-		endMarker: 'none',
 	},
-	[`${archimateBase}Flow`]: {
+	[RelationshipTypeEnum.Flow]: {
 		category: 'Dynamic',
-		sourceMarker: 'none',
-		line: 'dashes',
-		endMarker: 'full',
 	},
-	[`${archimateBase}Influence`]: {
+	[RelationshipTypeEnum.Influence]: {
 		category: 'Dynamic',
-		sourceMarker: 'none',
-		line: 'dashes',
-		endMarker: 'none',
 	},
-	[`${archimateBase}Realization`]: {
+	[RelationshipTypeEnum.Realization]: {
 		category: 'Dependency',
-		sourceMarker: 'none',
-		line: 'dots',
-		endMarker: 'empty',
 		alias: 'RealisationRelationship',
 	},
-	[`${archimateBase}Specialization`]: {
+
+	[RelationshipTypeEnum.Specialization]: {
 		category: 'Dependency',
-		sourceMarker: 'none',
-		line: 'straight',
-		endMarker: 'empty',
 		alias: 'SpecialisationRelationship',
 	},
-	[`${archimateBase}Triggering`]: {
+	[RelationshipTypeEnum.Triggering]: {
 		category: 'Dynamic',
-		sourceMarker: 'none',
-		line: 'straight',
-		endMarker: 'full',
 	},
-	[`${archimateBase}UsedBy`]: {
+	[RelationshipTypeEnum.Serving]: {
 		category: 'Dependency',
-		sourceMarker: 'none',
-		line: 'straight',
-		endMarker: 'none',
 	},
 } as const satisfies Record<string, RelationshipTypeInfo>

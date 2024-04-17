@@ -1,44 +1,3 @@
-# typescript-core
-TypeScript type representation of FED-EA core data model.
-
-## Features
-
-### Type Definitions
-* Models
-* Property Definitions
-* Specializations
-* Profiles
-* Elements
-* Relationships
-* Relationship Connectors
-* Viewpoints
-* Views
-* Organizations
-
-### Enumerations
-* Element Types
-* Relationship Types
-* Relationship Connector Types
-
-### Multi-Language Dictionaries
-* Elements
-* Relationships
-* Relationship Connectors
-* Aspects
-* Layers
-* Language Codes (ISO 639-1 Alpha-2)
-
-## Installation
-
-```
-npm install @fed-ea/core-typescript
-```
-
-```
-bun add @fed-ea/core-typescript
-```
-## Usage
-```
 import * as CORE from '../src/index.js'
 
 export const modelIdentifier: CORE.IRI = "http://x.y.z/"
@@ -110,12 +69,3 @@ export const viewResource: CORE.View = {
 	info: {
 	}
 } as const
-```
-
-## Documentation
-* [Principles](./md/principles.md)
-* [Reduced idiosyncrasies of ArchiMate® Model Exchange File Format](./md/idiosynchrasies.md)
-* [Roadmap](./md/roadmap.md)
-
-## Trademarks
-* [ArchiMate® is a registered trademark of The Open Group.](https://www.opengroup.org/archimate-forum/archimate-overview)

@@ -46,7 +46,7 @@
 
 		"experimentalDecorators": false,
 
-		"noImplicitAny": true,
+
 		"removeComments": false,
 		"preserveConstEnums": true,
 
@@ -91,11 +91,7 @@
 		"verbatimModuleSyntax": false,
 
 		"useDefineForClassFields": true, // switches to the upcoming ECMA runtime behavior of class fields
-		"allowUnreachableCode": false, // does not allow unreachable code
 		"disableSourceOfProjectReferenceRedirect": false, // go back to the pre-3.7 behavior where d.ts files were used
-
-		// strict checks
-		"strict": true, // Enable all strict type-checking options.
 
 		// javascript support
 		"allowJs": false,
@@ -103,14 +99,25 @@
 		// completeness
 		"skipLibCheck": true, // Skip type checking of default library declaration files. TypeScript will type check only the code you specifically refer to in your app’s source code
 
-		// linter checks
+		// Type Checking (19)
+		"allowUnreachableCode": false, // raises compiler errors about unreachable code
+		"allowUnusedLabels": false, // raises compiler errors about unused labels in the code
+		"alwaysStrict": true, // Ensures that your files are parsed in the ECMAScript strict mode, and emit “use strict” for each source file
+		"exactOptionalPropertyTypes": true, // applies stricter rules around how it handles properties on type or interfaces which have a ? prefix
 		"noFallthroughCasesInSwitch": true, // Ensures that any non-empty case inside a switch statement includes either break or return.
+		"noImplicitAny": true, // no fall back to a type of any for a variable when it cannot infer the type
 		"noImplicitOverride": true, // errors if sub-class to get “out of sync” with the functions it overloads when they are renamed in the base class.
 		"noImplicitReturns": true, // check all code paths in a function to ensure they return a value.
+		"noImplicitThis": true, // errors when this is used without an explicit type annotation
 		"noPropertyAccessFromIndexSignature": true, // ensures consistency between accessing a field via the “dot” (obj.key) syntax, and “indexed” (obj["key"]).
 		"noUncheckedIndexedAccess": true, // add undefined to any un-declared field in the type.
 		"noUnusedLocals": true, // errors on unused local variables.
 		"noUnusedParameters": false, // errors on unused parameters in functions.
+		"strict": true, // Enable all strict type-checking options
+		"strictBindCallApply": true, // check that the built-in methods of functions call, bind, and apply are invoked with correct argument for the underlying function
+		"strictFunctionTypes": true, // check that functions are correctly assigned to function types
+		"strictNullChecks": true, // true, null and undefined have their own distinct types and you’ll get a type error if you try to use them where a concrete value is expected
+		"strictPropertyInitialization": true, // will raise an error when a class property was declared but not set in the constructor
+		"useUnknownInCatchVariables": true // allow changing the type of the variable in a catch clause from any to unknown
 	}
-
 }

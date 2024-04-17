@@ -3,4 +3,6 @@
 // --- project imports ---
 
 // --- resource ---
-export type ImageInfo = {}
+export interface ImageInfo {
+	placeholder: string // TODO: base64 encoded svg image
+}

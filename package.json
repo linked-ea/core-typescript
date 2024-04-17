@@ -1,12 +1,14 @@
 {
   "name": "@fed-ea/core-typescript",
   "version": "1.0.0-alpha.5",
+  "type": "module",
+  "types": "types/src/index.d.ts",
+  "main": "lib/index.js",
   "author": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fed-ea/core-typescript.git"
   },
-  "main": "lib/index.js",
   "devDependencies": {
     "esbuild": "^0.20.1",
     "typescript": "^5.3.3"
@@ -22,14 +24,12 @@
   "homepage": "https://github.com/fed-ea/core-typescript#readme",
   "license": "MIT",
   "scripts": {
-    "toolchain:version": "< FED-EA 2024-03-02 >",
+    "toolchain:version": "< FED-EA 2024-03-07 >",
     "dev:tsc:watch": "tsc --watch",
     "dev:build:watch": "bunx bun build ./out/spec/index.spec.js --watch --sourcemap --outdir ./bundle --define global=window --external bun:test",
     "dev:test:watch": "bunx bun test --watch ./bundle/index.spec.js",
-    "prod:tsc": "tsc",
+    "prod:tsc": "tsc --build --clean && tsc --build --force",
     "prod:build": "bunx bun build ./out/src/index.js --outdir ./lib",
     "build:browser:js": "esbuild ./out/src/index.js --bundle --format=esm --platform=browser --outdir=lib --out-extension:.js=.js --define:global=window"
-  },
-  "type": "module",
-  "types": "types/src/index.d.ts"
+  }
 }

@@ -1,8 +1,9 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { RGBColorType } from './types/type-common.js'
-import type { TLangString } from './foundation-lang-strings.js'
+import type * as xs from '../common/xs.js'
+import type { RGBColorType } from '../types/type-common.js'
+import type { LangString } from '../common/lang-strings.js'
 
 // --- resource ---
 export interface ViewInfo {
@@ -33,10 +34,7 @@ export interface FontType {
 	style?: FontStyleEnum
 }
 
-namespace xs {
-	export type positiveInteger = number // regex [1-9][0-9]*
-	export type IDREF = string // valid IRI/URI reference
-}
+
 
 export interface StyleType {
 	font?: FontType
@@ -46,7 +44,7 @@ export interface StyleType {
 }
 
 interface Label {
-	label: TLangString
+	label?: LangString
 }
 
 // --- nodes ---
@@ -54,23 +52,21 @@ export type NodeTypes = 'Element' | 'Container' | 'Label'
 
 // TODO - add viewRef
 
-interface NodeInfoBase extends LocationGroup, SizeGroup, StyleType {
+interface NodeInfoBase extends LocationGroup, SizeGroup, StyleType, Label {
 	type?: NodeTypes
+	viewRef?: xs.IDREF
 }
 
 export interface ElementNodeInfo extends NodeInfoBase {
 	type: 'Element'
 	elementRef: xs.IDREF
-	label?: TLangString
 }
 
 export interface ContainerNodeInfo extends NodeInfoBase {
 	type: 'Container'
-	viewRef: xs.IDREF
-	label?: TLangString
 }
 
-export interface LabelNodeInfo extends NodeInfoBase, Label {
+export interface LabelNodeInfo extends NodeInfoBase {
 	type: 'Label'
 }
 
@@ -81,11 +77,15 @@ export type ConnectionTypes = 'Line' | 'Relationship'
 
 interface ConnectionInfoBase extends StyleType {
 	type?: ConnectionTypes
-	sourceNode: xs.IDREF
-	targetNode: xs.IDREF
-	bendpoint?: LocationGroup[]
+	sourceNode: xs.IDREF // TODO - change to sourceRef
+	targetNode: xs.IDREF // TODO - change to targetRef
+	bendpoints?: LocationGroup[]
 	sourceAttachment?: LocationGroup // if absent, tool should determined shortest path
 	targetAttachment?: LocationGroup // if absent, tool should determined shortest path
+	// TODO: #8 show label on line
+	// TODO: #9 label position: source, target, center
+	// TODO: #10 label vertical alignment: above, below, center
+	// TODO: #11 label alignment: left, right, center
 }
 
 export interface LineConnectionInfo extends ConnectionInfoBase, Label {
@@ -100,3 +100,5 @@ export interface RelationshipConnectionInfo extends ConnectionInfoBase {
 export type ConnectionInfo = LineConnectionInfo | RelationshipConnectionInfo
 
 export type ViewConceptType = ViewNodeType | ConnectionInfo
+
+export type ViewItemTypes = NodeTypes | ConnectionTypes

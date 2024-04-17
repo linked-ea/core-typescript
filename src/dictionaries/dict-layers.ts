@@ -26,17 +26,17 @@ interface LayersRecord {
 export const layers: LayersRecord = {
 	Strategy: {
 		name: 'Strategy',
-		fillColor: { r: 250, g: 230, b: 196 }, // #FAE6C4,
+		fillColor: { r: 247, g: 221, b: 174 }, // #F7DDAE
 		initial: 'S',
 	},
 	Business: {
 		name: 'Business',
-		fillColor: {r: 255, g: 255, b: 208 }, //  #FFFFD0
+		fillColor: {r: 245, g: 247, b: 181 }, // #F5F7B5
 		initial: 'B',
 	},
 	Application: {
 		name: 'Application',
-		fillColor: { r: 191, g: 251, b: 254 }, // #BFFBFE
+		fillColor: { r: 176, g: 255, b: 255 },
 		initial: 'A',
 	},
 	Technology: {

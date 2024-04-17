@@ -1,9 +1,8 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IRI } from './types/type-common.js'
-import type { TLangString } from './foundation-lang-strings.js'
-import { propertyTypes } from './dictionaries/dict-property-defs.js'
+import type { IRI } from '../types/type-common.js'
+import type { LangString } from '../common/lang-strings.js'
 
 // --- interfaces ---
 // export type PropertyInfo = Info<'property'> & IPropertyDefInfo
@@ -20,13 +19,12 @@ export interface PropertyDefResource extends NamedResource {
 
 // export type PropertyDefResource<PropertyType> = NamedResource & PropertyInfo<PropertyType>
 
-// TODO - include never to force type union
 // export type PropertyDefInfo<T extends PropertyDefsTypesUnion> = { info: Info<'propertyDef'> } & { info: T}
 
 // export type PropertyResource = NamedResource, PropertyInfo {}
 
-// --- properties ---
-export type PropertyDefTypesUnion = keyof typeof propertyTypes
+// --- type exports ---
+export type PropertyDefTypesUnion = 'integer' | 'number' | 'date' | 'boolean' | 'currency' | 'duration' | 'enumeration' | 'string'
 
 export type JsType<T extends PropertyDefTypesUnion> =
   T extends 'integer' ? number
@@ -53,7 +51,7 @@ interface Range <T extends PropertyDefTypesUnion>{
 }
 
 export interface PropertyEnumeration {
-	[key: IRI]: TLangString
+	[key: IRI]: LangString
 }
 
 type JsTypeDefault<T extends PropertyDefTypesUnion> = PropertyDefBase<T> & DefaultValue<T>
@@ -69,23 +67,8 @@ export namespace Type {
 	export type DURATION = JsTypeDefaultAndRange<'duration'>
 	export type STRING = JsTypeDefaultAndRange<'string'> & { pattern?: RegExp }
 	export type ENUMERATION =  JsTypeDefault<'enumeration'> & { enumeration: PropertyEnumeration}
-	// TODO - time
+	// TODO #21 - define and implement property type time
 }
-
-// TODO: cleanup
-/*
-export namespace Type {
-	export type INTEGER = PropertyDefBase<'integer'> & Range<number> & DefaultValue<number>
-	export type NUMBER = PropertyDefBase<'number'> & Range<number>  & DefaultValue<number>
-	export type DATE = PropertyDefBase<'date'> & Range<string> & DefaultValue<string> // year-month-day as defined by RFC 3339
-	export type BOOLEAN = PropertyDefBase<'boolean'> & Range<boolean>  & DefaultValue<boolean>
-	export type CURRENCY = PropertyDefBase<'currency'> & Range<number> & DefaultValue<number>
-	export type DURATION = PropertyDefBase<'duration'> & Range<number>  & DefaultValue<number>
-	export type ENUMERATION =  PropertyDefBase<'enumeration'> & DefaultValue<IRI> & { enumeration: PropertyEnumeration}
-	export type STRING = PropertyDefBase<'string'> & DefaultValue<string> & { pattern?: RegExp }
-	// TODO - time
-}
-*/
 
 export type PropertyDefInfo =
 | Type.INTEGER
@@ -100,11 +83,11 @@ export type PropertyDefInfo =
 // --- property  types
 export type TPropertyValue =
 	string | // string
-	number | // number, integer, currenty
+	number | // number, integer, currency
 	boolean | // boolean
 	Date | // date
 	IRI // enumeration
 
 export interface PropertyRecord {
-	properties?: Record<keyof typeof propertyTypes, TPropertyValue>
+	properties?: Record<IRI, TPropertyValue>
 }

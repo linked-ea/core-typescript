@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { IRI } from './types/type-common.js'
+import type { IRI } from '../types/type-common.js'
 
 // --- types ---
 
@@ -16,5 +16,5 @@ type Target = IRI // IRI of element or element specialization
  */
 
 export interface ViewpointInfo {
-	map: Record<Source, Record<Relationship, Set<Target>> | undefined>
+	map: Record<Source, Record<Relationship, Set<Target>> | undefined> // TODO: rename map
 }
