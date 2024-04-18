@@ -1,6 +1,6 @@
 {
   "name": "@fed-ea/core-typescript",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "type": "module",
   "types": "types/src/index.d.ts",
   "main": "lib/index.js",
