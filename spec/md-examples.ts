@@ -5,7 +5,7 @@ export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
 
 export const resourceModel: CORE.Model = {
-	resourceClass: 'model',
+	resourceClass: CORE.ENUM.ResourceClass.Model,
 	modelIdentifier,
 	identifier: `${base}model1`,
 	name: {[defaultLanguage]: 'model 1'},
@@ -20,7 +20,7 @@ export const resourceModel: CORE.Model = {
 } as const
 
 export const costPropertyDefResource: CORE.PropertyDef = {
-	resourceClass: 'propertyDef',
+	resourceClass: CORE.ENUM.ResourceClass.PropertyDef,
 	modelIdentifier,
 	identifier: `${base}costPropertyDef`,
 	name: { en: 'cost' },
@@ -34,7 +34,7 @@ export const costPropertyDefResource: CORE.PropertyDef = {
 } as const
 
 export const resourceResource: CORE.Element = {
-	resourceClass: 'element',
+	resourceClass: CORE.ENUM.ResourceClass.Element,
 	modelIdentifier,
 	identifier: `${base}element1`,
 	name: { en: 'element 1' },
@@ -48,7 +48,7 @@ export const resourceResource: CORE.Element = {
 } as const
 
 export const relationshipResource: CORE.Relationship = {
-	resourceClass: 'relationship',
+	resourceClass: CORE.ENUM.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
 	name: { en: 'relationship 1' },
@@ -61,7 +61,7 @@ export const relationshipResource: CORE.Relationship = {
 }
 
 export const viewResource: CORE.View = {
-	resourceClass: 'view',
+	resourceClass: CORE.ENUM.ResourceClass.View,
 	modelIdentifier,
 	identifier: `${base}view1`,
 	name: { en: 'view1' },

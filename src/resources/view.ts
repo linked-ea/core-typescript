@@ -35,7 +35,6 @@ export interface FontType {
 }
 
 
-
 export interface StyleType {
 	font?: FontType
 	lineColor?: RGBColorType // if absent, use default

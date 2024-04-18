@@ -1,8 +1,8 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-
-// --- resource ---
+import type { ArchimateBase } from "common/archimate-base.js"
+import type { ResourceClassFragment } from '../fragments/resource-class-fragments.js'
 import type { IRI } from '../types/type-common.js'
 import type { Name } from './lang-strings.js'
 import type { IDocumentation } from './documentation.js'
@@ -12,20 +12,9 @@ import type { IDocumentation } from './documentation.js'
 // ISSUE: #20 should deprecated be a boolean or a date?
 export type Deprecated = boolean
 
-// ISSUE: should classes be ArchiMate(r) IRI's or just strings?
+// ISSUE: #24 should classes be ArchiMate(r) IRI's or just strings?
 
-export type ResourceClasses =
-'model' |
-'propertyDef' |
-'profile' |
-'image' |
-'specialization' |
-'element' |
-'relationship' |
-'relationshipConnector' |
-'viewpoint' |
-'view' |
-'organization'
+export type ResourceClasses = `${ArchimateBase}${ResourceClassFragment}`
 
 export interface NamedResource extends Name, IDocumentation {
 	modelIdentifier: IRI

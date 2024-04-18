@@ -1,0 +1,12 @@
+export type ResourceClassFragment =
+	| 'model'
+	| 'propertyDef'
+	| 'profile'
+	| 'image'
+	| 'specialization'
+	| 'element'
+	| 'relationship'
+	| 'relationshipConnector'
+	| 'viewpoint'
+	| 'view'
+	| 'organization'

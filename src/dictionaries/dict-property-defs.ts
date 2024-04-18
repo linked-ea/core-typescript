@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { PropertyDefTypesUnion } from '../resources/resource-property-definition.js'
+import type { PropertyDefTypesUnion } from '../resources/property-definition.js'
 
 // --- dictionary exports ---
 // TODO - associate property types to be used

@@ -5,7 +5,7 @@ import type { Alias } from './dict-common.ts'
 import type { AspectTypes } from '../types/type-aspects.js'
 import type { Layers } from '../types/type-layers.js'
 import { ElementTypeEnum } from 'enums/element-type-enum.js'
-import type { ElementTypesUnion } from '../resources/type-element.js'
+import type { ElementTypesUnion } from '../resources/element.js'
 
 import { archimateBase } from './dict-common.js'
 
@@ -382,19 +382,6 @@ export const elements = {
 	// other elements
 	[ElementTypeEnum.Grouping]: {
 		name: 'Grouping',
-		layer: 'Strategy',
-		aspect: 'Active Structure',
-		definition: '',
-	},
-	// TODO: #19 remove junctions from elements
-	[ElementTypeEnum.AndJunction]: {
-		name: 'AND Junction',
-		layer: 'Strategy',
-		aspect: 'Active Structure',
-		definition: '',
-	},
-	[ElementTypeEnum.OrJunction]: {
-		name: 'OR Junction',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',

@@ -1,0 +1,12 @@
+export type RelationshipTypeFragment =
+	| 'Composition'
+	| 'Aggregation'
+	| 'Assignment'
+	| 'Realization'
+	| 'Serving'
+	| 'Access'
+	| 'Influence'
+	| 'Triggering'
+	| 'Flow'
+	| 'Specialization'
+	| 'Association'

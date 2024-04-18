@@ -1,0 +1,1 @@
+export type RelationshipConnectorTypeFragment = 'AndJunction' | 'OrJunction'

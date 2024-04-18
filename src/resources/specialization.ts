@@ -2,8 +2,8 @@
 
 // --- project imports ---
 import type { IRI } from '../types/type-common.js'
-import type { ElementTypesUnion } from './type-element.js'
-import type { RelationshipTypesUnion  } from './type-relationship.js'
+import type { ElementTypesUnion } from './element.js'
+import type { RelationshipTypesUnion  } from './relationship.js'
 
 // --- resource ---
 export interface SpecializationInfo {
