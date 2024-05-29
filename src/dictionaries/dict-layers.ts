@@ -4,26 +4,16 @@
 import type { RGBColorType } from '../types/type-common.js'
 
 // --- layers ---
+
 export interface LayersInfo {
 	name: string
 	fillColor: RGBColorType
 	initial: string
 }
-/*
-export type TLayers =
-	| 'Strategy'
-	| 'Business'
-	| 'Application'
-	| 'Technology'
-	| 'Motivation'
-	| 'Implementation & Migration'
-	| 'Physical'
-*/
-interface LayersRecord {
-	[key: string]: LayersInfo
-}
-// export const layers: Record<TLayers, ILayersInfo> = {
-export const layers: LayersRecord = {
+
+type DictKeys = 'Strategy' | 'Business' | 'Application' | 'Technology' | 'Motivation' | 'Implementation & Migration' | 'Composite'
+
+export const layers: Record<DictKeys, LayersInfo> = {
 	Strategy: {
 		name: 'Strategy',
 		fillColor: { r: 247, g: 221, b: 174 }, // #F7DDAE
@@ -54,9 +44,9 @@ export const layers: LayersRecord = {
 		fillColor: { r: 255, g: 223, b: 224 }, // #FFDFE0
 		initial: 'I',
 	},
-	Physical: {
-		name: 'Physical',
+	Composite: {
+		name: 'Composite',
 		fillColor: { r: 194, g: 247, b: 199 }, // #C2F7C7, green
-		initial: 'P',
+		initial: 'C',
 	},
 } as const

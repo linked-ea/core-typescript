@@ -4,16 +4,29 @@
 import type * as xs from '../common/xs.js'
 import type { RGBColorType } from '../types/type-common.js'
 import type { LangString } from '../common/lang-strings.js'
+import type { ImageRef } from "../types/type-image-ref.js"
+
+// MARK: --- exported types ---
+export type ItemTypeUnion = 'Element' | 'Container' | 'Label' | 'Line' | 'Relationship' | 'Connector'
 
 // --- resource ---
 export interface ViewInfo {
-	viewpoint?: xs.IDREF
-	items?: Record<xs.IDREF, ViewNodeType | ConnectionInfo>
+	/**
+	* IRI reference to the viewpoint resource
+	*/
+	viewpointRef?: xs.IDREF
+	items?: Record<xs.IDREF, ViewConceptType>
 }
 
 export interface LocationGroup {
-	x: xs.positiveInteger // x coordinate starting at top left
-	y: xs.positiveInteger // y coordinate starting at top left
+	/**
+	 * x coordinate starting at top left
+	 */
+	x: xs.positiveInteger
+	/**
+	 * y coordinate starting at top left
+	 */
+	y: xs.positiveInteger
 }
 
 export interface SizeGroup {
@@ -46,36 +59,53 @@ interface Label {
 	label?: LangString
 }
 
-// --- nodes ---
-export type NodeTypes = 'Element' | 'Container' | 'Label'
-
+// MARK: --- nodes ---
 // TODO - add viewRef
 
-interface NodeInfoBase extends LocationGroup, SizeGroup, StyleType, Label {
-	type?: NodeTypes
-	viewRef?: xs.IDREF
+type FigureOrImage = { figure?: never, imageRef: ImageRef } | { figure: boolean, imageRef?: never } | { figure?: never, imageRef?: never }
+
+interface _NodeConnectorInfoBase extends LocationGroup, SizeGroup, StyleType, Label {
+	type: ItemTypeUnion
+	viewRef?: xs.IDREF[]
+	/**
+	 * IRI reference to the parent container node
+	 */
+	parentNodeRef?: xs.IDREF
+	/**
+	 * If true, node is shown as figure
+	 */
+	figure?: boolean
+	/**
+	 * If provided node is to be displayed by referred image
+	 */
+	imageRef?: ImageRef // image to be displayed across all views, unless overridden
 }
 
-export interface ElementNodeInfo extends NodeInfoBase {
+export type NodeConnectorInfoBase = _NodeConnectorInfoBase & FigureOrImage
+
+export type ElementNodeInfo = NodeConnectorInfoBase & {
 	type: 'Element'
 	elementRef: xs.IDREF
 }
 
-export interface ContainerNodeInfo extends NodeInfoBase {
+export type ContainerNodeInfo = NodeConnectorInfoBase & {
 	type: 'Container'
 }
 
-export interface LabelNodeInfo extends NodeInfoBase {
+export type LabelNodeInfo =  NodeConnectorInfoBase & {
 	type: 'Label'
 }
 
 export type ViewNodeType = ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo
 
-// --- connections ---
-export type ConnectionTypes = 'Line' | 'Relationship'
+// MARK: --- connectors ---
+export type ConnectorInfo = NodeConnectorInfoBase & {
+	type: 'Connector'
+}
 
+// MARK: --- connections ---
 interface ConnectionInfoBase extends StyleType {
-	type?: ConnectionTypes
+	type?: ItemTypeUnion
 	sourceNode: xs.IDREF // TODO - change to sourceRef
 	targetNode: xs.IDREF // TODO - change to targetRef
 	bendpoints?: LocationGroup[]
@@ -96,8 +126,11 @@ export interface RelationshipConnectionInfo extends ConnectionInfoBase {
 	relationshipRef: xs.IDREF
 }
 
-export type ConnectionInfo = LineConnectionInfo | RelationshipConnectionInfo
-
-export type ViewConceptType = ViewNodeType | ConnectionInfo
-
-export type ViewItemTypes = NodeTypes | ConnectionTypes
+// TODO #26 rename to ViewItem or better, consult with ArchiMate® specification
+export type ViewConceptType =
+	| ElementNodeInfo
+	| ContainerNodeInfo
+	| LabelNodeInfo
+	| LineConnectionInfo
+	| RelationshipConnectionInfo
+	| ConnectorInfo

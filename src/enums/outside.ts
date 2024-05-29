@@ -1,0 +1,1 @@
+export const x = 'http://www.opengroup.org/xsd/archimate/3.0/model'

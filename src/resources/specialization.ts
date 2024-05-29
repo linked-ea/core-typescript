@@ -3,10 +3,24 @@
 // --- project imports ---
 import type { IRI } from '../types/type-common.js'
 import type { ElementTypesUnion } from './element.js'
-import type { RelationshipTypesUnion  } from './relationship.js'
+import type { RelationshipTypeUnion  } from '../union-types/relationship-type-union.js'
+import type { RelationshipConnectorTypesUnion } from './relationship-connectors.js'
+import type { ImageRef } from "../types/type-image-ref.js"
 
 // --- resource ---
-export interface SpecializationInfo {
-	concept: ElementTypesUnion | RelationshipTypesUnion // element or relationship type
-	profiles: Record<IRI, boolean> // profiles applied to specialization
+
+type Required = {required: boolean} // is profile required by specialization?
+
+// TODO #27 imageRef should only be supported by element or connector, not relationship
+type ElementSpecializationInfo = {
+    concept: ElementTypesUnion | RelationshipConnectorTypesUnion,
+    imageRef: ImageRef,
+    profiles?: Record<IRI, Required>
 }
+
+type RelationshipSpecializationInfo = {
+    concept: RelationshipTypeUnion,
+    profiles?: Record<IRI, Required>
+}
+
+export type SpecializationInfo = ElementSpecializationInfo | RelationshipSpecializationInfo

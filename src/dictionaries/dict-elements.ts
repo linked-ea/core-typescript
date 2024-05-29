@@ -4,7 +4,7 @@
 import type { Alias } from './dict-common.ts'
 import type { AspectTypes } from '../types/type-aspects.js'
 import type { Layers } from '../types/type-layers.js'
-import { ElementTypeEnum } from 'enums/element-type-enum.js'
+import * as ElementTypeEnum from 'enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 
 import { archimateBase } from './dict-common.js'
@@ -202,13 +202,13 @@ export const elements = {
 	},
 	[ElementTypeEnum.Equipment]: {
 		name: 'Equipment',
-		layer: 'Physical',
+		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	[ElementTypeEnum.Facility]: {
 		name: 'Facility',
-		layer: 'Physical',
+		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
@@ -233,13 +233,13 @@ export const elements = {
 	},
 	[ElementTypeEnum.Location]: {
 		name: 'Location',
-		layer: 'Physical',
+		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	[ElementTypeEnum.Material]: {
 		name: 'Material',
-		layer: 'Physical',
+		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},

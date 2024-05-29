@@ -4,14 +4,8 @@
 import type { IRI } from '../types/type-common.js'
 
 // --- resource ---
-/*
-interface Properties {
-	properties?: Record<IRI, boolean> // boolean: is property required by profile?
-}
-*/
+type Required = {required: boolean}
 
-// export type ProfileInfo = Info<'profile'> & Properties
-
-export interface ProfileInfo {
-	properties?: Record<IRI, boolean> // boolean: is property required by profile?
+export type ProfileInfo = {
+	propertyDefs?: Record<IRI, Required>
 }

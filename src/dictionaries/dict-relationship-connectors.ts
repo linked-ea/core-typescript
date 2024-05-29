@@ -1,9 +1,9 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type { LangString } from 'common/lang-strings.js'
+import type { LangString } from '../common/lang-strings.js'
 import type { RelationshipConnectorTypesUnion } from '../resources/relationship-connectors.js'
-import { RelationshipConnectorType } from 'enums/relationship-connector-type-enum.js'
+import { RelationshipConnectorType } from '../enums/relationship-connector-type-enum.js'
 
 interface RelationshipConnectorTypeInfo {
 	name: LangString

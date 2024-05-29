@@ -7,7 +7,7 @@ import type { ColorPalette } from '../types/type-color-palette.js'
 
 
 // --- resource ---
-export interface ModelInfo {
+export interface ModelReference {
 	base: Base
 	language: LangCode // Default language, must be included in all language entries, maps to Dublin Core 1.1
 	currency: string, // Model currency, as defined by ISO 4217 (https://www.iso.org/iso-4217-currency-codes.html)'
@@ -18,7 +18,7 @@ export interface ModelInfo {
 	contributor?: string[] // Dublin Core 1.1 - An entity responsible for making contributions to the resource
 	date: string // Dublin Core 1.1, year-month-day as defined by RFC 3339
 	rights?: string // Dublin Core 1.1 - Information about rights held in and over the resource
-	referencedModels?: IReferencedModel[]
+	// referencedModels?: IReferencedModel[]
 	previousVersion?: IRI,
 	colorPalette: ColorPalette
 	logo?: IRI
@@ -27,6 +27,3 @@ export interface ModelInfo {
 // base of identifier IRI, similar to specification https://www.w3.org/TR/rdf-syntax-grammar/#section-Syntax-ID-xml-base
 // to be used in conjunction with Identifier. Base must end with a slash (/) or a hash (#)
 export type Base = string
-
-// TODO - reference models
-interface IReferencedModel extends Omit<ModelInfo, "referencedModels"> {}

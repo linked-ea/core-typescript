@@ -1,5 +1,7 @@
+// --- project imports ---
 import * as CORE from '../src/index.js'
 
+// --- data ---
 export const modelIdentifier: CORE.IRI = "http://x.y.z/"
 export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
@@ -15,7 +17,8 @@ export const resourceModel: CORE.Model = {
 		version: 1,
 		language: 'en',
 		date: '2024-01-01',
-		currency: 'USD'
+		currency: 'USD',
+		colorPalette: CORE.DICTIONARY.colorPalette.Alternative.fillColorPalette
 	}
 } as const
 

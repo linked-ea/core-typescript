@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // MARK: --- project imports ---
-import type { ResourceClasses } from '../common/resource.js'
+import type { ResourceClassUnion } from '../common/resources.js'
 import * as ENUM from '../enums/index.js'
 
 export interface Alias {
@@ -11,7 +11,7 @@ export interface Alias {
 export const archimateBase = 'http://www.opengroup.org/xsd/archimate/3.0/'
 
 // TODO #25 DICT resourceClass to be multi-language
-export const resourceClasses: Record<ResourceClasses, string> = {
+export const resourceClasses: Record<ResourceClassUnion, string> = {
 	[ENUM.ResourceClass.Model]: "model",
 	[ENUM.ResourceClass.PropertyDef]: "propertyDef",
 	[ENUM.ResourceClass.Profile]: "profile",
@@ -25,6 +25,6 @@ export const resourceClasses: Record<ResourceClasses, string> = {
 	[ENUM.ResourceClass.Organization]: "organization",
 } as const
 
-export function isResourceClass (value: string): value is ResourceClasses {
+export function isResourceClass (value: string): value is ResourceClassUnion {
 	return Object.keys(resourceClasses).includes(value)
 }
