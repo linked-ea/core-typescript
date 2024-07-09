@@ -63,6 +63,19 @@ export const relationshipResource: CORE.Relationship = {
 	}
 }
 
+export const specializedRelationshipResource: CORE.Relationship = {
+	resourceClass: CORE.ENUM.ResourceClass.Relationship,
+	modelIdentifier,
+	identifier: `${base}relationship1`,
+	name: { en: 'relationship 1' },
+	documentation: { en: 'documentation goes here' },
+	info: {
+		specializationRef: `${base}specialization1`,
+		source: `${base}element1`,
+		target: `${base}element1`,
+	}
+}
+
 export const viewResource: CORE.View = {
 	resourceClass: CORE.ENUM.ResourceClass.View,
 	modelIdentifier,

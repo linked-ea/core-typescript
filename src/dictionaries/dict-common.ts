@@ -13,6 +13,7 @@ export const archimateBase = 'http://www.opengroup.org/xsd/archimate/3.0/'
 // TODO #25 DICT resourceClass to be multi-language
 export const resourceClasses: Record<ResourceClassUnion, string> = {
 	[ENUM.ResourceClass.Model]: "model",
+	[ENUM.ResourceClass.ModelReference]: "modelReference",
 	[ENUM.ResourceClass.PropertyDef]: "propertyDef",
 	[ENUM.ResourceClass.Profile]: "profile",
 	[ENUM.ResourceClass.Image]: "image",

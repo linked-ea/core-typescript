@@ -9,8 +9,13 @@ import type { ImageRef } from "../types/type-image-ref.js"
 // MARK: --- exported types ---
 export type ItemTypeUnion = 'Element' | 'Container' | 'Label' | 'Line' | 'Relationship' | 'Connector'
 
+// MARK: --- local types ---
+interface Stereotype {
+	stereotype?: true
+}
+
 // --- resource ---
-export interface ViewInfo {
+export interface ViewInfo extends Stereotype {
 	/**
 	* IRI reference to the viewpoint resource
 	*/
@@ -83,7 +88,7 @@ interface _NodeConnectorInfoBase extends LocationGroup, SizeGroup, StyleType, La
 
 export type NodeConnectorInfoBase = _NodeConnectorInfoBase & FigureOrImage
 
-export type ElementNodeInfo = NodeConnectorInfoBase & {
+export type ElementNodeInfo = NodeConnectorInfoBase & Stereotype & {
 	type: 'Element'
 	elementRef: xs.IDREF
 }
@@ -99,8 +104,9 @@ export type LabelNodeInfo =  NodeConnectorInfoBase & {
 export type ViewNodeType = ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo
 
 // MARK: --- connectors ---
-export type ConnectorInfo = NodeConnectorInfoBase & {
+export type ConnectorInfo = NodeConnectorInfoBase & Stereotype & {
 	type: 'Connector'
+	relationshipConnectorRef: xs.IDREF
 }
 
 // MARK: --- connections ---
@@ -121,7 +127,7 @@ export interface LineConnectionInfo extends ConnectionInfoBase, Label {
 	type: 'Line'
 }
 
-export interface RelationshipConnectionInfo extends ConnectionInfoBase {
+export interface RelationshipConnectionInfo extends ConnectionInfoBase, Stereotype {
 	type: 'Relationship'
 	relationshipRef: xs.IDREF
 }

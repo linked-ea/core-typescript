@@ -22,6 +22,7 @@ export const colorPalettes: Record<DictKeys, ColorPaletteInfo> = {
 			'Implementation & Migration': { r: 0xE9, g: 0xA7, b: 0xA1 },
 			Composite: { r: 194, g: 247, b: 199 },
 		},
+		// TODO #31 remove url from color palette, move to jsdoc
 		url: 'https://www.opengroup.org/sites/default/files/alternative-color-set.pdf',
 	},
 	Classic: {

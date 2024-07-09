@@ -6,16 +6,18 @@
 import type { RGBColorType, IRI, Identifier } from './types/type-common.js'
 import type { LangCode } from './types/type-iso-639-1-alpha-2.js'
 import type { LangString, Label, Name } from './common/lang-strings.js'
-import type { ModelInfo } from './resources/model.js'
 import type { IDocumentation } from './common/documentation.js'
 import type { NamedResource, ResourceClass, ResourceClassUnion } from './common/resources.js'
+
+import type { ModelInfo } from './resources/model.js'
+import type { ModelReferenceInfo } from './resources/model-reference.js'
 import type { PropertyRecord, PropertyDefInfo, TPropertyValue, PropertyDefTypesUnion, Type } from './resources/property-definition.js'
 import type { ProfileInfo } from './resources/profile.js'
 import type { ImageInfo } from './resources/image.js'
 import type { SpecializationInfo } from './resources/specialization.js'
 import type { ViewpointInfo } from './resources/viewpoint.js'
 import type { ElementInfo, ElementTypesUnion } from './resources/element.js'
-import type { RelationshipInfo } from './resources/relationship.js'
+import type { RelationshipInfo, RelationshipTypeUnion } from './resources/relationship.js'
 import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from './resources/relationship-connectors.js'
 import type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
 import type { OrganizationInfo } from './resources/organization.js'
@@ -39,13 +41,15 @@ export type { Layers as Layer }
 export type { LangString, Label as ILabel, Name as IName }
 export type { IDocumentation }
 export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
+
 export type { ModelInfo }
+export type { ModelReferenceInfo }
 export type { PropertyRecord, TPropertyValue, PropertyDefInfo, PropertyDefTypesUnion, Type }
 export type { ProfileInfo }
 export type { ImageInfo }
 export type { SpecializationInfo }
 export type { ElementInfo, Element as ElementResource, ElementTypesUnion }
-export type { RelationshipInfo }
+export type { RelationshipInfo, RelationshipTypeUnion }
 export type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion }
 export type { ViewpointInfo }
 export type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }
@@ -57,6 +61,7 @@ interface BaseResource<T extends TYPE.ResourceClassUnion> extends ResourceClass<
 // TODO: #23 drop model identifier from model, as it is redundant to identifier
 // model resources
 export interface Model extends BaseResource<TYPE.ResourceClass.Model> { info: ModelInfo }
+export interface ModelReference extends BaseResource<TYPE.ResourceClass.ModelReference> { info: ModelReferenceInfo }
 
 // concept resources
 export interface Element extends BaseResource<TYPE.ResourceClass.Element>, PropertyRecord { info: ElementInfo }
@@ -80,6 +85,7 @@ export interface Organization extends BaseResource<TYPE.ResourceClass.Organizati
 
 export type Resource =
 | Model
+| ModelReference
 | PropertyDef
 | Profile
 | Image

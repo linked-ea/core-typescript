@@ -2,6 +2,7 @@ import type * as ResourceClass from './resource-classes.js'
 
 export type ResourceClassUnion =
 	| ResourceClass.Model
+	| ResourceClass.ModelReference
 	| ResourceClass.PropertyDef
 	| ResourceClass.Profile
 	| ResourceClass.Image

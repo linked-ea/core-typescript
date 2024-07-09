@@ -3,7 +3,7 @@
 // --- project imports ---
 import type { LangString } from '../common/lang-strings.js'
 import type { ElementTypesUnion } from './element.js'
-import type { RelationshipTypeUnion  } from '../union-types/relationship-type-union.js'
+import type { RelationshipTypeUnion  } from '../resources/relationship.js'
 import type { RelationshipConnectorTypesUnion } from './relationship-connectors.js'
 
 // --- types ---

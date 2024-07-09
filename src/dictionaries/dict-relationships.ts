@@ -2,7 +2,7 @@
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
-import { RelationshipTypeEnum } from '../enums/relationship-type-enum.js'
+import { RelationshipTypeEnum } from '../enums/index.js'
 
 export type TRelationshipCategories =
 	| 'Structural'

@@ -1,5 +1,6 @@
 export type ResourceClassFragment =
 	| 'model'
+	| 'modelReference'
 	| 'propertyDef'
 	| 'profile'
 	| 'image'

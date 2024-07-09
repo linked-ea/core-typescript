@@ -7,19 +7,13 @@ import type { ElementTypeFragment } from "../fragments/element-fragments.js"
 import type { PropertyRecord } from './property-definition.js'
 import type { ImageRef } from "../types/type-image-ref.js"
 
-// --- type exports ---
-export type ElementTypesUnion =`${ArchimateBase}${ElementTypeFragment}`
 
-type _BaseElementInfo =
+// --- local types ---
+type _BaseInfo =
 	| { type: ElementTypesUnion, specializationRef?: never }
 	| { type?: never, specializationRef: IRI }
 
-// interface _ImageRef { imageRef?: ImageRef }
+// --- type exports ---
+export type ElementTypesUnion =`${ArchimateBase}${ElementTypeFragment}`
 
-// interface _ElementType extends _ImageRef, PropertyRecord { type: ElementTypesUnion }
-
-// interface _SpecializationRef extends _ImageRef, PropertyRecord { specializationRef: IRI }
-
-// export type ElementInfo =  _ElementType | _SpecializationRef
-
-export type ElementInfo =  _BaseElementInfo & { imageRef?: ImageRef } & PropertyRecord
+export type ElementInfo =  _BaseInfo & PropertyRecord & { imageRef?: ImageRef }
