@@ -1,0 +1,20 @@
+{
+	"name": "@linked-ea/core-typescript",
+	"version": "0.0.6",
+	"exports": "./src/index.ts",
+	"publish": {
+		"include": [
+		  "LICENSE",
+		  "README.md",
+		  "src/**/*.ts"
+		]
+	  },
+	  "exclude": [
+		"src/tests"
+	  ],
+	"imports": {
+	  },
+	  "tasks": {
+		"dev": "deno run --watch main.ts"
+	  }
+}
