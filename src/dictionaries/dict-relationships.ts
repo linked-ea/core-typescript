@@ -19,7 +19,7 @@ interface RelationshipTypeInfo extends Alias {
 // TODO: #18 add language strings as names for relationships
 
 // * 11 relationship types
-export const relationships = {
+export const relationships: Record<string, RelationshipTypeInfo> = {
 // export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
 	[RelationshipTypeEnum.Access]: {
 		category: 'Structural',
@@ -57,4 +57,4 @@ export const relationships = {
 	[RelationshipTypeEnum.Serving]: {
 		category: 'Dependency',
 	},
-} as const satisfies Record<string, RelationshipTypeInfo>
+} as const

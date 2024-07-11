@@ -17,7 +17,7 @@ export interface IElementConcept extends Alias {
 }
 
 // --- resource ---
-export const elements = {
+export const elements: Record<ElementTypesUnion, IElementConcept> = {
 	[ElementTypeEnum.ApplicationCollaboration]: {
 		name: 'Application Collaboration',
 		layer: 'Application',
@@ -386,4 +386,4 @@ export const elements = {
 		aspect: 'Active Structure',
 		definition: '',
 	},
-} as const satisfies Record<ElementTypesUnion, IElementConcept>
+} as const
