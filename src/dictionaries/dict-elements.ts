@@ -2,9 +2,9 @@
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
-import type { AspectTypes } from '../types/type-aspects.js'
-import type { Layers } from '../types/type-layers.js'
-import * as ElementTypeEnum from 'enums/element-type-enum.js'
+import type { AspectTypes } from '../common-types/type-aspects.js'
+import type { Layers } from '../common-types/type-layers.js'
+import * as ElementTypeEnum from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 
 import { archimateBase } from './dict-common.js'

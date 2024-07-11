@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import * as E from 'enums/element-type-enum.js'
+import * as E from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 import type { RelationshipTypeUnion } from '../resources/relationship.js'
 import { RelationshipTypeEnum } from '../enums/index.js'

@@ -3,8 +3,8 @@
 // FIXME: naming convention for types and interfaces
 
 // --- project imports ---
-import type { RGBColorType, IRI, Identifier } from './types/type-common.js'
-import type { LangCode } from './types/type-iso-639-1-alpha-2.js'
+import type { RGBColorType, IRI, Identifier } from './common-types/type-common.js'
+import type { LangCode } from './common-types/type-iso-639-1-alpha-2.js'
 import type { LangString, Label, Name } from './common/lang-strings.js'
 import type { IDocumentation } from './common/documentation.js'
 import type { NamedResource, ResourceClass, ResourceClassUnion } from './common/resources.js'
@@ -22,8 +22,8 @@ import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from 
 import type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
 import type { OrganizationInfo } from './resources/organization.js'
 
-import type { Aspect, AspectTypes } from './types/type-aspects.js'
-import type { Layers } from './types/type-layers.ts'
+import type { Aspect, AspectTypes } from './common-types/type-aspects.js'
+import type { Layers } from './common-types/type-layers.ts'
 
 import type * as TYPE from './union-types/index.js'
 

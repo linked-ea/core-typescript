@@ -2,7 +2,7 @@
 
 // --- project imports ---
 import type * as xs from '../common/xs.js'
-import type { IRI, Identifier } from '../types/type-common.js'
+import type { IRI, Identifier } from '../common-types/type-common.js'
 
 // --- resource ---
 export interface IItemInfo extends Identifier {

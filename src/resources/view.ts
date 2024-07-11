@@ -2,9 +2,9 @@
 
 // --- project imports ---
 import type * as xs from '../common/xs.js'
-import type { RGBColorType } from '../types/type-common.js'
+import type { RGBColorType } from '../common-types/type-common.js'
 import type { LangString } from '../common/lang-strings.js'
-import type { ImageRef } from "../types/type-image-ref.js"
+import type { ImageRef } from "../common-types/type-image-ref.js"
 
 // MARK: --- exported types ---
 export type ItemTypeUnion = 'Element' | 'Container' | 'Label' | 'Line' | 'Relationship' | 'Connector'
