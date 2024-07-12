@@ -1,5 +1,6 @@
 import type * as ResourceClass from './resource-classes.js'
 
+// TODO: #36 replace by type template as individual types are only used for resource definition (use typeof ResourceClass.Model instead)	
 export type ResourceClassUnion =
 	| ResourceClass.Model
 	| ResourceClass.ModelReference
