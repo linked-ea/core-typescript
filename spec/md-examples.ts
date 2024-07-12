@@ -57,7 +57,7 @@ export const relationshipResource: CORE.Relationship = {
 	name: { en: 'relationship 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.ENUM.RelationshipTypeEnum.Association,
+		type: CORE.ENUM.RelationshipType.Association,
 		source: `${base}element1`,
 		target: `${base}element1`,
 	}

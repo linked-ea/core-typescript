@@ -1,6 +1,6 @@
 {
 	"name": "@linked-ea/core-typescript",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"exports": "./src/index.ts",
 	"publish": {
 		"include": [

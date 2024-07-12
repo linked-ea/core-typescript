@@ -4,20 +4,20 @@
 import * as E from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 import type { RelationshipTypeUnion } from '../resources/relationship.js'
-import { RelationshipTypeEnum } from '../enums/index.js'
+import { RelationshipType } from '../enums/index.js'
 
 // --- relationships ---
-const C = RelationshipTypeEnum.Composition
-const g = RelationshipTypeEnum.Aggregation
-// const i = RelationshipTypeEnum.Assignment
-const R = RelationshipTypeEnum.Realization
-// const v = RelationshipTypeEnum.Serving
-// const A = RelationshipTypeEnum.Access
-const n = RelationshipTypeEnum.Influence
-// const T = RelationshipTypeEnum.Triggering
-// const F = RelationshipTypeEnum.Flow
-const S = RelationshipTypeEnum.Specialization
-const o = RelationshipTypeEnum.Association
+const C = RelationshipType.Composition
+const g = RelationshipType.Aggregation
+// const i = RelationshipType.Assignment
+const R = RelationshipType.Realization
+// const v = RelationshipType.Serving
+// const A = RelationshipType.Access
+const n = RelationshipType.Influence
+// const T = RelationshipType.Triggering
+// const F = RelationshipType.Flow
+const S = RelationshipType.Specialization
+const o = RelationshipType.Association
 
 // --- dictionary exports ---
 // TODO #32 - add allowed relationships for each element type

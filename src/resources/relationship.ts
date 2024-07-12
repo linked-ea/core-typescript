@@ -5,7 +5,7 @@ import type { IRI } from '../common-types/type-common.js'
 import type { PropertyRecord } from './property-definition.js'
 // import type { RelationshipTypeUnion } from "../union-types/relationship-type-union.js"
 
-import type { RelationshipTypeEnum as T } from '../enums/index.js'
+import type { RelationshipType as T } from '../enums/index.js'
 
 export type RelationshipTypeUnion =
 	| typeof T.Access

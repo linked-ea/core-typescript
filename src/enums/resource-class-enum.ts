@@ -1,3 +1,6 @@
+
+
+
 // (12)
 /*
 export const Model 					= 'http://www.opengroup.org/xsd/archimate/3.0/model' as const

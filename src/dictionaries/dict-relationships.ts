@@ -2,7 +2,7 @@
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
-import { RelationshipTypeEnum } from '../enums/index.js'
+import { RelationshipType } from '../enums/index.js'
 
 export type TRelationshipCategories =
 	| 'Structural'
@@ -21,40 +21,40 @@ interface RelationshipTypeInfo extends Alias {
 // * 11 relationship types
 export const relationships: Record<string, RelationshipTypeInfo> = {
 // export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
-	[RelationshipTypeEnum.Access]: {
+	[RelationshipType.Access]: {
 		category: 'Structural',
 	},
-	[RelationshipTypeEnum.Aggregation]: {
+	[RelationshipType.Aggregation]: {
 		category: 'Structural',
 	},
-	[RelationshipTypeEnum.Assignment]: {
+	[RelationshipType.Assignment]: {
 		category: 'Dependency',
 	},
-	[RelationshipTypeEnum.Association]: {
+	[RelationshipType.Association]: {
 		category: 'Structural',
 	},
-	[RelationshipTypeEnum.Composition]: {
+	[RelationshipType.Composition]: {
 		category: 'Structural',
 	},
-	[RelationshipTypeEnum.Flow]: {
+	[RelationshipType.Flow]: {
 		category: 'Dynamic',
 	},
-	[RelationshipTypeEnum.Influence]: {
+	[RelationshipType.Influence]: {
 		category: 'Dynamic',
 	},
-	[RelationshipTypeEnum.Realization]: {
+	[RelationshipType.Realization]: {
 		category: 'Dependency',
 		alias: 'RealisationRelationship',
 	},
 
-	[RelationshipTypeEnum.Specialization]: {
+	[RelationshipType.Specialization]: {
 		category: 'Dependency',
 		alias: 'SpecialisationRelationship',
 	},
-	[RelationshipTypeEnum.Triggering]: {
+	[RelationshipType.Triggering]: {
 		category: 'Dynamic',
 	},
-	[RelationshipTypeEnum.Serving]: {
+	[RelationshipType.Serving]: {
 		category: 'Dependency',
 	},
 } as const

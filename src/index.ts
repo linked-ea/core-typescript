@@ -1,4 +1,12 @@
-// ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+/**
+ * @module
+ * linked-ea core Typescript definitions.
+ *
+ * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ *
+ */
+
+//
 
 // FIXME: naming convention for types and interfaces
 
