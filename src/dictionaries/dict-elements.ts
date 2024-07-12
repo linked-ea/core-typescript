@@ -4,7 +4,7 @@
 import type { Alias } from './dict-common.ts'
 import type { AspectTypes } from '../common-types/type-aspects.js'
 import type { Layers } from '../common-types/type-layers.js'
-import * as ElementTypeEnum from '../enums/element-type-enum.js'
+import { ElementType } from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 
 import { archimateBase } from './dict-common.js'
@@ -17,50 +17,51 @@ export interface IElementConcept extends Alias {
 }
 
 // --- resource ---
+
 export const elements: Record<ElementTypesUnion, IElementConcept> = {
-	[ElementTypeEnum.ApplicationCollaboration]: {
+	[ElementType.ApplicationCollaboration]: {
 		name: 'Application Collaboration',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationComponent]: {
+	[ElementType.ApplicationComponent]: {
 		name: 'Application Component',
 		layer: 'Application',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationEvent]: {
+	[ElementType.ApplicationEvent]: {
 		name: 'Application Event',
 		layer: 'Application',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationFunction]: {
+	[ElementType.ApplicationFunction]: {
 		name: 'Application Function',
 		layer: 'Application',
 		aspect: 'Behavior',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationInteraction]: {
+	[ElementType.ApplicationInteraction]: {
 		name: 'Application Interaction',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationInterface]: {
+	[ElementType.ApplicationInterface]: {
 		name: 'Application Interface',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationProcess]: {
+	[ElementType.ApplicationProcess]: {
 		name: 'Application Process',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ApplicationService]: {
+	[ElementType.ApplicationService]: {
 		name: 'Application Service',
 		layer: 'Application',
 		aspect: 'Active Structure',
@@ -72,315 +73,315 @@ export const elements: Record<ElementTypesUnion, IElementConcept> = {
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Assessment]: {
+	[ElementType.Assessment]: {
 		name: 'Assessment',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessActor]: {
+	[ElementType.BusinessActor]: {
 		name: 'Business Actor',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessCollaboration]: {
+	[ElementType.BusinessCollaboration]: {
 		name: 'Business Collaboration',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessEvent]: {
+	[ElementType.BusinessEvent]: {
 		name: 'Business Event',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessFunction]: {
+	[ElementType.BusinessFunction]: {
 		name: 'Business Function',
 		layer: 'Business',
 		aspect: 'Passive Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessInteraction]: {
+	[ElementType.BusinessInteraction]: {
 		name: 'Business Interaction',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessInterface]: {
+	[ElementType.BusinessInterface]: {
 		name: 'Business Interface',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessObject]: {
+	[ElementType.BusinessObject]: {
 		name: 'Business Object',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessProcess]: {
+	[ElementType.BusinessProcess]: {
 		name: 'Business Process',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessRole]: {
+	[ElementType.BusinessRole]: {
 		name: 'Business Role',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.BusinessService]: {
+	[ElementType.BusinessService]: {
 		name: 'Business Service',
 		layer: 'Business',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Capability]: {
+	[ElementType.Capability]: {
 		name: 'Capability',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.CommunicationNetwork]: {
+	[ElementType.CommunicationNetwork]: {
 		name: 'Communication Network',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'Network', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[ElementTypeEnum.Constraint]: {
+	[ElementType.Constraint]: {
 		name: 'Constraint',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Contract]: {
+	[ElementType.Contract]: {
 		name: 'Contract',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.CourseOfAction]: {
+	[ElementType.CourseOfAction]: {
 		name: 'Course Of Action',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.DataObject]: {
+	[ElementType.DataObject]: {
 		name: 'Data Object',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Deliverable aspect
-	[ElementTypeEnum.Deliverable]: {
+	[ElementType.Deliverable]: {
 		name: 'Deliverable',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Device]: {
+	[ElementType.Device]: {
 		name: 'Device',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.DistributionNetwork]: {
+	[ElementType.DistributionNetwork]: {
 		name: 'Distribution Network',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Driver]: {
+	[ElementType.Driver]: {
 		name: 'Driver',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Equipment]: {
+	[ElementType.Equipment]: {
 		name: 'Equipment',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Facility]: {
+	[ElementType.Facility]: {
 		name: 'Facility',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Gap aspect
-	[ElementTypeEnum.Gap]: {
+	[ElementType.Gap]: {
 		name: 'Gap',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Goal]: {
+	[ElementType.Goal]: {
 		name: 'Goal',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ImplementationEvent]: {
+	[ElementType.ImplementationEvent]: {
 		name: 'Implementation Event',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Location]: {
+	[ElementType.Location]: {
 		name: 'Location',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Material]: {
+	[ElementType.Material]: {
 		name: 'Material',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Meaning]: {
+	[ElementType.Meaning]: {
 		name: 'Meaning',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Node]: {
+	[ElementType.Node]: {
 		name: 'Node',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Outcome]: {
+	[ElementType.Outcome]: {
 		name: 'Outcome',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Path]: {
+	[ElementType.Path]: {
 		name: 'Path',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// FIXME: check Plateau aspect
-	[ElementTypeEnum.Plateau]: {
+	[ElementType.Plateau]: {
 		name: 'Plateau',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Principle]: {
+	[ElementType.Principle]: {
 		name: 'Principle',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Product]: {
+	[ElementType.Product]: {
 		name: 'Product',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Representation]: {
+	[ElementType.Representation]: {
 		name: 'Representation',
 		layer: 'Application',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Requirement]: {
+	[ElementType.Requirement]: {
 		name: 'Requirement',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Resource]: {
+	[ElementType.Resource]: {
 		name: 'Resource',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.Stakeholder]: {
+	[ElementType.Stakeholder]: {
 		name: 'Stakeholder',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.SystemSoftware]: {
+	[ElementType.SystemSoftware]: {
 		name: 'System Software',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.TechnologyCollaboration]: {
+	[ElementType.TechnologyCollaboration]: {
 		name: 'Technology Collaboration',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.TechnologyEvent]: {
+	[ElementType.TechnologyEvent]: {
 		name: 'Technology Event',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.TechnologyFunction]: {
+	[ElementType.TechnologyFunction]: {
 		name: 'Technology Function',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureFunction', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[ElementTypeEnum.TechnologyInteraction]: {
+	[ElementType.TechnologyInteraction]: {
 		name: 'Technology Interaction',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.TechnologyInterface]: {
+	[ElementType.TechnologyInterface]: {
 		name: 'Technology Interface',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureInterface', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[ElementTypeEnum.TechnologyProcess]: {
+	[ElementType.TechnologyProcess]: {
 		name: 'Technology Process',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.TechnologyService]: {
+	[ElementType.TechnologyService]: {
 		name: 'Technology Service',
 		layer: 'Technology',
 		aspect: 'Active Structure',
 		definition: '',
 		alias: 'InfrastructureService', // This usage is still permitted but deprecated and will be removed from a future version of the standard
 	},
-	[ElementTypeEnum.Value]: {
+	[ElementType.Value]: {
 		name: 'Value',
 		layer: 'Motivation',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.ValueStream]: {
+	[ElementType.ValueStream]: {
 		name: 'Value Stream',
 		layer: 'Strategy',
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[ElementTypeEnum.WorkPackage]: {
+	[ElementType.WorkPackage]: {
 		name: 'Work Package',
 		layer: 'Implementation & Migration',
 		aspect: 'Active Structure',
 		definition: '',
 	},
 	// other elements
-	[ElementTypeEnum.Grouping]: {
+	[ElementType.Grouping]: {
 		name: 'Grouping',
 		layer: 'Strategy',
 		aspect: 'Active Structure',

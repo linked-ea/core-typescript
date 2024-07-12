@@ -43,7 +43,7 @@ export const resourceResource: CORE.Element = {
 	name: { en: 'element 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.ENUM.ElementTypeEnum.ApplicationComponent
+		type: CORE.ENUM.ElementType.ApplicationComponent
 	},
 	properties: {
 		[`${base}costPropertyDef`]: 1000.01
