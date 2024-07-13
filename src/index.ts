@@ -93,11 +93,11 @@ export interface Profile extends BaseResource<typeof Enum.ResourceClass.Profile>
 export interface Image extends BaseResource<typeof Enum.ResourceClass.Image> { info: ImageInfo }
 export interface Specialization extends BaseResource<typeof Enum.ResourceClass.Specialization> { info: SpecializationInfo }
 /**
- * @type {object} Viewpoint represents the information structure of viewpoint resource.
+ * Viewpoint represents the information structure of viewpoint resource.
  */
 export interface Viewpoint extends BaseResource<typeof Enum.ResourceClass.Viewpoint> { info: ViewpointInfo }
 /**
- * @type {object} View represents the information structure of view resource.
+ * View represents the information structure of view resource.
  */
 export interface View extends BaseResource<typeof Enum.ResourceClass.View> { info: ViewInfo }
 export interface Organization extends BaseResource<typeof Enum.ResourceClass.Organization> { info: OrganizationInfo }
