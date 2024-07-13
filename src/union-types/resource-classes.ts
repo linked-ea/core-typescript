@@ -1,6 +1,6 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
-import { ResourceClass } from "../enums/resource-class-enum.js"
+// import { ResourceClass } from "../enums/resource-class-enum.js"
 
 /*
 export type Model 					= 'http://www.opengroup.org/xsd/archimate/3.0/model'
@@ -17,7 +17,8 @@ export type View 					= 'http://www.opengroup.org/xsd/archimate/3.0/view'
 export type Organization 			= 'http://www.opengroup.org/xsd/archimate/3.0/organization'
 */
 
-(12)
+// (12)
+/*
 export type Model 					= typeof ResourceClass.Model
 export type ModelReference 			= typeof ResourceClass.ModelReference
 export type PropertyDef 			= typeof ResourceClass.PropertyDef
@@ -30,3 +31,4 @@ export type RelationshipConnector 	= typeof ResourceClass.RelationshipConnector
 export type Viewpoint 				= typeof ResourceClass.Viewpoint
 export type View 					= typeof ResourceClass.View
 export type Organization 			= typeof ResourceClass.Organization
+*/
