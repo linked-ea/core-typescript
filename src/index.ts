@@ -76,8 +76,10 @@ export type { OrganizationInfo }
 interface BaseResource<T extends TYPE.ResourceClassUnion> extends ResourceClass<T>, NamedResource {}
 
 // TODO: #23 drop model identifier from model, as it is redundant to identifier
-// model resources
+//  modelresources
+/** model resource */
 export interface Model extends BaseResource<typeof Enum.ResourceClass.Model> { info: ModelInfo }
+/** model reference resource */
 export interface ModelReference extends BaseResource<typeof Enum.ResourceClass.ModelReference> { info: ModelReferenceInfo }
 
 // concept resources
