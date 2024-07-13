@@ -5,6 +5,7 @@ import type { ResourceClassUnion } from '../union-types/resource-class-union.js'
 import * as ENUM from '../enums/index.js'
 
 // --- dictionary ---
+// export const resourceClasses: Record<ResourceClassUnion, object> = {
 export const resourceClasses: Record<ResourceClassUnion, object> = {
 	[ENUM.ResourceClass.Model]: {},
 	[ENUM.ResourceClass.ModelReference]: {},

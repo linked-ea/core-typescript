@@ -1,3 +1,11 @@
+/**
+ * @module
+ * collection of enumerations, typically used as identifiers	.
+ *
+ * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ *
+ */
+
 export { RelationshipConnectorType } from './relationship-connector-type-enum.js'
 
 export { ElementType } from './element-type-enum.js'
