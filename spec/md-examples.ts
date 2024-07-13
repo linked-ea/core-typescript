@@ -7,7 +7,7 @@ export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
 
 export const resourceModel: CORE.Model = {
-	resourceClass: CORE.ENUM.ResourceClass.Model,
+	resourceClass: CORE.Enum.ResourceClass.Model,
 	modelIdentifier,
 	identifier: `${base}model1`,
 	name: {[defaultLanguage]: 'model 1'},
@@ -23,7 +23,7 @@ export const resourceModel: CORE.Model = {
 } as const
 
 export const costPropertyDefResource: CORE.PropertyDef = {
-	resourceClass: CORE.ENUM.ResourceClass.PropertyDef,
+	resourceClass: CORE.Enum.ResourceClass.PropertyDef,
 	modelIdentifier,
 	identifier: `${base}costPropertyDef`,
 	name: { en: 'cost' },
@@ -37,13 +37,13 @@ export const costPropertyDefResource: CORE.PropertyDef = {
 } as const
 
 export const resourceResource: CORE.Element = {
-	resourceClass: CORE.ENUM.ResourceClass.Element,
+	resourceClass: CORE.Enum.ResourceClass.Element,
 	modelIdentifier,
 	identifier: `${base}element1`,
 	name: { en: 'element 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.ENUM.ElementType.ApplicationComponent
+		type: CORE.Enum.ElementType.ApplicationComponent
 	},
 	properties: {
 		[`${base}costPropertyDef`]: 1000.01
@@ -51,20 +51,20 @@ export const resourceResource: CORE.Element = {
 } as const
 
 export const relationshipResource: CORE.Relationship = {
-	resourceClass: CORE.ENUM.ResourceClass.Relationship,
+	resourceClass: CORE.Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
 	name: { en: 'relationship 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.ENUM.RelationshipType.Association,
+		type: CORE.Enum.RelationshipType.Association,
 		source: `${base}element1`,
 		target: `${base}element1`,
 	}
 }
 
 export const specializedRelationshipResource: CORE.Relationship = {
-	resourceClass: CORE.ENUM.ResourceClass.Relationship,
+	resourceClass: CORE.Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
 	name: { en: 'relationship 1' },
@@ -77,7 +77,7 @@ export const specializedRelationshipResource: CORE.Relationship = {
 }
 
 export const viewResource: CORE.View = {
-	resourceClass: CORE.ENUM.ResourceClass.View,
+	resourceClass: CORE.Enum.ResourceClass.View,
 	modelIdentifier,
 	identifier: `${base}view1`,
 	name: { en: 'view1' },

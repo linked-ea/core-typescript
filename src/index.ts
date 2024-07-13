@@ -36,8 +36,14 @@ import type { Layers } from './common-types/type-layers.ts'
 import type * as TYPE from './union-types/index.js'
 
 // --- re-exports ---
-import * as ENUM from './enums/index.js'
-export { ENUM }
+import * as Dict from './dictionaries/index.js'
+import * as Enum from './enums/index.js'
+export {
+	/** collection of dictionaries */
+	Dict,
+	/** collection of enumerations, typically used as identifiers */
+	Enum
+}
 
 export * as DICTIONARY from './dictionaries/index.js'
 // export * as ENUM from './enums/index.js'
@@ -71,28 +77,28 @@ interface BaseResource<T extends TYPE.ResourceClassUnion> extends ResourceClass<
 
 // TODO: #23 drop model identifier from model, as it is redundant to identifier
 // model resources
-export interface Model extends BaseResource<typeof ENUM.ResourceClass.Model> { info: ModelInfo }
-export interface ModelReference extends BaseResource<typeof ENUM.ResourceClass.ModelReference> { info: ModelReferenceInfo }
+export interface Model extends BaseResource<typeof Enum.ResourceClass.Model> { info: ModelInfo }
+export interface ModelReference extends BaseResource<typeof Enum.ResourceClass.ModelReference> { info: ModelReferenceInfo }
 
 // concept resources
-export interface Element extends BaseResource<typeof ENUM.ResourceClass.Element>, PropertyRecord { info: ElementInfo }
-export interface Relationship extends BaseResource<typeof ENUM.ResourceClass.Relationship>, PropertyRecord { info: RelationshipInfo } // ISSUE: #7 names are optional for relationships
-export interface RelationshipConnector extends BaseResource<typeof ENUM.ResourceClass.RelationshipConnector>, PropertyRecord { info: RelationshipConnectorInfo }
+export interface Element extends BaseResource<typeof Enum.ResourceClass.Element>, PropertyRecord { info: ElementInfo }
+export interface Relationship extends BaseResource<typeof Enum.ResourceClass.Relationship>, PropertyRecord { info: RelationshipInfo } // ISSUE: #7 names are optional for relationships
+export interface RelationshipConnector extends BaseResource<typeof Enum.ResourceClass.RelationshipConnector>, PropertyRecord { info: RelationshipConnectorInfo }
 
 // other resources
-export interface PropertyDef extends BaseResource<typeof ENUM.ResourceClass.PropertyDef> { info: PropertyDefInfo }
-export interface Profile extends BaseResource<typeof ENUM.ResourceClass.Profile> { info: ProfileInfo }
-export interface Image extends BaseResource<typeof ENUM.ResourceClass.Image> { info: ImageInfo }
-export interface Specialization extends BaseResource<typeof ENUM.ResourceClass.Specialization> { info: SpecializationInfo }
+export interface PropertyDef extends BaseResource<typeof Enum.ResourceClass.PropertyDef> { info: PropertyDefInfo }
+export interface Profile extends BaseResource<typeof Enum.ResourceClass.Profile> { info: ProfileInfo }
+export interface Image extends BaseResource<typeof Enum.ResourceClass.Image> { info: ImageInfo }
+export interface Specialization extends BaseResource<typeof Enum.ResourceClass.Specialization> { info: SpecializationInfo }
 /**
  * @type {object} Viewpoint represents the information structure of viewpoint resource.
  */
-export interface Viewpoint extends BaseResource<typeof ENUM.ResourceClass.Viewpoint> { info: ViewpointInfo }
+export interface Viewpoint extends BaseResource<typeof Enum.ResourceClass.Viewpoint> { info: ViewpointInfo }
 /**
  * @type {object} View represents the information structure of view resource.
  */
-export interface View extends BaseResource<typeof ENUM.ResourceClass.View> { info: ViewInfo }
-export interface Organization extends BaseResource<typeof ENUM.ResourceClass.Organization> { info: OrganizationInfo }
+export interface View extends BaseResource<typeof Enum.ResourceClass.View> { info: ViewInfo }
+export interface Organization extends BaseResource<typeof Enum.ResourceClass.Organization> { info: OrganizationInfo }
 
 export type Resource =
 | Model
