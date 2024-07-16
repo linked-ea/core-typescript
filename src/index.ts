@@ -36,13 +36,13 @@ import type { Layers } from './common-types/type-layers.ts'
 // import type * as TYPE from './union-types/index.js'
 
 // --- re-exports ---
-import * as Dict from './dictionaries/index.js'
+// import * as Dict from './dictionaries/index.js'
 import * as Enum from './enums/index.js'
 import * as Resource from './resources/index.js'
 
 export {
 	/** collection of dictionaries */
-	Dict,
+//	Dict,
 	/** collection of enumerations, typically used as identifiers */
 	Enum,
 	/** collection of resources */

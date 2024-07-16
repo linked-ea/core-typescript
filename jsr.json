@@ -1,7 +1,9 @@
 {
 	"name": "@linked-ea/core-typescript",
-	"version": "0.0.14",
-	"exports": "./src/index.ts",
+	"version": "0.0.15",
+	"exports": [
+		{"index": "./src/index.ts"},
+		{"Dict": "./src/dictionaries/index.ts"}],
 	"publish": {
 		"include": [
 		  "LICENSE",
