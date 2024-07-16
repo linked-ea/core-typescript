@@ -6,7 +6,7 @@ export const modelIdentifier: CORE.IRI = "http://x.y.z/"
 export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
 
-export const resourceModel: CORE.Model = {
+export const resourceModel: CORE.Resource.Model = {
 	resourceClass: CORE.Enum.ResourceClass.Model,
 	modelIdentifier,
 	identifier: `${base}model1`,
@@ -22,7 +22,7 @@ export const resourceModel: CORE.Model = {
 	}
 } as const
 
-export const costPropertyDefResource: CORE.PropertyDef = {
+export const costPropertyDefResource: CORE.Resource.PropertyDef = {
 	resourceClass: CORE.Enum.ResourceClass.PropertyDef,
 	modelIdentifier,
 	identifier: `${base}costPropertyDef`,
@@ -36,7 +36,7 @@ export const costPropertyDefResource: CORE.PropertyDef = {
 	}
 } as const
 
-export const resourceResource: CORE.Element = {
+export const resourceResource: CORE.Resource.Element = {
 	resourceClass: CORE.Enum.ResourceClass.Element,
 	modelIdentifier,
 	identifier: `${base}element1`,
@@ -50,7 +50,7 @@ export const resourceResource: CORE.Element = {
 	}
 } as const
 
-export const relationshipResource: CORE.Relationship = {
+export const relationshipResource: CORE.Resource.Relationship = {
 	resourceClass: CORE.Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
@@ -63,7 +63,7 @@ export const relationshipResource: CORE.Relationship = {
 	}
 }
 
-export const specializedRelationshipResource: CORE.Relationship = {
+export const specializedRelationshipResource: CORE.Resource.Relationship = {
 	resourceClass: CORE.Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
@@ -76,7 +76,7 @@ export const specializedRelationshipResource: CORE.Relationship = {
 	}
 }
 
-export const viewResource: CORE.View = {
+export const viewResource: CORE.Resource.View = {
 	resourceClass: CORE.Enum.ResourceClass.View,
 	modelIdentifier,
 	identifier: `${base}view1`,

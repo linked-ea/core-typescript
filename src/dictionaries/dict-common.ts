@@ -1,7 +1,7 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // MARK: --- project imports ---
-import type { ResourceClassUnion } from '../common/resources.js'
+import type { ResourceClassUnion } from '../resources/resource-base.js'
 import * as ENUM from '../enums/index.js'
 
 export interface Alias {

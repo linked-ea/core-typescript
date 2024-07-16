@@ -4,8 +4,8 @@
 import type { ArchimateBase } from "../common/archimate-base.js"
 import type { ResourceClassFragment } from '../fragments/resource-class-fragments.js'
 import type { IRI } from '../common-types/type-common.js'
-import type { Name } from './lang-strings.js'
-import type { IDocumentation } from './documentation.js'
+import type { Name } from '../common/lang-strings.js'
+import type { IDocumentation } from '../common/documentation.js'
 
 // --- core resources
 
