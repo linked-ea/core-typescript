@@ -15,11 +15,10 @@ type _BaseInfo =
 	| { type?: never, specializationRef: IRI }
 
 // --- type exports ---
-// export type ElementTypesUnion =`${ArchimateBase}${ElementTypeFragment}`
 
 type typeofElementType = typeof ElementType
 
-export type ElementTypesUnion = typeofElementType[keyof typeofElementType];
+export type ElementTypesUnion = typeofElementType[keyof typeofElementType]
 
 export type ElementInfo =  _BaseInfo & PropertyRecord & {
 	/** image reference */

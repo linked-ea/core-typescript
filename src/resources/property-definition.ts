@@ -3,6 +3,7 @@
 // --- project imports ---
 import type { IRI } from '../common-types/type-common.js'
 import type { LangString } from '../common/lang-strings.js'
+import type { PropertyTypes, PropertyTypesUnion } from '../enums/property-types-enum.js'
 
 // --- interfaces ---
 // export type PropertyInfo = Info<'property'> & IPropertyDefInfo
@@ -24,8 +25,11 @@ export interface PropertyDefResource extends NamedResource {
 // export type PropertyResource = NamedResource, PropertyInfo {}
 
 // --- type exports ---
-export type PropertyDefTypesUnion = 'integer' | 'number' | 'date' | 'boolean' | 'currency' | 'duration' | 'enumeration' | 'string'
 
+
+// export type PropertyDefTypesUnion = 'integer' | 'number' | 'date' | 'boolean' | 'currency' | 'duration' | 'enumeration' | 'string'
+
+/*
 export type JsType<T extends PropertyDefTypesUnion> =
   T extends 'integer' ? number
 : T extends 'number' ? number
@@ -36,16 +40,28 @@ export type JsType<T extends PropertyDefTypesUnion> =
 : T extends 'duration' ? string
 : T extends 'enumeration' ? string
 : never
+*/
 
-interface PropertyDefBase<T extends PropertyDefTypesUnion> {
+export type JsType<T extends PropertyTypesUnion> =
+  T extends typeof PropertyTypes.Integer ? number
+: T extends typeof PropertyTypes.Number ? number
+: T extends typeof PropertyTypes.String ? string
+: T extends typeof PropertyTypes.Date ? string
+: T extends typeof PropertyTypes.Boolean ? boolean
+: T extends typeof PropertyTypes.Currency ? number
+: T extends typeof PropertyTypes.Duration ? string
+: T extends typeof PropertyTypes.Enumeration ? string
+: never
+
+interface PropertyDefBase<T extends PropertyTypesUnion> {
 	type: T
 }
 
-interface DefaultValue <T extends PropertyDefTypesUnion> {
+interface DefaultValue <T extends PropertyTypesUnion> {
 	defaultValue?: JsType<T> | undefined
 }
 
-interface Range <T extends PropertyDefTypesUnion>{
+interface Range <T extends PropertyTypesUnion>{
 	minimum?: JsType<T> | undefined
 	maximum?: JsType<T> | undefined
 }
@@ -54,9 +70,9 @@ export interface PropertyEnumeration {
 	[key: IRI]: LangString
 }
 
-type JsTypeDefault<T extends PropertyDefTypesUnion> = PropertyDefBase<T> & DefaultValue<T>
+type JsTypeDefault<T extends PropertyTypesUnion> = PropertyDefBase<T> & DefaultValue<T>
 
-type JsTypeDefaultAndRange<T extends PropertyDefTypesUnion> = JsTypeDefault<T> & Range<T>
+type JsTypeDefaultAndRange<T extends PropertyTypesUnion> = JsTypeDefault<T> & Range<T>
 
 export namespace Type {
 	export type INTEGER = JsTypeDefaultAndRange<'integer'>

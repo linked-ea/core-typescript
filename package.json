@@ -1,6 +1,6 @@
 {
   "name": "@fed-ea/core-typescript",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "type": "module",
   "types": "types/src/index.d.ts",
   "main": "lib/index.js",

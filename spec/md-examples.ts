@@ -1,13 +1,16 @@
 // --- project imports ---
 import * as CORE from '../src/index.js'
+import * as DICTIONARY from '../src/dictionaries/index.js'
+import * as Enum from '../src/enums/index.js'
+import * as Resource from '../src/resources/index.js'
 
 // --- data ---
 export const modelIdentifier: CORE.IRI = "http://x.y.z/"
 export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
 
-export const resourceModel: CORE.Resource.Model = {
-	resourceClass: CORE.Enum.ResourceClass.Model,
+export const resourceModel: Resource.Model = {
+	resourceClass: Enum.ResourceClass.Model,
 	modelIdentifier,
 	identifier: `${base}model1`,
 	name: {[defaultLanguage]: 'model 1'},
@@ -18,12 +21,12 @@ export const resourceModel: CORE.Resource.Model = {
 		language: 'en',
 		date: '2024-01-01',
 		currency: 'USD',
-		colorPalette: CORE.DICTIONARY.colorPalette.Alternative.fillColorPalette
+		colorPalette: DICTIONARY.colorPalette.Alternative.fillColorPalette
 	}
 } as const
 
-export const costPropertyDefResource: CORE.Resource.PropertyDef = {
-	resourceClass: CORE.Enum.ResourceClass.PropertyDef,
+export const costPropertyDefResource: Resource.PropertyDef = {
+	resourceClass: Enum.ResourceClass.PropertyDef,
 	modelIdentifier,
 	identifier: `${base}costPropertyDef`,
 	name: { en: 'cost' },
@@ -36,35 +39,35 @@ export const costPropertyDefResource: CORE.Resource.PropertyDef = {
 	}
 } as const
 
-export const resourceResource: CORE.Resource.Element = {
-	resourceClass: CORE.Enum.ResourceClass.Element,
+export const resourceResource: Resource.Element = {
+	resourceClass: Enum.ResourceClass.Element,
 	modelIdentifier,
 	identifier: `${base}element1`,
 	name: { en: 'element 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.Enum.ElementType.ApplicationComponent
+		type: Enum.ElementType.ApplicationComponent
 	},
 	properties: {
 		[`${base}costPropertyDef`]: 1000.01
 	}
 } as const
 
-export const relationshipResource: CORE.Resource.Relationship = {
-	resourceClass: CORE.Enum.ResourceClass.Relationship,
+export const relationshipResource: Resource.Relationship = {
+	resourceClass: Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
 	name: { en: 'relationship 1' },
 	documentation: { en: 'documentation goes here' },
 	info: {
-		type: CORE.Enum.RelationshipType.Association,
+		type: Enum.RelationshipType.Association,
 		source: `${base}element1`,
 		target: `${base}element1`,
 	}
 }
 
-export const specializedRelationshipResource: CORE.Resource.Relationship = {
-	resourceClass: CORE.Enum.ResourceClass.Relationship,
+export const specializedRelationshipResource: Resource.Relationship = {
+	resourceClass: Enum.ResourceClass.Relationship,
 	modelIdentifier,
 	identifier: `${base}relationship1`,
 	name: { en: 'relationship 1' },
@@ -76,8 +79,8 @@ export const specializedRelationshipResource: CORE.Resource.Relationship = {
 	}
 }
 
-export const viewResource: CORE.Resource.View = {
-	resourceClass: CORE.Enum.ResourceClass.View,
+export const viewResource: Resource.View = {
+	resourceClass: Enum.ResourceClass.View,
 	modelIdentifier,
 	identifier: `${base}view1`,
 	name: { en: 'view1' },

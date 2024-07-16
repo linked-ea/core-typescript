@@ -19,7 +19,7 @@ import type { NamedResource, ResourceClass, ResourceClassUnion } from './resourc
 
 // import type { ModelInfo } from './resources/model.js'
 // import type { ModelReferenceInfo } from './resources/model-reference.js'
-import type { PropertyRecord, PropertyDefInfo, TPropertyValue, PropertyDefTypesUnion, Type } from './resources/property-definition.js'
+import type { PropertyRecord, PropertyDefInfo, TPropertyValue, Type } from './resources/property-definition.js'
 // import type { ProfileInfo } from './resources/profile.js'
 // import type { ImageInfo } from './resources/image.js'
 // import type { SpecializationInfo } from './resources/specialization.js'
@@ -63,7 +63,7 @@ export type { LangString, Label as ILabel, Name as IName }
 export type { IDocumentation }
 export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
 
-export type { PropertyRecord, TPropertyValue, PropertyDefInfo, PropertyDefTypesUnion, Type }
+export type { PropertyRecord, TPropertyValue, PropertyDefInfo, Type }
 
 export type { ElementInfo, ElementTypesUnion }
 export type { RelationshipTypeUnion }

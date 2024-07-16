@@ -1,21 +1,28 @@
-// ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+/**
+ * @module
+ * property types dictionary
+ *
+ * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ *
+ */
 
 // --- project imports ---
-import type { PropertyDefTypesUnion } from '../resources/property-definition.js'
+import  { PropertyTypes, type PropertyTypesUnion } from '../enums/property-types-enum.js'
 
 // --- dictionary exports ---
 // TODO - associate property types to be used
-export const propertyTypes: Record<PropertyDefTypesUnion, string> = {
-	integer: 'The integer type is used for integral numbers. Floating point numbers are rejected',
-	number: 'Any numeric type, either integers or floating point numbers',
-	date: 'year-month-day as defined by RFC 3339, section 5.6 (https://tools.ietf.org/html/rfc3339#section-5.6)',
-	boolean: 'true or false',
-	currency: 'number subject to system language-sensitive number formatting',
-	duration: 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)',
-	enumeration: 'list of possible text values',
-	string: 'text',
+// (8)
+export const propertyTypes: Record<PropertyTypesUnion, string> = {
+	[PropertyTypes.Integer]: 'The integer type is used for integral numbers. Floating point numbers are rejected',
+	[PropertyTypes.Number]: 'Any numeric type, either integers or floating point numbers',
+	[PropertyTypes.Date]: 'year-month-day as defined by RFC 3339, section 5.6 (https://tools.ietf.org/html/rfc3339#section-5.6)',
+	[PropertyTypes.Boolean]: 'true or false',
+	[PropertyTypes.Currency]: 'number subject to system language-sensitive number formatting',
+	[PropertyTypes.Duration]: 'defined by the ISO 8601 ABNF for "duration" (https://www.w3.org/TR/xmlschema-2/#duration)',
+	[PropertyTypes.Enumeration]: 'list of possible text values',
+	[PropertyTypes.String]: 'text',
 } as const
 
-export function isPropertyDefType (value: string): value is PropertyDefTypesUnion {
+export function isPropertyDefType (value: string): value is PropertyTypesUnion {
 	return Object.keys(propertyTypes).includes(value)
 }
