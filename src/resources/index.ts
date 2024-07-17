@@ -6,8 +6,6 @@
  *
  */
 
-//
-
 // FIXME: naming convention for types and interfaces
 
 // --- project imports ---
@@ -33,7 +31,7 @@ import type * as TYPE from '../union-types/index.js'
 // --- re-exports ---
 import * as Enum from '../enums/index.js'
 
-export * as TYPE from '../union-types/index.js'
+// export * as TYPE from '../union-types/index.js'
 
 export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
 

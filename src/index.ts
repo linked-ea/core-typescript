@@ -51,7 +51,7 @@ export {
 
 // export * as DICTIONARY from './dictionaries/index.js'
 // export * as ENUM from './enums/index.js'
-export * as TYPE from './union-types/index.js'
+// export * as TYPE from './union-types/index.js'
 
 export type { RGBColorType, IRI, Identifier as IIdentifier }
 

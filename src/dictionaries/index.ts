@@ -1,3 +1,11 @@
+/**
+ * @module
+ * linked-ea core Typescript dictionaries.
+ *
+ * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ *
+ */
+
 export { archimateBase, isResourceClass } from './dict-common.js'
 export { aspects } from './dict-aspects.js'
 export { elements } from './dict-elements.js'
