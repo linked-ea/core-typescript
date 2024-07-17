@@ -11,14 +11,13 @@
 // FIXME: naming convention for types and interfaces
 
 // --- project imports ---
-import type { LangCode } from '../common-types/type-iso-639-1-alpha-2.js'
-import type { LangString, Label, Name } from '../common/lang-strings.js'
+
 // import type { IDocumentation } from '../common/documentation.js'
 import type { NamedResource, ResourceClass, ResourceClassUnion } from './resource-base.js'
 
 import type { ModelInfo } from './model.js'
 import type { ModelReferenceInfo } from './model-reference.js'
-import type { PropertyRecord, PropertyDefInfo, TPropertyValue, Type } from './property-definition.js'
+import type { PropertyRecord, PropertyDefInfo } from './property-definition.js'
 import type { ProfileInfo } from './profile.js'
 import type { ImageInfo } from './image.js'
 import type { SpecializationInfo } from './specialization.js'
@@ -26,11 +25,8 @@ import type { ViewpointInfo } from './viewpoint.js'
 import type { ElementInfo /*, ElementTypesUnion  */} from './element.js'
 import type { RelationshipInfo, RelationshipTypeUnion } from './relationship.js'
 import type { RelationshipConnectorInfo /* , RelationshipConnectorTypesUnion */} from './relationship-connectors.js'
-import type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './view.js'
+import type { ViewInfo } from './view.js'
 import type { OrganizationInfo } from './organization.js'
-
-import type { Aspect, AspectTypes } from '../common-types/type-aspects.js'
-import type { Layers } from '../common-types/type-layers.ts'
 
 import type * as TYPE from '../union-types/index.js'
 
@@ -39,20 +35,15 @@ import * as Enum from '../enums/index.js'
 
 export * as TYPE from '../union-types/index.js'
 
-export type { Aspect, AspectTypes }
-export type { LangCode }
-export type { Layers as Layer }
-
-export type { LangString, Label as ILabel, Name as IName }
 export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
 
-export type { PropertyRecord, TPropertyValue, PropertyDefInfo, Type }
+// export type { PropertyRecord, TPropertyValue, PropertyDefInfo, Type }
 
 export type { Element as ElementResource }
 export type { RelationshipTypeUnion }
 // export type { RelationshipConnectorTypesUnion }
 
-export type { ViewConceptType, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }
+// export type { ViewConceptType, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }
 
 
 // --- types ---

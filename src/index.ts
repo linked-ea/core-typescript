@@ -19,15 +19,15 @@ import type { NamedResource, ResourceClass, ResourceClassUnion } from './resourc
 
 // import type { ModelInfo } from './resources/model.js'
 // import type { ModelReferenceInfo } from './resources/model-reference.js'
-import type { PropertyRecord, PropertyDefInfo, TPropertyValue, Type } from './resources/property-definition.js'
+import type { PropertyRecord, /* PropertyDefInfo , */ TPropertyValue, Type } from './resources/property-definition.js'
 // import type { ProfileInfo } from './resources/profile.js'
 // import type { ImageInfo } from './resources/image.js'
 // import type { SpecializationInfo } from './resources/specialization.js'
-import type { ViewpointInfo } from './resources/viewpoint.js'
-import type { ElementInfo, ElementTypesUnion } from './resources/element.js'
+// import type { ViewpointInfo } from './resources/viewpoint.js'
+import type { /* ElementInfo, */ ElementTypesUnion } from './resources/element.js'
 import type { /* RelationshipInfo , */ RelationshipTypeUnion } from './resources/relationship.js'
 import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from './resources/relationship-connectors.js'
-import type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
+import type { ViewConceptType, /* ViewInfo, */ ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
 // import type { OrganizationInfo } from './resources/organization.js'
 
 import type { Aspect, AspectTypes } from './common-types/type-aspects.js'
@@ -63,10 +63,10 @@ export type { LangString, Label as ILabel, Name as IName }
 export type { IDocumentation }
 export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
 
-export type { PropertyRecord, TPropertyValue, PropertyDefInfo, Type }
+export type { PropertyRecord, TPropertyValue, /* PropertyDefInfo, */ Type }
 
-export type { ElementInfo, ElementTypesUnion }
+export type { /* ElementInfo, */ ElementTypesUnion }
 export type { RelationshipTypeUnion }
 export type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion }
-export type { ViewpointInfo }
-export type { ViewConceptType, ViewInfo, ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }
+// export type { ViewpointInfo }
+export type { ViewConceptType, /* ViewInfo, */ ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }

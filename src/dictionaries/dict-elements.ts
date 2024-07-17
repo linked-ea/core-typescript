@@ -1,4 +1,10 @@
-// ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+/**
+ * @module
+ * Dictionary for element-class concepts.
+ *
+ * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ *
+ */
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
