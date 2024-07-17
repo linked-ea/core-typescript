@@ -24,7 +24,13 @@ interface RelationshipTypeInfo extends Alias {
 
 // TODO: #18 add language strings as names for relationships
 
-// * 11 relationship types
+/**
+ * Represents a dictionary of relationship types and their corresponding information. There is a total of 11 relationship types.
+ *
+ * @remarks This dictionary maps `RelationshipType` to `RelationshipTypeInfo`.
+ */
+
+// TODO: #39 use TRelationshipTypes instead of string for recored key
 export const relationships: Record<string, RelationshipTypeInfo> = {
 // export const relationships: Record<TRelationshipTypes, RelationshipTypeInfo> = {
 	[RelationshipType.Access]: {

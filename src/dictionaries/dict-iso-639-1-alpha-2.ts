@@ -3,17 +3,20 @@
  * Dictionary for element-class concepts.
  *
  * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
- *
- * @see {@link https://www.iso.org/iso-639-language-codes.html|ISO 639-1:2002 Language codes}
- * @see {@link https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes|Wikipedia: List of ISO 639-1 codes}
- * @see {@link https://www.loc.gov/standards/iso639-2/php/code_list.php|Library of Congress: ISO 639-2 Language Code List}
- * @see {@link https://gist.github.com/jrnk/8eb57b065ea0b098d571|GitHub Gist}
  */
 
 // TODO: #38 determine rights source
 
 type ISO_639_1_Alpha_2 = Record<string, {name: string, nativeName: string}>
 
+/**
+ * Represents a dictionary of ISO 639-1 alpha-2 language codes and their corresponding names and native names.
+ *
+ * @see {@link https://www.iso.org/iso-639-language-codes.html|ISO 639-1:2002 Language codes}
+ * @see {@link https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes|Wikipedia: List of ISO 639-1 codes}
+ * @see {@link https://www.loc.gov/standards/iso639-2/php/code_list.php|Library of Congress: ISO 639-2 Language Code List}
+ * @see {@link https://gist.github.com/jrnk/8eb57b065ea0b098d571|GitHub Gist}
+ */
 export const iso_639_1_alpha_2: ISO_639_1_Alpha_2 = {
 	ab: {name: "Abkhaz", nativeName: "аҧсуа"},
 	aa: {name: "Afar", nativeName: "Afaraf"},

@@ -48,31 +48,73 @@ export type { RelationshipTypeUnion }
 interface BaseResource<T extends TYPE.ResourceClassUnion> extends ResourceClass<T>, NamedResource {}
 
 // TODO: #23 drop model identifier from model, as it is redundant to identifier
-//  modelresources
-/** model resource */
+// MARK: --- modelresources
+
+/**
+ * Model represents the information structure of model  definition resource.
+ */
 export interface Model extends BaseResource<typeof Enum.ResourceClass.Model> { info: ModelInfo }
-/** model reference resource */
+
+/**
+ * ModelReference represents the information structure of model reference definition resource.
+ */
 export interface ModelReference extends BaseResource<typeof Enum.ResourceClass.ModelReference> { info: ModelReferenceInfo }
 
-// concept resources
+// MARK: --- concept resources ---
+
+/**
+ * Element represents the information structure of element concept.
+ */
 export interface Element extends BaseResource<typeof Enum.ResourceClass.Element>, PropertyRecord { info: ElementInfo }
+
+/**
+ * Relationship represents the information structure of relationship concept.
+ */
 export interface Relationship extends BaseResource<typeof Enum.ResourceClass.Relationship>, PropertyRecord { info: RelationshipInfo } // ISSUE: #7 names are optional for relationships
+
+/**
+ * RelationshipConnector represents the information structure of relationship connector concept.
+ */
 export interface RelationshipConnector extends BaseResource<typeof Enum.ResourceClass.RelationshipConnector>, PropertyRecord { info: RelationshipConnectorInfo }
 
-// other resources
+// --- other resources ---
+
+/**
+ * PropertyDef represents the information structure of property definition resource.
+ */
 export interface PropertyDef extends BaseResource<typeof Enum.ResourceClass.PropertyDef> { info: PropertyDefInfo }
+
+/**
+ * Profile represents the information structure of profile resource.
+ */
 export interface Profile extends BaseResource<typeof Enum.ResourceClass.Profile> { info: ProfileInfo }
+
+/**
+ * Image represents the information structure of image resource.
+ */
 export interface Image extends BaseResource<typeof Enum.ResourceClass.Image> { info: ImageInfo }
+
+/**
+ * Specialization represents the information structure of specialization resource.
+ */
 export interface Specialization extends BaseResource<typeof Enum.ResourceClass.Specialization> { info: SpecializationInfo }
+
 /**
  * Viewpoint represents the information structure of viewpoint resource.
  */
 export interface Viewpoint extends BaseResource<typeof Enum.ResourceClass.Viewpoint> { info: ViewpointInfo }
+
 /**
  * View represents the information structure of view resource.
  */
 export interface View extends BaseResource<typeof Enum.ResourceClass.View> { info: ViewInfo }
+
+/**
+ * Organization represents the information structure of organization resource.
+ */
 export interface Organization extends BaseResource<typeof Enum.ResourceClass.Organization> { info: OrganizationInfo }
+
+/*
 
 export type Resource =
 | Model
@@ -87,3 +129,5 @@ export type Resource =
 | Viewpoint
 | View
 | Organization
+
+*/

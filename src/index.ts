@@ -24,9 +24,9 @@ import type { PropertyRecord, /* PropertyDefInfo , */ TPropertyValue, Type } fro
 // import type { ImageInfo } from './resources/image.js'
 // import type { SpecializationInfo } from './resources/specialization.js'
 // import type { ViewpointInfo } from './resources/viewpoint.js'
-import type { /* ElementInfo, */ ElementTypesUnion } from './resources/element.js'
-import type { /* RelationshipInfo , */ RelationshipTypeUnion } from './resources/relationship.js'
-import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from './resources/relationship-connectors.js'
+// import type { /* ElementInfo, */ ElementTypesUnion } from './resources/element.js'
+// import type { /* RelationshipInfo , */ RelationshipTypeUnion } from './resources/relationship.js'
+// import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from './resources/relationship-connectors.js'
 import type { ViewConceptType, /* ViewInfo, */ ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
 // import type { OrganizationInfo } from './resources/organization.js'
 
@@ -39,15 +39,6 @@ import type { Layers } from './common-types/type-layers.ts'
 // import * as Dict from './dictionaries/index.js'
 // import * as Enum from './enums/index.js'
 // import * as Resource from './resources/index.js'
-
-export {
-	/** collection of dictionaries */
-//	Dict,
-	/** collection of enumerations, typically used as identifiers */
-//	Enum,
-	/** collection of resources */
-//	Resource
-}
 
 // export * as DICTIONARY from './dictionaries/index.js'
 // export * as ENUM from './enums/index.js'
@@ -65,8 +56,8 @@ export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResourc
 
 export type { PropertyRecord, TPropertyValue, /* PropertyDefInfo, */ Type }
 
-export type { /* ElementInfo, */ ElementTypesUnion }
-export type { RelationshipTypeUnion }
-export type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion }
+// export type { ElementInfo, ElementTypesUnion }
+// export type { RelationshipTypeUnion }
+// export type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion }
 // export type { ViewpointInfo }
 export type { ViewConceptType, /* ViewInfo, */ ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup }

@@ -13,8 +13,6 @@ import type { Layers } from '../common-types/type-layers.js'
 import { ElementType } from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 
-import { archimateBase } from './dict-common.js'
-
 export interface IElementConcept extends Alias {
 	name: string
 	layer: Layers
@@ -24,6 +22,11 @@ export interface IElementConcept extends Alias {
 
 // --- resource ---
 
+/**
+ * Represents a dictionary of element types and their corresponding information.
+ *
+ * @remarks This dictionary maps `ElementTypesUnion` to `IElementConcept`.
+ */
 export const elements: Record<ElementTypesUnion, IElementConcept> = {
 	[ElementType.ApplicationCollaboration]: {
 		name: 'Application Collaboration',
@@ -73,7 +76,7 @@ export const elements: Record<ElementTypesUnion, IElementConcept> = {
 		aspect: 'Active Structure',
 		definition: '',
 	},
-	[`${archimateBase}Artifact`]: {
+	[ElementType.Artifact]: {
 		name: 'Artifact',
 		layer: 'Application',
 		aspect: 'Active Structure',

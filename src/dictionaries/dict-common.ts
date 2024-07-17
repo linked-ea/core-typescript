@@ -8,8 +8,6 @@ export interface Alias {
 	alias?: string // alias of the concept
 }
 
-export const archimateBase = 'http://www.opengroup.org/xsd/archimate/3.0/'
-
 // TODO #25 DICT resourceClass to be multi-language
 export const resourceClasses: Record<ResourceClassUnion, string> = {
 	[ENUM.ResourceClass.Model]: "model",

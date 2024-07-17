@@ -6,7 +6,7 @@
  *
  */
 
-export { archimateBase, isResourceClass } from './dict-common.js'
+export { isResourceClass } from './dict-common.js'
 export { aspects } from './dict-aspects.js'
 export { elements } from './dict-elements.js'
 export { iso_639_1_alpha_2 } from './dict-iso-639-1-alpha-2.js'

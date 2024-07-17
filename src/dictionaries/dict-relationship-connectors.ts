@@ -9,7 +9,11 @@ interface RelationshipConnectorTypeInfo {
 	name: LangString
 }
 
-// * 2 relationship connector types
+/**
+ * Represents a dictionary of relationship connector types and their corresponding information.
+ *
+ * @remarks This dictionary maps `RelationshipConnectorTypesUnion` to `RelationshipConnectorTypeInfo`.
+ */
 export const relationshipConnectors: Record<RelationshipConnectorTypesUnion, RelationshipConnectorTypeInfo> = {
 	[RelationshipConnectorType.AndJunction]: {
 		name: {
