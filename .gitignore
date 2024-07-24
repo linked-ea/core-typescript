@@ -13,9 +13,9 @@ release-builds
 .gitconfig
 
 # project folders
-build
-dist
-lib
-out
-test
-types
+/build/
+/dist/
+/lib/
+/out/
+/test/
+/types/

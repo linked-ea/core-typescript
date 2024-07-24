@@ -1,11 +1,12 @@
 // --- project imports ---
-import * as CORE from '../src/index.js'
+// import * as CORE from '../src/index.js'
 import * as DICTIONARY from '../src/dictionaries/index.js'
 import * as Enum from '../src/enums/index.js'
 import * as Resource from '../src/resources/index.js'
+import * as Foundation from '../src/foundation/index.js'
 
 // --- data ---
-export const modelIdentifier: CORE.IRI = "http://x.y.z/"
+export const modelIdentifier: Foundation.IRI = "http://x.y.z/"
 export const base: string = 'http://this.is.base/path#'
 export const defaultLanguage = 'en'
 

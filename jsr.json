@@ -5,7 +5,8 @@
 		"./index": "./src/index.ts",
 		"./Dict": "./src/dictionaries/index.ts",
 		"./Enum": "./src/enums/index.ts",
-		"./Resource": "./src/resources/index.ts"
+		"./Resource": "./src/resources/index.ts",
+		"./Foundation": "./src/foundations/index.ts"
 	},
 	"publish": {
 		"include": [

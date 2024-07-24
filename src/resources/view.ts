@@ -1,10 +1,10 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
 // --- project imports ---
-import type * as xs from '../common/xs.js'
-import type { RGBColorType } from '../common-types/type-common.js'
-import type { LangString } from '../common/lang-strings.js'
-import type { ImageRef } from "../common-types/type-image-ref.js"
+import type * as xs from '../foundation/xs.js'
+import type { RGBColorType } from '../foundation/type-common.js'
+import type { LangString } from '../foundation/lang-strings.js'
+import type { ImageRef } from "../foundation/type-image-ref.js"
 
 // MARK: --- exported types ---
 export type ItemTypeUnion = 'Element' | 'Container' | 'Label' | 'Line' | 'Relationship' | 'Connector'

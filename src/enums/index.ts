@@ -6,6 +6,7 @@
  *
  */
 
+export { AspectTypes, type AspectTypesUnion } from './aspect-types-enum.js'
 export { ElementType } from './element-type-enum.js'
 export { ResourceClass } from './resource-class-enum.js'
 export { RelationshipType } from './relationship-type-enum.js'

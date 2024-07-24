@@ -8,15 +8,16 @@
 
 // --- project imports ---
 import type { Alias } from './dict-common.ts'
-import type { AspectTypes } from '../common-types/type-aspects.js'
-import type { Layers } from '../common-types/type-layers.js'
+// import type { AspectTypes } from '../common-types/type-aspects.js'
+import type  { AspectTypesUnion } from '../enums/aspect-types-enum.js'
+import type { Layers } from '../foundation/type-layers.js'
 import { ElementType } from '../enums/element-type-enum.js'
 import type { ElementTypesUnion } from '../resources/element.js'
 
-export interface IElementConcept extends Alias {
+interface ElementConcept extends Alias {
 	name: string
 	layer: Layers
-	aspect: AspectTypes
+	aspect: AspectTypesUnion
 	definition: string
 }
 
@@ -27,7 +28,7 @@ export interface IElementConcept extends Alias {
  *
  * @remarks This dictionary maps `ElementTypesUnion` to `IElementConcept`.
  */
-export const elements: Record<ElementTypesUnion, IElementConcept> = {
+export const elements: Record<ElementTypesUnion, ElementConcept> = {
 	[ElementType.ApplicationCollaboration]: {
 		name: 'Application Collaboration',
 		layer: 'Application',

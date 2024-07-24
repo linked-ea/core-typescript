@@ -1,6 +1,6 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
-import type { Aspect } from '../common-types/type-aspects.js'
+import type { Aspect } from '../foundation/type-aspects.js'
 
 export const aspects: Record<string, Aspect> = {
 	'Passive Structure': {

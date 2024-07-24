@@ -12,6 +12,12 @@ import  { PropertyTypes, type PropertyTypesUnion } from '../enums/property-types
 // --- dictionary exports ---
 // TODO - associate property types to be used
 // (8)
+/**
+ * Dictionary of property types.
+ *
+ * @remarks
+ * This dictionary maps `PropertyTypesUnion` values to their corresponding string descriptions.
+ */
 export const propertyTypes: Record<PropertyTypesUnion, string> = {
 	[PropertyTypes.Integer]: 'The integer type is used for integral numbers. Floating point numbers are rejected',
 	[PropertyTypes.Number]: 'Any numeric type, either integers or floating point numbers',
