@@ -2,7 +2,7 @@
  * @module
  * linked-ea core Typescript common types used across the project.
  *
- * @remarks ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
+ * @copyright ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
  *
  */
 

@@ -7,7 +7,10 @@
  */
 
 /**
- * Represents the available property types.
+ * Enumeration of available property types.
+ * @readonly
+ * @const {object}
+ * @enum {string}
  */
 export const PropertyTypes = {
 	/**

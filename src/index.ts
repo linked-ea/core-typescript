@@ -17,7 +17,7 @@
 
 // import type { ModelInfo } from './resources/model.js'
 // import type { ModelReferenceInfo } from './resources/model-reference.js'
-import type { PropertyRecord, /* PropertyDefInfo , */ TPropertyValue, Type } from './resources/property-definition.js'
+import type { PropertyRecord, /* PropertyDefInfo , */ TPropertyValue } from './resources/property-definition.js'
 // import type { ProfileInfo } from './resources/profile.js'
 // import type { ImageInfo } from './resources/image.js'
 // import type { SpecializationInfo } from './resources/specialization.js'
@@ -27,8 +27,6 @@ import type { PropertyRecord, /* PropertyDefInfo , */ TPropertyValue, Type } fro
 // import type { RelationshipConnectorInfo, RelationshipConnectorTypesUnion } from './resources/relationship-connectors.js'
 // import type { ViewConceptType, /* ViewInfo, */ ElementNodeInfo, LabelNodeInfo, ViewNodeType, ItemTypeUnion, LineConnectionInfo, RelationshipConnectionInfo, ConnectorInfo, FontType, LocationGroup, SizeGroup } from './resources/view.js'
 // import type { OrganizationInfo } from './resources/organization.js'
-
-import type { Layers } from './foundation/type-layers.ts'
 
 // import type * as TYPE from './union-types/index.js'
 
@@ -43,12 +41,11 @@ import type { Layers } from './foundation/type-layers.ts'
 
 
 // export type { LangCode }
-export type { Layers as Layer }
 
 // export type { IDocumentation }
 // export type { ResourceClassUnion as ResourceClasses, ResourceClass, NamedResource }
 
-export type { PropertyRecord, TPropertyValue, /* PropertyDefInfo, */ Type }
+export type { PropertyRecord, TPropertyValue, /* PropertyDefInfo, Type */ }
 
 // export type { ElementInfo, ElementTypesUnion }
 // export type { RelationshipTypeUnion }
