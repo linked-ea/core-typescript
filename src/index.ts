@@ -6,6 +6,11 @@
  *
  */
 
+export * as Dict from './dictionaries/index.js'
+export * as Enum from './enums/index.js'
+export * as Resource from './resources/index.js'
+export * as Foundation from './foundation/index.js'
+
 //
 
 // FIXME: naming convention for types and interfaces

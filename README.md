@@ -1,42 +1,33 @@
-# typescript-core
-TypeScript type representation of FED-EA core data model.
+[![JSR](https://jsr.io/badges/@linked-ea/core-typescript)](https://jsr.io/@linked-ea/core-typescript)
+[![JSR Score](https://jsr.io/badges/@linked-ea/core-typescript/score)](https://jsr.io/@linked-ea/core-typescript)
+
+# core-typescript
+TypeScript type representation of linked-EA core data model.
 
 ## Features
 
-### Type Definitions
-* Models
-* Property Definitions
-* Specializations
-* Profiles
-* Elements
-* Relationships
-* Relationship Connectors
-* Viewpoints
-* Views
-* Organizations
+* [Foundational Types](https://jsr.io/@linked-ea/core-typescript/doc/Foundation/~), used broadly across the specification
+* [Enumerations](https://jsr.io/@linked-ea/core-typescript/doc/Enum/~), to prevent hard-coding of constants as linked-ea specification evolves
+* [Dictionaries](https://jsr.io/@linked-ea/core-typescript/doc/Dict/~), to enable functionality by configuration. Also allow internationalization of specification
+* [Resources](https://jsr.io/@linked-ea/core-typescript/doc/Resource/~), definition of core architecture resources used by the specification
 
-### Enumerations
-* Element Types
-* Relationship Types
-* Relationship Connector Types
 
-### Multi-Language Dictionaries
-* Elements
-* Relationships
-* Relationship Connectors
-* Aspects
-* Layers
-* Language Codes (ISO 639-1 Alpha-2)
 
 ## Installation
 
 ```
-npm install @fed-ea/core-typescript
+npx jsr add @linked-ea/core-typescript
 ```
 
 ```
-bun add @fed-ea/core-typescript
+bunx jsr add @linked-ea/core-typescript
 ```
+
+```
+pnpm dlx jsr add @linked-ea/core-typescript
+```
+
+
 ## Usage
 ```
 import * as CORE from '../src/index.js'
