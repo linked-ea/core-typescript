@@ -1,6 +1,6 @@
 {
 	"name": "@linked-ea/core-typescript",
-	"version": "0.0.23",
+	"version": "0.0.24",
 	"exports": {
 		"./index": "./src/index.ts",
 		"./Dict": "./src/dictionaries/index.ts",
