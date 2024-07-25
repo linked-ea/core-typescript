@@ -23,13 +23,15 @@ import type { ViewpointInfo } from './viewpoint.js'
 import type { ElementInfo /*, ElementTypesUnion  */} from './element.js'
 import type { RelationshipInfo, RelationshipTypeUnion } from './relationship.js'
 import type { RelationshipConnectorInfo /* , RelationshipConnectorTypesUnion */} from './relationship-connectors.js'
-import type { ViewInfo } from './view.js'
+import type { ViewInfo, View2 } from './view.js'
 import type { OrganizationInfo } from './organization.js'
+
+import * as Enum from '../enums/index.js'
 
 import type * as TYPE from '../union-types/index.js'
 
 // --- re-exports ---
-import * as Enum from '../enums/index.js'
+export type { View2 }
 
 // export * as TYPE from '../union-types/index.js'
 

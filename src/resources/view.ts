@@ -1,12 +1,28 @@
 // ArchiMate® is a registered trademark of The Open Group. https://www.opengroup.org/archimate-forum/archimate-overview
 
-// --- project imports ---
+// MARK: --- project imports ---
 import type * as xs from '../foundation/xs.js'
+import * as Enum from '../enums/index.js'
 import type { RGBColorType } from '../foundation/type-common.js'
 import type { LangString } from '../foundation/lang-strings.js'
 import type { ImageRef } from "../foundation/type-image-ref.js"
+import type { BaseResource } from './common/base-resource.js'
 
 // MARK: --- exported types ---
+/**
+ * View represents the information structure of view resource.
+ */
+export interface View2 extends BaseResource<typeof Enum.ResourceClass.View>
+	{
+		/** resource information */
+		info:{
+			/** IRI reference to the viewpoint resource */
+			viewpointRef?: xs.IDREF
+			/** record of view items */
+			items?: Record<xs.IDREF, ElementNodeInfo | ContainerNodeInfo | LabelNodeInfo | LineConnectionInfo | RelationshipConnectionInfo | ConnectorInfo>
+		}
+	 }
+
 export type ItemTypeUnion = 'Element' | 'Container' | 'Label' | 'Line' | 'Relationship' | 'Connector'
 
 // MARK: --- local types ---
@@ -16,10 +32,9 @@ interface Stereotype {
 
 // --- resource ---
 export interface ViewInfo extends Stereotype {
-	/**
-	* IRI reference to the viewpoint resource
-	*/
+	/** IRI reference to the viewpoint resource */
 	viewpointRef?: xs.IDREF
+	/** record of view items */
 	items?: Record<xs.IDREF, ViewConceptType>
 }
 
